@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-	has_mobile_fu #Mobile Device Detection
+	#has_mobile_fu #Mobile Device Detection
 
 	# Navigation Bar
 	module Navbar
