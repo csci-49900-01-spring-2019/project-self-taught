@@ -18,5 +18,5 @@
 	sudo git pull origin
 	sudo git checkout branch-name-goes-here
 	sudo bundle install
-	sudo apachectl restart
+	sudo passenger-config restart-app
 	```
