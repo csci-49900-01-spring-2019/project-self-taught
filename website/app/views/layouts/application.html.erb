@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Website</title>
+    <title>Self-Taught Application</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,7 +10,8 @@
   </head>
 
   <body>
-    <%= render 'layouts/navigation' %>
+    <%= render 'layouts/info_nav_top' %>
     <%= yield %>
+    <%= render 'layouts/site_footer' %>
   </body>
 </html>

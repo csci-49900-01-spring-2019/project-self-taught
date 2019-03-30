@@ -22,6 +22,30 @@ Format:
 # Changelog
 Self-Taught Application Changelog
 
+## v0.0.2 - 2019-03-30
+### Added
+- mobile-fu gem for Mobile Device Detection
+- material_icons for google material icons
+- site footer navbar
+- info top navbar
+- HomepageController
+	- homepage_controller.rb
+	- index.html.erb
+	- index.mobile.erb
+- user_defined.scss
+	- user-defined stylesheet
+
+### Changed
+- routes.rb
+	- routing follows the REST-API structure
+- application_controller.rb
+	- added line for mobile-fu gem implementation
+	- added Navbar Enum-like module
+
+### Removed
+- default.scss
+	- an unnecessary file
+
 ## v0.0.1 - 2019-03-29
 ### Added
 - Basic Ruby on Rails Structure
