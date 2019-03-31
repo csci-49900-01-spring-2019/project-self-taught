@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   #end
   root 'homepage#index'
   
-  get '/user/signup', to:'users#new'
+  get '/user/signup', to: 'users#new'
   get '/user/login', to: 'users#access'
 end

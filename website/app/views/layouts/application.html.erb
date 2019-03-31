@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
   <head>
     <title>Self-Taught Application</title>
     <%= csrf_meta_tags %>
@@ -9,9 +9,11 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= render 'layouts/info_nav_top' %>
-    <%= yield %>
-    <%= render 'layouts/site_footer' %>
+  <body class="w-100 h-100 mh-100">
+    <div class="d-flex justify-content-center flex-column  w-100 h-100">
+      <div class="w-100 sticky-top"><%= render 'layouts/info_nav_top' %></div>
+      <div class="w-100 flex-fill"><%= yield %></div>
+      <div class="w-100"><%= render 'layouts/site_footer' %></div>
+    </div>
   </body>
 </html>

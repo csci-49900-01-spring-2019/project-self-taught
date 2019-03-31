@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+		<style>
+  	</style>
+  </head>
+
+  <body>
+		<div class="d-flex justify-content-center flex-column w-100 h-100">
+			<div class="card text-center mx-auto" style="width: 640px;">
+				<div class="card-header">
+					Registration
+				</div>
+				<div class="card-body">
+					<form>
+						<div class="input-group my-2">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Full Name</span>
+							</div>
+							<input type="text" class="form-control" aria-label="First Name" placeholder="First Name">
+							<input type="text" class="form-control" aria-label="Last Name" placeholder="Last Name">
+						</div>
+
+						<div class="input-group my-2">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Username</span>
+							</div>
+							<input type="text" class="form-control" aria-label="Username"  placeholder="Username" aria-describedby="addon-wrapping">
+						</div>
+
+						<div class="input-group my-2">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Email Address</span>
+							</div>
+							<input type="text" class="form-control" aria-label="Email"  placeholder="Email" aria-describedby="addon-wrapping">
+						</div>
+
+						<div class="input-group my-2">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Password</span>
+							</div>
+						<input type="password" class="form-control" id="InputPassword" aria-label="Password" placeholder="Password">
+						</div>
+
+						<div class="input-group my-2">
+							<div class="input-group-prepend">
+								<span class="input-group-text">Re-Password</span>
+							</div>
+							<input type="password" class="form-control" id="InputPassword" aria-label="Repeat Password" placeholder="Repeat Password">
+						</div>
+
+						<div class="form-row align-items-center my-2">
+							<div class="input-group mb-2">
+								<div class="input-group-prepend">
+									<label class="input-group-text" for="GenderGroupSelect">Gender</label>
+								</div>
+								<select class="gender-select" id="GenderGroupSelect">
+									<option selected>Select Gender</option>
+									<option value="1">Male</option>
+									<option value="2">Female</option>
+								</select>
+							</div>
+
+							<div class="input-group mb-2">
+								<div class="input-group-prepend">
+									<label class="input-group-text" for="GradeGroupSelect">Grade</label>
+								</div>
+								<select class="grade-select" id="GradeGroupSelect">
+									<option selected>Select Grade</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="form-row align-items-center my-2">
+							<button type="submit" class="btn btn-primary mx-2">Sign Up</button>
+							<%= link_to 'Go Back', { :controller => :users, :action => :new }, class: "btn btn-danger mx-2", role: "button" %>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+  </body>
+</html>

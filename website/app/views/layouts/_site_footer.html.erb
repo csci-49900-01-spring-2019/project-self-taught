@@ -1,9 +1,7 @@
 <% if @navbars & ApplicationController::Navbar::SITE_FOOTER %>
-<div class="container">
-	<footer class="footer fixed-bottom">
-		<small>
-			<p class="text-center">Self-Taught Application &copy; <%= Date.today.year %></p>
-		</small> 
-	</footer>
-</div>
+<footer class="footer bg-light w-100 h-100">
+	<small>
+		<p class="text-center">Self-Taught Application &copy; <%= Date.today.year %></p>
+	</small> 
+</footer>
 <% end %>

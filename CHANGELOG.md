@@ -22,6 +22,14 @@ Format:
 # Changelog
 Self-Taught Application Changelog
 
+## v0.0.3 - 2019-03-30
+### Added
+- UserController
+	- user_controller.rb
+	- new.html.erb
+	- access.html.erb
+- Basic Login and Sign Up structure
+
 ## v0.0.2 - 2019-03-30
 ### Added
 - mobile-fu gem for Mobile Device Detection
