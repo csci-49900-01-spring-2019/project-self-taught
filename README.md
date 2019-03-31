@@ -33,6 +33,7 @@
 	sudo git pull origin
 	sudo git checkout branch-name-goes-here
 	sudo bundle install
+	sudo bundle exec rake assets:precompile
 	sudo passenger-config restart-app
 	```
 * Mobile View Testing Instructions:
