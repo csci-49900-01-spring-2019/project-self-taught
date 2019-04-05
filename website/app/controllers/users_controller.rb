@@ -42,4 +42,8 @@ class UsersController < ApplicationController
 	def reset_password
 		@navbars = Navbar::SITE_FOOTER | Navbar::INFO_NAV_TOP
 	end
+
+	def signup_complete
+		@navbars = Navbar::SITE_FOOTER | Navbar::INFO_NAV_TOP
+	end
 end

@@ -1,2 +1,7 @@
+<% if (true == @userlogin) %>
+<%= link_to 'Notebook', { :controller => :notebooks, :action => :user }, class: "btn btn-outline-secondary my-2 my-sm-0 mr-2", role: "button" %>
+<%= link_to 'Logout', { :controller => :homepage, :action => :index }, class: "btn btn-outline-danger my-2 my-sm-0 mr-2", role: "button" %>
+<% else %>
 <%= link_to 'Login', { :controller => :users, :action => :access }, class: "btn btn-outline-secondary my-2 my-sm-0 mr-2", role: "button" %>
 <%= link_to 'Sign Up', { :controller => :users, :action => :new }, class: "btn btn-outline-secondary my-2 my-sm-0 mr-2", role: "button" %>
+<% end %>

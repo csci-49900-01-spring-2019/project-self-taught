@@ -22,10 +22,17 @@ Format:
 # Changelog
 Self-Taught Application Changelog
 
+## v0.0.5 - 2019-04-05
+### Added
+- NotebooksController
+	- user.html.erb
+- UsersController
+	- signup_complete.html.erb
+
 ## v0.0.4 - 2019-04-05
 ### Added
 - devise gem for Authentication
-- UserController
+- UsersController
 	- recover.html.erb
 	- reset_password.html.erb
 
@@ -34,7 +41,7 @@ Self-Taught Application Changelog
 
 ## v0.0.3 - 2019-03-30
 ### Added
-- UserController
+- UsersController
 	- user_controller.rb
 	- new.html.erb
 	- access.html.erb

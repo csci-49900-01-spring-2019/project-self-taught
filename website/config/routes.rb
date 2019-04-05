@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   root 'homepage#index'
   
   get '/user/signup', to: 'users#new'
+  get '/user/signup/complete', to: 'users#signup_complete'
   get '/user/login', to: 'users#access'
   get '/user/recover', to: 'users#recover'
   get '/user/password/reset', to: 'users#reset_password'
+
+  get '/notebook/user', to: 'notebooks#user'
 end
