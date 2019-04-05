@@ -10,3 +10,4 @@ class ApplicationController < ActionController::Base
 	# The navigation bar flag
 	# @navbars = Navbar::SITE_FOOTER | Navbar::INFO_NAV_TOP
 end
+

@@ -1,4 +1,4 @@
-<% if @navbars & ApplicationController::Navbar::SITE_FOOTER %>
+<% if (0 != @navbars & ApplicationController::Navbar::SITE_FOOTER) %>
 <footer class="footer bg-light w-100 h-100">
 	<small>
 		<p class="text-center">Self-Taught Application &copy; <%= Date.today.year %></p>

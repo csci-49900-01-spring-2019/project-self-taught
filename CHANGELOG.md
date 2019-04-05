@@ -22,6 +22,16 @@ Format:
 # Changelog
 Self-Taught Application Changelog
 
+## v0.0.4 - 2019-04-05
+### Added
+- devise gem for Authentication
+- UserController
+	- recover.html.erb
+	- reset_password.html.erb
+
+### Changed
+- Fixed navbars variable
+
 ## v0.0.3 - 2019-03-30
 ### Added
 - UserController

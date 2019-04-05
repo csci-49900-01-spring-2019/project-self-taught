@@ -1,5 +1,5 @@
-<% if @navbars & ApplicationController::Navbar::INFO_NAV_TOP %>
-<nav class="navbar navbar-expand-lg navbar-light bg-light w-100 shadow", style="top: 0px;">
+<% if (0 != @navbars & ApplicationController::Navbar::INFO_NAV_TOP) %>
+<nav class="navbar navbar-expand-lg navbar-light bg-light w-100 shadow sticky-top">
   <%= link_to "<i class='material-icons align-middle'>face</i> Self-Taught |<small>improve your study skills</small>|".html_safe, { :controller => :homepage, :action => :index }, class: "navbar-brand" %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

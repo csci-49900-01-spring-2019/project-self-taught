@@ -11,6 +11,12 @@ gem 'activesupport', '~> 5.2', '>= 5.2.3'
 gem 'actionpack', '~> 5.2', '>= 5.2.3'
 gem 'activemodel', '~> 5.2', '>= 5.2.3'
 
+# Devise for Authentication
+gem 'devise', '~> 4.6', '>= 4.6.2'
+
+# Use for Negative Captcha
+gem 'negative_captcha'
+
 # Use mobile-fu for Mobile Device Detection
 gem 'mobile-fu', '~> 1.4'
 
