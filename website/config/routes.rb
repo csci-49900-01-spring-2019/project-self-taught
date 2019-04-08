@@ -4,11 +4,14 @@ Rails.application.routes.draw do
   #end
   root 'homepage#index'
   
-  get '/user/signup', to: 'users#new'
-  get '/user/signup/complete', to: 'users#signup_complete'
-  get '/user/login', to: 'users#access'
-  get '/user/recover', to: 'users#recover'
-  get '/user/password/reset', to: 'users#reset_password'
+  get '/user/signup', action: :signup, controller: 'users'
+  get '/user/signup/complete', action: :complete_signup, controller: 'users'
+  get '/user/login', action: :login, controller: 'users'
+  get '/user/recover', action: :recover, controller: 'users'
+  get '/user/password/reset', action: :reset_password, controller: 'users'
 
-  get '/notebook/user', to: 'notebooks#user'
+  get '/notebooks/user', action: :user, controller: 'notebooks'
+  get '/notebooks/:id', to: 'notebooks#show'
+  get '/notebooks/:id/edit', to: 'notebooks#edit'
+
 end

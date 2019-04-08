@@ -20,6 +20,11 @@
 	* Mobile Device Detection
 	* [Documentation](https://www.rubydoc.info/gems/mobile-fu/1.4.0)
 
+### User Authentication
+* devise
+	* User Authentication
+	* [Documentation](https://github.com/plataformatec/devise)
+
 ### Database
 * mongoid
 	* MongoDB Connector
@@ -29,9 +34,9 @@
 * Deployment Instructions:
 	```
 	# Webserver Deployment
+	sudo git checkout branch-name-goes-here
 	sudo git fetch origin
 	sudo git pull origin
-	sudo git checkout branch-name-goes-here
 	sudo bundle install
 	sudo bundle exec rake assets:precompile
 	sudo passenger-config restart-app

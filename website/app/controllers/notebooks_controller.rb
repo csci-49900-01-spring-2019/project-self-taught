@@ -1,6 +1,6 @@
 class NotebooksController < ApplicationController
 	def user
 		@userlogin = true
-		@navbars = Navbar::SITE_FOOTER | Navbar::INFO_NAV_TOP
+		@navbars = Navbar::FULL_TOP | Navbar::FOOTER
 	end
 end

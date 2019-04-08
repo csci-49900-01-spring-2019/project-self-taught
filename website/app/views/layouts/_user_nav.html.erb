@@ -1,7 +1,38 @@
 <% if (true == @userlogin) %>
-<%= link_to 'Notebook', { :controller => :notebooks, :action => :user }, class: "btn btn-outline-secondary my-2 my-sm-0 mr-2", role: "button" %>
-<%= link_to 'Logout', { :controller => :homepage, :action => :index }, class: "btn btn-outline-danger my-2 my-sm-0 mr-2", role: "button" %>
+<a href="#" class="custom-link-primary custom-shade">
+	<div class="custom-nav-item-right d-flex flex-column justify-content-center text-center">
+		<div>My Notebooks</div>
+	</div>
+</a>
+<a href="#" class="custom-link-primary custom-shade">
+	<div class="custom-nav-item-right-lg d-flex flex-column justify-content-center text-center">
+		<div class="block">Brandon Foster <i class="material-icons align-middle">arrow_drop_down</i></div>
+	</div>
+</a>
+<a href="#" class="custom-link-primary custom-shade">
+	<div class="custom-nav-item-right-sm d-flex flex-column justify-content-center text-center">
+		<center><i class="material-icons align-middle">mail</i></center>
+	</div>
+</a>
+<a href="#" class="custom-link-primary  custom-shade">
+	<div class="custom-nav-item-right-sm d-flex flex-column justify-content-center text-center">
+		<center><i class="material-icons align-middle">more_horiz</i></center>
+	</div>
+</a>
 <% else %>
-<%= link_to 'Login', { :controller => :users, :action => :access }, class: "btn btn-outline-secondary my-2 my-sm-0 mr-2", role: "button" %>
-<%= link_to 'Sign Up', { :controller => :users, :action => :new }, class: "btn btn-outline-secondary my-2 my-sm-0 mr-2", role: "button" %>
+<a href="#" class="custom-link-primary custom-shade">
+<div class="custom-nav-item-right d-flex flex-column justify-content-center text-center">
+	<div>Login</div>
+</div>
+</a>
+<a href="#" class="custom-link-primary custom-shade">
+<div class="custom-nav-item-right d-flex flex-column justify-content-center text-center">
+	<div>Sign Up</div>
+</div>
+</a>
+<a href="#" class="custom-link-primary custom-shade">
+<div class="custom-nav-item-right-sm d-flex flex-column justify-content-center text-center">
+	<center><i class="material-icons align-middle">more_horiz</i></center>
+</div>
+</a>
 <% end %>

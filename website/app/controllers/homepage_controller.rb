@@ -1,5 +1,5 @@
 class HomepageController < ApplicationController
 	def index
-		@navbars = Navbar::SITE_FOOTER | Navbar::INFO_NAV_TOP
+		@navbars = Navbar::FULL_TOP | Navbar::FOOTER
 	end
 end

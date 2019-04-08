@@ -22,6 +22,23 @@ Format:
 # Changelog
 Self-Taught Application Changelog
 
+## v0.0.6 - 2019-04-07
+### Added
+- Basic design of a notebook.
+
+### Changed
+- Refactored some html code of the site.
+- Changed the names for several html pages for better readability.
+- Changed the navbar structure to be more business-oriented.
+- application_helper.rb
+	- added some helper methods for rendering the notebook.
+- user_define.scss
+	- now stores color styling variables.
+	- defined several more custom css classes.
+
+### Removed
+- Temporarily removed links to some web pages.
+
 ## v0.0.5 - 2019-04-05
 ### Added
 - NotebooksController

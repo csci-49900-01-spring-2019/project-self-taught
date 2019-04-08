@@ -236,7 +236,7 @@ DEPENDENCIES
   actionpack (~> 5.2, >= 5.2.3)
   activemodel (~> 5.2, >= 5.2.3)
   activesupport (~> 5.2, >= 5.2.3)
-  bootstrap
+  bootstrap (~> 4.3, >= 4.3.1)
   byebug
   capybara (>= 2.15)
   chromedriver-helper
@@ -254,6 +254,7 @@ DEPENDENCIES
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
+  sprockets-rails (~> 3.2, >= 3.2.1)
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)

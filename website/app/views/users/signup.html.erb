@@ -72,35 +72,9 @@
 								</select>
 							</div>
 						</div>
-
-
-						<% form_tag do -%>
-							<%# The `negative_captcha` call gives us the honeypots, spinners and whatnot %>
-							<%= raw negative_captcha(@captcha) %>
-							<ul class="contact_us">
-								<li>
-									<%= negative_label_tag(@captcha, :name, 'Name:') %>
-									<%= negative_text_field_tag(@captcha, :name) %>
-								</li>
-								<li>
-									<%= negative_label_tag(@captcha, :email, 'Email:') %>
-									<%= negative_text_field_tag(@captcha, :email) %>
-								</li>
-								<li>
-									<%= negative_label_tag(@captcha, :body, 'Your Comment:') do %>
-										<span>Accepts a block.</span>
-									<% end %>
-									<%= negative_text_area_tag(@captcha, :body) %>
-								</li>
-								<li>
-									<%= submit_tag %>
-								</li>
-							</ul>
-						<% end -%>
-
 						<div class="form-row align-items-center my-2">
 							<button type="submit" class="btn btn-primary mx-2">Sign Up</button>
-							<%= link_to 'Go Back', { :controller => :users, :action => :signup_complete }, class: "btn btn-danger mx-2", role: "button" %>
+							<%= link_to 'Go Back', { :controller => :users, :action => :complete_signup }, class: "btn btn-danger mx-2", role: "button" %>
 						</div>
 
 					</form>
