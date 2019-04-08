@@ -14,7 +14,11 @@
       <% if (0 != @navbars & ApplicationController::Navbar::FULL_TOP) %>
         <%= render 'layouts/full_top' %>
       <% end %>
-      <div class="w-100 flex-fill"><%= yield %></div>
+      <div class="w-100 flex-fill">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+        <%= yield %>
+      </div>
       <% if (0 != @navbars & ApplicationController::Navbar::FOOTER) %>
         <%= render 'layouts/footer' %>
       <% end %>
