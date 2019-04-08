@@ -22,6 +22,12 @@ Format:
 # Changelog
 Self-Taught Application Changelog
 
+## v0.0.7 - 2019-04-08
+### Changed
+- Refactored the html code of the navigation bar to use more ruby code.
+- user_defined.scss
+	- Utilized @extend more.
+
 ## v0.0.6 - 2019-04-07
 ### Added
 - Basic design of a notebook.

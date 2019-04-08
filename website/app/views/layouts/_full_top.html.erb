@@ -1,34 +1,20 @@
-<div class="custom-nav bg-primary-color d-flex flex-row justify-content-start shadow">
-  <a href="#">
-    <div class="custom-nav-item-left-sm bg-secondary-color text-secondary-color d-flex flex-column justify-content-center text-center">
-      <center><i class="material-icons align-middle custom-link-secondary">home</i></center>
-    </div>
-  </a>
-  <div class="custom-nav-item-left-lg bg-secondary-color text-secondary-color d-flex flex-column justify-content-center text-center">
+<div class="my-nav bg-color1 d-flex flex-row justify-content-start shadow">
+  <%= link_to({ controller: 'homepage', action: 'index' }, class: "my-nav-home d-flex flex-column justify-content-center text-center") do %>
+    <center><i class="material-icons align-middle">home</i></center>
+  <%  end %>
+  <div class="my-nav-brand d-flex flex-column justify-content-center text-center">
     <%= $app_title %>
   </div>
-  <a href="#" class="custom-link-primary">
-    <div class="custom-nav-item-left d-flex flex-column justify-content-center text-center">
-      <div>Library</div>
-    </div>
-  </a>
-  <a href="#" class="custom-link-primary">
-    <div class="custom-nav-item-left d-flex flex-column justify-content-center text-center">
-      <div>Pricing</div>
-    </div>
-  </a>
-  <a href="#" class="custom-link-primary">
-    <div class="custom-nav-item-left d-flex flex-column justify-content-center text-center">
-      <div>Contact Us</div>
-    </div>
-  </a>
+  <%= link_to "Library", { controller: 'homepage', action: 'index' }, class: "my-nav-library d-flex flex-column justify-content-center text-center" %>
+  <%= link_to "Pricing", { controller: 'homepage', action: 'index' }, class: "my-nav-pricing d-flex flex-column justify-content-center text-center" %>
+  <%= link_to "Contact Us", { controller: 'homepage', action: 'index' }, class: "my-nav-contact d-flex flex-column justify-content-center text-center" %>
   <div class="d-flex flex-row justify-content-end flex-fill">
     <%= render "layouts/user_nav" %>
-    <div class="custom-nav-item-right-lg bg-secondary-color text-secondary-color d-flex flex-column justify-content-center text-center">
+    <div class="my-nav-item-lg bg-color2 text-color2 d-flex flex-column justify-content-center text-center">
       <form class="form-inline mx-auto">
         <input class="form-control" type="search" placeholder="Courses, Notes, ..." aria-label="Search">
         <button class="btn" type="submit">
-          <i class="material-icons align-middle  custom-link-secondary">search</i>
+          <i class="material-icons align-middle">search</i>
         </button>
       </form>
     </div>
