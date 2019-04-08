@@ -26,6 +26,7 @@ module Website
     config.force_ssl = true
 
     #mongoid setup
+    Mongoid.load!("./config/mongoid.yml")
     config.generators do |g|
       g.orm :mongoid
     end
