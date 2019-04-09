@@ -21,11 +21,8 @@ module Website
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
-    
-    #force https
-    config.force_ssl = true
 
-    #mongoid setup
+    # Mongoid configuration
     Mongoid.load!("./config/mongoid.yml")
     config.generators do |g|
       g.orm :mongoid
