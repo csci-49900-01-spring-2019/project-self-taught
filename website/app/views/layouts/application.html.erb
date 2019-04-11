@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
   <head>
-    <title>Website</title>
+    <title><%= $app_title %> Application</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -9,9 +9,19 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+  <body class="w-100 h-100 mh-100" style="background-color: #E2E2E2;">
+    <div class="d-flex justify-content-start flex-column  w-100 h-100">
+      <% if (0 != @navbars & ApplicationController::Navbar::FULL_TOP) %>
+        <%= render 'layouts/full_top' %>
+      <% end %>
+      <div class="w-100 flex-fill">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+        <%= yield %>
+      </div>
+      <% if (0 != @navbars & ApplicationController::Navbar::FOOTER) %>
+        <%= render 'layouts/footer' %>
+      <% end %>
+    </div>
   </body>
 </html>

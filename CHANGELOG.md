@@ -22,6 +22,10 @@ Format:
 # Changelog
 Self-Taught Application Changelog
 
+## v0.0.8 - 2019-04-11
+### Added
+- Implemented the devise gem
+
 ## v0.0.7 - 2019-04-08
 ### Changed
 - Refactored the html code of the navigation bar to use more ruby code.

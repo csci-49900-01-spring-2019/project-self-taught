@@ -6,8 +6,13 @@ class User
          :recoverable, :rememberable, :validatable
 
   ## Database authenticatable
-  field :email,              type: String, default: ""
-  field :encrypted_password, type: String, default: ""
+  field :first_name,          type: String, default: ""
+  field :last_name,           type: String, default: ""
+  field :username,            type: String, default: ""
+  field :email,               type: String, default: ""
+  field :encrypted_password,  type: String, default: ""
+  field :gender,              type: String, default: ""
+  field :grade,               type: String, default: ""
 
   ## Recoverable
   field :reset_password_token,   type: String
@@ -33,4 +38,12 @@ class User
   # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
+
+  validates :username, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :gender, presence: true
+  validates :grade, presence: true
+
 end
