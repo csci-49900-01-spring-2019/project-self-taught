@@ -22,6 +22,10 @@ Format:
 # Changelog
 Self-Taught Application Changelog
 
+## v0.0.9 - 2019-04-15
+### Added
+- Sign out button
+
 ## v0.0.8 - 2019-04-11
 ### Added
 - Implemented the devise gem

@@ -100,6 +100,11 @@ $text-color3: white;
 	@extend .my-nav-link1;
 	@extend .shade-color1;
 }
+.my-nav-user-dropdown-menu {
+	@extend .my-nav-user;
+	background-color: $bg-color1;
+	color: $bg-color1;
+}
 .my-nav-mail {
 	@extend .my-nav-item-sm;
 	@extend .my-nav-link1;
