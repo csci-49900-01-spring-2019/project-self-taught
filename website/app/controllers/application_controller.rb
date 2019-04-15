@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
 	#has_mobile_fu #Mobile Device Detection
 	# Devise configuration
 	before_action :configure_permitted_parameters, if: :devise_controller?
+	protect_from_forgery with: :null_session
 
 	protected
 
