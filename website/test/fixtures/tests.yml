@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  questions: MyString
+  time_limit: MyString
+  user: MyString
+  tags: MyString
+
+two:
+  name: MyString
+  questions: MyString
+  time_limit: MyString
+  user: MyString
+  tags: MyString
