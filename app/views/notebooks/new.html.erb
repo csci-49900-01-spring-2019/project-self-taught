@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+
+  <body>
+    New Notebook
+    <%= form_for @notebook do |f| %>
+      <p><%= f.label :name %> <%= f.text_field :name %></p>
+      <p><%= f.submit %></p>
+    <% end %>
+  </body>
+</html>

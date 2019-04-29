@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+
+  <body>
+    <% if params[:id] == current_user[:username] %>
+      <%= link_to "New Notebook", new_notebook_path %>
+    <% end %>
+    <% @notebooks.each do |notebook| %>
+			<span style="display:block">
+        <%= notebook.name %>
+        <%= link_to "Open", notebook_path(notebook.id)  %>
+        <%= link_to "Edit", edit_notebook_path(notebook.id) %>
+        <%= link_to "Delete", notebook_path(notebook.id), { method: :delete } %>
+      </span><br/>
+		<% end %>
+  </body>
+</html>

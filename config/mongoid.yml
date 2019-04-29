@@ -1,0 +1,37 @@
+development:
+  clients:
+    default:
+      database: website_development
+      hosts:
+        - localhost:27017
+      options:
+        read:
+          mode: :primary
+test:
+  clients:
+    default:
+      database: website_test
+      hosts:
+        - localhost:27017
+      options:
+        read:
+          mode: :primary
+        max_pool_size: 1
+production:
+  clients:
+    default:
+      database: website_production
+      hosts:
+        - main-shard-00-00-gjbas.mongodb.net:27017
+        - main-shard-00-01-gjbas.mongodb.net:27017
+        - main-shard-00-02-gjbas.mongodb.net:27017
+      options:
+        read:
+          mode: :primary
+        user: 'admin'
+        password: 'admin'
+        roles:
+          - 'atlasAdmin'
+        auth_mech: :scram
+        auth_source: admin
+        ssl: true
