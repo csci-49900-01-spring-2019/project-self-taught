@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+
+  <body>
+    <% if user_signed_in? && @user.notebook_owner?(@notebook.id) %>
+      <p><%= link_to "New Note", new_notebook_note_path(@notebook.id) %></p>
+    <% end %>
+    <% @notes.each do |note| %>
+      <span style="display:block">
+        <%= note.name %>
+        <%= link_to "Open", notebook_note_path(note.notebook, note.id)  %>
+        <% if user_signed_in? && @user.notebook_owner?(note.notebook) %>
+        <%= link_to "Edit", edit_notebook_note_path(note.notebook, note.id) %>
+        <%= link_to "Delete", notebook_note_path(note.notebook, note.id), { method: :delete } %>
+        <% end %>
+      </span><br/>
+    <% end %>
+    <% if user_signed_in? && @user.notebook_owner?(@notebook) %>
+      <p><%= link_to "New Test", new_notebook_test_path(@notebook.id) %></p>
+    <% end %>
+    <% @tests.each do |nb_test| %>
+      <span style="display:block">
+        <%= nb_test.name %>
+        <%= link_to "Open", notebook_test_path(nb_test.notebook, nb_test.id)  %>
+        <% if user_signed_in? && @user.notebook_owner?(nb_test.notebook) %>
+        <%= link_to "Edit", edit_notebook_test_path(nb_test.notebook, nb_test.id) %>
+        <%= link_to "Delete", notebook_test_path(nb_test.notebook, nb_test.id), { method: :delete } %>
+        <% end %>
+      </span><br/>
+    <% end %>
+  </body>
+</html>

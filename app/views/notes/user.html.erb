@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+
+  <body>
+    <% @notes.each do |note| %>
+      <span style="display:block">
+        <%= note.name %>
+        <%= link_to "Open", notebook_note_path(note.notebook, note.id)  %>
+        <% if @user.notebook_owner?(note.notebook) %>
+        <%= link_to "Edit", edit_notebook_note_path(note.notebook, note.id) %>
+        <%= link_to "Delete", notebook_note_path(note.notebook, note.id), { method: :delete } %>
+        <% end %>
+      </span><br/>
+    <% end %>
+  </body>
+</html>

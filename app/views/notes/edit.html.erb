@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+
+  <body>
+    Edit Note
+    <%= form_for(@note, url: notebook_note_path) do |f| %>
+      <p><%= f.label :name %> <%= f.text_field :name,:value => @note.name %></p>
+      <p><%= f.submit %></p>
+    <% end %>
+  </body>
+</html>

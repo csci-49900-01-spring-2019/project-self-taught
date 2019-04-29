@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      $(document).ready(function(){
+        $("#add_question").click(function(){
+          var id = $("#questions").children().length + 1;
+          var question = '<label for="test_question'+id+'">Question '+id+':</label> <input type="text" name="question'+id+'" id="test_question'+id+'">'
+          var answer = '<label for="test_answer'+id+'">Answer:</label> <input type="text" name="answer'+id+'" id="test_answer'+id+'">'
+          $("#questions").append('<p>'+question+answer+'</p>');
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    New Test
+    <%= form_for(@test, url: notebook_tests_path) do |f| %>
+      <p><%= f.label :name %> <%= f.text_field :name %></p>
+      <div id="questions">
+      </div>
+      <p><input type="button" value="Add Question" id="add_question"></p>
+      <p><%= f.submit %></p>
+    <% end %>
+  </body>
+</html>
