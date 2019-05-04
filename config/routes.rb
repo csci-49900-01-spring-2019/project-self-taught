@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'users/:id/tests', action: :user, controller: 'tests', as: :user_tests
 
   resources :notebooks do
-    resources :notes, :tests
+    resources :notes, :tests, :test_sessions
   end
+  
 end

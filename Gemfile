@@ -29,6 +29,8 @@ gem 'material_icons', '~> 2.2', '>= 2.2.1'
 gem 'mobile-fu', '~> 1.4'
 # Temporary Permission Elevation
 gem 'jekyll', '~> 3.8', '>= 3.8.5'
+# Carrierwave-Mongoid for file upload
+gem 'carrierwave-mongoid', '~> 1.2'
 #
 
 # Use CoffeeScript for .coffee assets and views

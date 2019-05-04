@@ -23,7 +23,7 @@
     <% @tests.each do |nb_test| %>
       <span style="display:block">
         <%= nb_test.name %>
-        <%= link_to "Open", notebook_test_path(nb_test.notebook, nb_test.id)  %>
+        <%= link_to "Take", new_notebook_test_session_path(nb_test.notebook)  %>
         <% if user_signed_in? && @user.notebook_owner?(nb_test.notebook) %>
         <%= link_to "Edit", edit_notebook_test_path(nb_test.notebook, nb_test.id) %>
         <%= link_to "Delete", notebook_test_path(nb_test.notebook, nb_test.id), { method: :delete } %>
