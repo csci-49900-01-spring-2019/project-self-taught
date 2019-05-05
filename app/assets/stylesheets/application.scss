@@ -12,10 +12,8 @@
  *
  *= require_tree .
  *= require_self
+ *= require material_icons
  */
-/*
-*= require material_icons
-*/
 
-// Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+@import "font-awesome";

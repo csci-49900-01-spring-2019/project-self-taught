@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
+
+.app-nav-item-link:link {
+	text-decoration: none;
+}
+.app-nav-item-link:visited {
+  text-decoration: none;
+}
+.app-nav-item-link:hover {
+  text-decoration: none;
+  background-color: #0000001A;
+}
+.app-nav-item-link:active {
+  text-decoration: none;
+}
+
+.app-nav-brand-link:link {
+  text-decoration: none;
+}
+.app-nav-brand-link:visited {
+  text-decoration: none;
+}
+.app-nav-brand-link:hover {
+  text-decoration: none;
+}
+.app-nav-brand-link:active {
+  text-decoration: none;
+}
+
+/*-- Fonts --*/
+@font-face {
+  font-family: "Gilligan Shutter";
+  src: url(GilliganShutter.otf) format("truetype");
+}
+@font-face {
+  font-family: "Gist Rough Upr Exbold Two Demo";
+  src: url(GistRoughUprExboldTwoDemo.otf) format("truetype");
+}
+@font-face {
+  font-family: "Swistblnk Montheors";
+  src: url(Monthoers.otf) format("truetype");
+}
+
+
+/*-- Media Queries --*/
+@media (max-width: 992px) {
+}
+@media (max-width: 768px) {
+}
+@media (max-width: 576px) {
+}

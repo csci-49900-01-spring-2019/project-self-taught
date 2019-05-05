@@ -22,6 +22,20 @@ Format:
 # Changelog
 Self-Taught Application Changelog
 
+## v0.1.0 - 2019-05-05
+### Added
+- Mini App Logo
+- A few royalty-free OpenType fonts
+- font awesome gem for logos of different online brands
+
+### Changed
+- Homepage Re-Design
+- Navigation Bar Re-Design
+- CSS Files
+
+### Removed
+- Temporary removal of website behavior
+
 ## v0.0.9 - 2019-04-15
 ### Added
 - Sign out button
