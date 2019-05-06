@@ -22,6 +22,10 @@ Format:
 # Changelog
 Self-Taught Application Changelog
 
+## v0.1.2 - 2019-05-06
+### Added
+- Added main menu drop down
+
 ## v0.1.1 - 2019-05-06
 ### Added
 - Added user control panel sidebar

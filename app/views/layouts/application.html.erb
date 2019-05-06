@@ -48,36 +48,55 @@
         <button class="btn btn-sm btn-outline-primary">Login</button>
         <button class="btn btn-sm btn-primary">Sign Up</button>
         <button class="btn btn-sm btn-dark" type="button" data-toggle="collapse" data-target="#search-collapse"><i class="material-icons-sharp md-18 align-middle">search</i></button>
-        <button class="btn btn-sm btn-dark" type="button"><i class="material-icons-sharp md-18 align-middle">more_horiz</i></button>
+        <div class="d-inline dropdown">
+          <button class="btn btn-sm btn-dark" type="button" data-toggle="dropdown" id="main-drop-down" aria-haspopup="true" aria-expanded="false"><i class="material-icons-sharp md-18 align-middle">more_horiz</i></button>
+          <div class="dropdown-menu bg-light" aria-labelledby="main-drop-down">
+            <a class="dropdown-item bg-light" href="#">Home</a>
+            <a class="dropdown-item bg-light" href="#About">About</a>
+            <a class="dropdown-item bg-light" href="#Pricing">Pricing</a>
+            <a class="dropdown-item bg-light" href="#Team">Team</a>
+            <a class="dropdown-item bg-light" href="#Developer">Developer</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item bg-light" href="#">Support</a>
+            <a class="dropdown-item bg-light" href="#">Terms of Service</a>
+          </div>
+        </div>
       </div>
     </div>
   </div> 
 </div>
 
+<!-- Control Panel Sidebar -->
+<div class="d-flex flex-column border-right border-dark bg-primary position-fixed h-100" style="min-width: 48px;">
+  <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100"><i class="material-icons-sharp md-24 my-auto">notifications</i></a>
+  <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100"><i class="material-icons-sharp md-24 my-auto">folder_open</i></a>
+  <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100"><i class="material-icons-sharp md-24 my-auto">description</i></a>
+  <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100"><i class="material-icons-sharp md-24 my-auto">question_answer</i></a>
+  <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100"><i class="material-icons-sharp md-24 my-auto">assignment</i></a>
+  <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100"><i class="material-icons-sharp md-24 my-auto">event_note</i></a>
+  <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100"><i class="material-icons-sharp md-24 my-auto">settings</i></a>
+  <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100"><i class="material-icons-sharp md-24 my-auto">help_outline</i></a>
+</div>
+
 <!-- Navigation Search Collapsable -->
-<div class="container-fluid padding collapse" id="search-collapse">
-  <div class="input-group input-group-sm ml-auto" style="width: 416px; max-width: 100%;">
-    <div class="input-group-prepend my-2">
-      <span class="input-group-text" id="search-addon">Search</span>
+<div class="padding collapse" id="search-collapse">
+  <div class="d-flex flex-row">
+    <div style="margin-left: 48px;"></div>
+    <div class="flex-fill bg-white border-bottom border-dark">
+      <div class="input-group input-group-sm ml-auto w-100" style="max-width: 416px;">
+        <div class="input-group-prepend my-2 ml-2">
+          <span class="input-group-text" id="search-addon">Search</span>
+        </div>
+        <input type="text" class="form-control my-2 mr-2" aria-label="Search" aria-describedby="search-addon">
+      </div>
     </div>
-    <input type="text" class="form-control my-2" aria-label="Search" aria-describedby="search-addon">
   </div>
 </div>
 </div>
 
 <div class="d-flex flew-row">
   <!-- Control Panel Sidebar -->
-  <div class="border-right border-dark bg-primary" style="min-width: 48px;">
-    <div class="d-flex flex-column position-fixed mt-4" style="min-width: 48px;">
-      <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100"><i class="material-icons-sharp md-24 my-auto">notifications</i></a>
-      <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100"><i class="material-icons-sharp md-24 my-auto">folder_open</i></a>
-      <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100"><i class="material-icons-sharp md-24 my-auto">description</i></a>
-      <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100"><i class="material-icons-sharp md-24 my-auto">question_answer</i></a>
-      <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100"><i class="material-icons-sharp md-24 my-auto">assignment</i></a>
-      <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100"><i class="material-icons-sharp md-24 my-auto">event_note</i></a>
-      <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100"><i class="material-icons-sharp md-24 my-auto">settings</i></a>
-      <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100"><i class="material-icons-sharp md-24 my-auto">help_outline</i></a>
-    </div>
+  <div style="min-width: 48px;">
   </div>
   <div class="flex-fill">
     <!-- Remaining Page -->
@@ -86,7 +105,7 @@
 </div>
 
 <!-- Footer -->
-<footer class="position-absolute w-100">
+<footer class="position-absolute w-100" style="z-index: 10000;">
 <div class="container-fluid padding border-top border-dark text-light bg-dark position-static">
 <div style="height:8px;"></div>
 <div class="row text-center">
