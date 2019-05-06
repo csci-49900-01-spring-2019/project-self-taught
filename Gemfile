@@ -24,8 +24,6 @@ gem 'bootstrap', '~> 4.3', '>= 4.3.1'
 gem 'sprockets-rails', '~> 3.2', '>= 3.2.1'
 gem 'jquery-rails'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
-# Use material_icons for Google Material Icons
-gem 'material_icons', '~> 2.2', '>= 2.2.1'
 # Use mobile-fu for Mobile Device Detection
 gem 'mobile-fu', '~> 1.4'
 # Temporary Permission Elevation

@@ -22,6 +22,16 @@ Format:
 # Changelog
 Self-Taught Application Changelog
 
+## v0.1.1 - 2019-05-06
+### Added
+- Added user control panel sidebar
+
+### Changed
+- More Navigation Bar Re-Design
+
+### Removed
+- material-icons gem, unnecessary
+
 ## v0.1.0 - 2019-05-05
 ### Added
 - Mini App Logo

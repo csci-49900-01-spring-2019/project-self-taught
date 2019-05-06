@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
+@import url("https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp");
 
 .app-nav-item-link:link {
 	text-decoration: none;
@@ -26,6 +27,30 @@
 .app-nav-brand-link:active {
   text-decoration: none;
 }
+
+.app-sidebar {
+  display: table-cell;
+}
+
+.app-sidebar-item {
+  height: 48px;
+  color: #00000060;
+}
+.app-sidebar-item:link {
+  text-decoration: none;
+}
+.app-sidebar-item:visited {
+  text-decoration: none;
+}
+.app-sidebar-item:hover {
+  text-decoration: none;
+  color: #FFFFFFE0;
+  background-color: #00000060;
+}
+.app-sidebar-item:active {
+  text-decoration: none;
+}
+
 
 /*-- Fonts --*/
 @font-face {
