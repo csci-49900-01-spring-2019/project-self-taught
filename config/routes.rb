@@ -19,5 +19,8 @@ Rails.application.routes.draw do
   resources :notebooks do
     resources :notes, :tests, :test_sessions
   end
+
+  constraints subdomain: 'api' do
+  end
   
 end

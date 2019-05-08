@@ -95,6 +95,9 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
+    devise_token_auth (1.1.0)
+      devise (> 3.5.2, < 4.7)
+      rails (>= 4.2.0, < 6)
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
@@ -168,6 +171,8 @@ GEM
     mongoid-grid_fs (2.4.0)
       mime-types (>= 1.0, < 4.0)
       mongoid (>= 3.0, < 8.0)
+    mongoid-locker (1.0.1)
+      mongoid (>= 4.0, < 8)
     multi_json (1.13.1)
     nio4r (2.3.1)
     nokogiri (1.10.2)
@@ -288,6 +293,7 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise (~> 4.6, >= 4.6.2)
+  devise_token_auth (~> 1.1)
   jbuilder (~> 2.5)
   jekyll (~> 3.8, >= 3.8.5)
   jquery-rails
@@ -295,6 +301,7 @@ DEPENDENCIES
   material_icons (~> 2.2, >= 2.2.1)
   mobile-fu (~> 1.4)
   mongoid (~> 7.0, >= 7.0.2)
+  mongoid-locker (~> 1.0, >= 1.0.1)
   puma (~> 3.11)
   rails (~> 5.2.3)
   sass-rails (~> 5.0)

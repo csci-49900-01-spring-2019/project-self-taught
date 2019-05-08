@@ -17,8 +17,10 @@ gem 'uglifier', '>= 1.3.0'
 # Add-Ons
 # Use Mongoid as the MongoDB Connector
 gem 'mongoid', '~> 7.0', '>= 7.0.2'
+gem 'mongoid-locker', '~> 1.0', '>= 1.0.1'
 # Use Devise for User Authentication
 gem 'devise', '~> 4.6', '>= 4.6.2'
+gem 'devise_token_auth', '~> 1.1'
 # Use Bootstrap as the UI Framework
 gem 'bootstrap', '~> 4.3', '>= 4.3.1'
 gem 'sprockets-rails', '~> 3.2', '>= 3.2.1'
