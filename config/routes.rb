@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace 'api', path: '/', constraints: { subdomain: 'test' } do
+  namespace 'api', path: '/', constraints: { subdomain: 'api' } do
     root to: "home#index"
 
     namespace 'v1' do
