@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   module DomainConstraint
     def self.matches? request
+      p "SUBDOMAIN"
+      p request.subdomain
       request.subdomain == 'api' || request.subdomain == 'www.api'
     end
   end
