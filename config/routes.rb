@@ -3,8 +3,6 @@ Rails.application.routes.draw do
 
   module ApiDomainConstraint
     def self.matches? request
-      p "SUBDOMAIN"
-      p request.subdomain
       request.subdomain == 'api' || request.subdomain == 'www.api'
     end
   end
@@ -33,8 +31,8 @@ Rails.application.routes.draw do
   end
 
   constraints ApiDomainConstraint do
+    root to: "home#index"
     scope module: "api" do
-      root to: "home#index"
 
       namespace :v1 do
         root to: "home#index"
