@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  module DomainConstraint
+    def self.matches? request
+      request.subdomain == 'api' || request.subdomain == 'www.api'
+    end
+  end
+
+
   constraints subdomain: '' do
     root to: "homepage#index"
     get 'mobile', action: :mobile, controller: 'homepage', as: :mobile
@@ -23,7 +30,7 @@ Rails.application.routes.draw do
     end
   end
 
-  constraints subdomain: 'api' do
+  constraints DomainConstraint do
     scope module: "api" do
       root to: "home#index"
 
