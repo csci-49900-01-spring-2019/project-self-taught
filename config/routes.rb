@@ -31,9 +31,9 @@ Rails.application.routes.draw do
   end
 
   constraints ApiDomainConstraint do
-    root to: "home#index"
-    scope module: "api" do
-
+    namespace :api, path: nil do
+      root to: "home#index"
+      
       namespace :v1 do
         root to: "home#index"
         
