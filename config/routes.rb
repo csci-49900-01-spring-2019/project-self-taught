@@ -22,31 +22,33 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace 'api', path: '/', constraints: { subdomain: 'api' } do
-    root to: "home#index"
-
-    namespace 'v1' do
+  constraints subdomain: 'api' do
+    namespace 'api', path: '/' do
       root to: "home#index"
-      
-      mount_devise_token_auth_for 'User', at: 'users', constraints: { format: 'json' },
-        controllers:
-        { confirmations:      'api/v1/users/confirmations',
-          passwords:          'api/v1/users/passwords',
-          omniauth_callbacks: 'api/v1/users/omniauth_callbacks',
-          registrations:      'api/v1/users/registrations',
-          sessions:           'api/v1/users/sessions',
-          token_validations:  'api/v1/users/token_validations' }
-      
-      get 'users/:id/notebooks', action: :user, controller: 'notebooks', as: :user_notebooks
-      get 'users/:id/notes', action: :user, controller: 'notes', as: :user_notes
-      get 'users/:id/questions', action: :user, controller: 'questions', as: :user_questions
-      get 'users/:id/tests', action: :user, controller: 'tests', as: :user_tests
 
-      resources :notebooks, only: [:index, :create, :show, :update, :destroy], constraints: { format: 'json' } do
-        resources :notes, only: [:index, :create, :show, :update, :destroy]
-        resources :questions, only: [:index, :create, :show, :update, :destroy]
-        resources :tests, only: [:index, :create, :show, :update, :destroy]
-      end 
+      namespace 'v1' do
+        root to: "home#index"
+        
+        mount_devise_token_auth_for 'User', at: 'users', constraints: { format: 'json' },
+          controllers:
+          { confirmations:      'api/v1/users/confirmations',
+            passwords:          'api/v1/users/passwords',
+            omniauth_callbacks: 'api/v1/users/omniauth_callbacks',
+            registrations:      'api/v1/users/registrations',
+            sessions:           'api/v1/users/sessions',
+            token_validations:  'api/v1/users/token_validations' }
+        
+        get 'users/:id/notebooks', action: :user, controller: 'notebooks', as: :user_notebooks
+        get 'users/:id/notes', action: :user, controller: 'notes', as: :user_notes
+        get 'users/:id/questions', action: :user, controller: 'questions', as: :user_questions
+        get 'users/:id/tests', action: :user, controller: 'tests', as: :user_tests
+
+        resources :notebooks, only: [:index, :create, :show, :update, :destroy], constraints: { format: 'json' } do
+          resources :notes, only: [:index, :create, :show, :update, :destroy]
+          resources :questions, only: [:index, :create, :show, :update, :destroy]
+          resources :tests, only: [:index, :create, :show, :update, :destroy]
+        end 
+      end
     end
   end
 end
