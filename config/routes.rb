@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
   constraints subdomain: '' do
     root to: "homepage#index"
     get 'mobile', action: :mobile, controller: 'homepage', as: :mobile
@@ -23,10 +24,10 @@ Rails.application.routes.draw do
   end
 
   constraints subdomain: 'api' do
-    namespace 'api', path: '/' do
+    scope module: "api" do
       root to: "home#index"
 
-      namespace 'v1' do
+      namespace :v1 do
         root to: "home#index"
         
         mount_devise_token_auth_for 'User', at: 'users', constraints: { format: 'json' },
