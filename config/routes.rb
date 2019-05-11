@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  module DomainConstraint
+  module ApiDomainConstraint
     def self.matches? request
       p "SUBDOMAIN"
       p request.subdomain
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     end
   end
 
-  constraints DomainConstraint do
+  constraints ApiDomainConstraint do
     scope module: "api" do
       root to: "home#index"
 
