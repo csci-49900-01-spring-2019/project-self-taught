@@ -1,0 +1,102 @@
+                         Prefix Verb   URI Pattern                                          Controller#Action
+                           root GET    /                                                    homepage#index {:subdomain=>""}
+                         mobile GET    /mobile(.:format)                                    homepage#mobile {:subdomain=>""}
+                        contact GET    /contact(.:format)                                   homepage#contact {:subdomain=>""}
+                           eula GET    /eula(.:format)                                      homepage#eula {:subdomain=>""}
+                        support GET    /support(.:format)                                   homepage#support {:subdomain=>""}
+               new_user_session GET    /users/sign_in(.:format)                             users/sessions#new {:subdomain=>""}
+                   user_session POST   /users/sign_in(.:format)                             users/sessions#create {:subdomain=>""}
+           destroy_user_session DELETE /users/sign_out(.:format)                            users/sessions#destroy {:subdomain=>""}
+              new_user_password GET    /users/password/new(.:format)                        users/passwords#new {:subdomain=>""}
+             edit_user_password GET    /users/password/edit(.:format)                       users/passwords#edit {:subdomain=>""}
+                  user_password PATCH  /users/password(.:format)                            users/passwords#update {:subdomain=>""}
+                                PUT    /users/password(.:format)                            users/passwords#update {:subdomain=>""}
+                                POST   /users/password(.:format)                            users/passwords#create {:subdomain=>""}
+       cancel_user_registration GET    /users/cancel(.:format)                              users/registrations#cancel {:subdomain=>""}
+          new_user_registration GET    /users/sign_up(.:format)                             users/registrations#new {:subdomain=>""}
+         edit_user_registration GET    /users/edit(.:format)                                users/registrations#edit {:subdomain=>""}
+              user_registration PATCH  /users(.:format)                                     users/registrations#update {:subdomain=>""}
+                                PUT    /users(.:format)                                     users/registrations#update {:subdomain=>""}
+                                DELETE /users(.:format)                                     users/registrations#destroy {:subdomain=>""}
+                                POST   /users(.:format)                                     users/registrations#create {:subdomain=>""}
+                 user_notebooks GET    /users/:id/notebooks(.:format)                       notebooks#user {:subdomain=>""}
+                     user_notes GET    /users/:id/notes(.:format)                           notes#user {:subdomain=>""}
+                     user_tests GET    /users/:id/tests(.:format)                           tests#user {:subdomain=>""}
+                 notebook_notes GET    /notebooks/:notebook_id/notes(.:format)              notes#index {:subdomain=>""}
+                                POST   /notebooks/:notebook_id/notes(.:format)              notes#create {:subdomain=>""}
+              new_notebook_note GET    /notebooks/:notebook_id/notes/new(.:format)          notes#new {:subdomain=>""}
+             edit_notebook_note GET    /notebooks/:notebook_id/notes/:id/edit(.:format)     notes#edit {:subdomain=>""}
+                  notebook_note GET    /notebooks/:notebook_id/notes/:id(.:format)          notes#show {:subdomain=>""}
+                                PATCH  /notebooks/:notebook_id/notes/:id(.:format)          notes#update {:subdomain=>""}
+                                PUT    /notebooks/:notebook_id/notes/:id(.:format)          notes#update {:subdomain=>""}
+                                DELETE /notebooks/:notebook_id/notes/:id(.:format)          notes#destroy {:subdomain=>""}
+             notebook_questions GET    /notebooks/:notebook_id/questions(.:format)          questions#index {:subdomain=>""}
+                                POST   /notebooks/:notebook_id/questions(.:format)          questions#create {:subdomain=>""}
+          new_notebook_question GET    /notebooks/:notebook_id/questions/new(.:format)      questions#new {:subdomain=>""}
+         edit_notebook_question GET    /notebooks/:notebook_id/questions/:id/edit(.:format) questions#edit {:subdomain=>""}
+              notebook_question GET    /notebooks/:notebook_id/questions/:id(.:format)      questions#show {:subdomain=>""}
+                                PATCH  /notebooks/:notebook_id/questions/:id(.:format)      questions#update {:subdomain=>""}
+                                PUT    /notebooks/:notebook_id/questions/:id(.:format)      questions#update {:subdomain=>""}
+                                DELETE /notebooks/:notebook_id/questions/:id(.:format)      questions#destroy {:subdomain=>""}
+                 notebook_tests GET    /notebooks/:notebook_id/tests(.:format)              tests#index {:subdomain=>""}
+                                POST   /notebooks/:notebook_id/tests(.:format)              tests#create {:subdomain=>""}
+              new_notebook_test GET    /notebooks/:notebook_id/tests/new(.:format)          tests#new {:subdomain=>""}
+             edit_notebook_test GET    /notebooks/:notebook_id/tests/:id/edit(.:format)     tests#edit {:subdomain=>""}
+                  notebook_test GET    /notebooks/:notebook_id/tests/:id(.:format)          tests#show {:subdomain=>""}
+                                PATCH  /notebooks/:notebook_id/tests/:id(.:format)          tests#update {:subdomain=>""}
+                                PUT    /notebooks/:notebook_id/tests/:id(.:format)          tests#update {:subdomain=>""}
+                                DELETE /notebooks/:notebook_id/tests/:id(.:format)          tests#destroy {:subdomain=>""}
+                      notebooks GET    /notebooks(.:format)                                 notebooks#index {:subdomain=>""}
+                                POST   /notebooks(.:format)                                 notebooks#create {:subdomain=>""}
+                   new_notebook GET    /notebooks/new(.:format)                             notebooks#new {:subdomain=>""}
+                  edit_notebook GET    /notebooks/:id/edit(.:format)                        notebooks#edit {:subdomain=>""}
+                       notebook GET    /notebooks/:id(.:format)                             notebooks#show {:subdomain=>""}
+                                PATCH  /notebooks/:id(.:format)                             notebooks#update {:subdomain=>""}
+                                PUT    /notebooks/:id(.:format)                             notebooks#update {:subdomain=>""}
+                                DELETE /notebooks/:id(.:format)                             notebooks#destroy {:subdomain=>""}
+                       api_root GET    /                                                    api/home#index {:subdomain=>"api"}
+                    api_v1_root GET    /v1(.:format)                                        api/v1/home#index {:subdomain=>"api"}
+        new_api_v1_user_session GET    /v1/users/sign_in(.:format)                          api/v1/users/sessions#new {:subdomain=>"api"}
+            api_v1_user_session POST   /v1/users/sign_in(.:format)                          api/v1/users/sessions#create {:subdomain=>"api"}
+    destroy_api_v1_user_session DELETE /v1/users/sign_out(.:format)                         api/v1/users/sessions#destroy {:subdomain=>"api"}
+       new_api_v1_user_password GET    /v1/users/password/new(.:format)                     api/v1/users/passwords#new {:subdomain=>"api"}
+      edit_api_v1_user_password GET    /v1/users/password/edit(.:format)                    api/v1/users/passwords#edit {:subdomain=>"api"}
+           api_v1_user_password PATCH  /v1/users/password(.:format)                         api/v1/users/passwords#update {:subdomain=>"api"}
+                                PUT    /v1/users/password(.:format)                         api/v1/users/passwords#update {:subdomain=>"api"}
+                                POST   /v1/users/password(.:format)                         api/v1/users/passwords#create {:subdomain=>"api"}
+cancel_api_v1_user_registration GET    /v1/users/cancel(.:format)                           api/v1/users/registrations#cancel {:subdomain=>"api"}
+   new_api_v1_user_registration GET    /v1/users/sign_up(.:format)                          api/v1/users/registrations#new {:subdomain=>"api"}
+  edit_api_v1_user_registration GET    /v1/users/edit(.:format)                             api/v1/users/registrations#edit {:subdomain=>"api"}
+       api_v1_user_registration PATCH  /v1/users(.:format)                                  api/v1/users/registrations#update {:subdomain=>"api"}
+                                PUT    /v1/users(.:format)                                  api/v1/users/registrations#update {:subdomain=>"api"}
+                                DELETE /v1/users(.:format)                                  api/v1/users/registrations#destroy {:subdomain=>"api"}
+                                POST   /v1/users(.:format)                                  api/v1/users/registrations#create {:subdomain=>"api"}
+        v1_users_validate_token GET    /v1/users/validate_token(.:format)                   api/v1/users/token_validations#validate_token
+          api_v1_user_notebooks GET    /v1/users/:id/notebooks(.:format)                    api/v1/notebooks#user {:subdomain=>"api"}
+              api_v1_user_notes GET    /v1/users/:id/notes(.:format)                        api/v1/notes#user {:subdomain=>"api"}
+          api_v1_user_questions GET    /v1/users/:id/questions(.:format)                    api/v1/questions#user {:subdomain=>"api"}
+              api_v1_user_tests GET    /v1/users/:id/tests(.:format)                        api/v1/tests#user {:subdomain=>"api"}
+          api_v1_notebook_notes GET    /v1/notebooks/:notebook_id/notes(.:format)           api/v1/notes#index {:subdomain=>"api", :format=>"json"}
+                                POST   /v1/notebooks/:notebook_id/notes(.:format)           api/v1/notes#create {:subdomain=>"api", :format=>"json"}
+           api_v1_notebook_note GET    /v1/notebooks/:notebook_id/notes/:id(.:format)       api/v1/notes#show {:subdomain=>"api", :format=>"json"}
+                                PATCH  /v1/notebooks/:notebook_id/notes/:id(.:format)       api/v1/notes#update {:subdomain=>"api", :format=>"json"}
+                                PUT    /v1/notebooks/:notebook_id/notes/:id(.:format)       api/v1/notes#update {:subdomain=>"api", :format=>"json"}
+                                DELETE /v1/notebooks/:notebook_id/notes/:id(.:format)       api/v1/notes#destroy {:subdomain=>"api", :format=>"json"}
+      api_v1_notebook_questions GET    /v1/notebooks/:notebook_id/questions(.:format)       api/v1/questions#index {:subdomain=>"api", :format=>"json"}
+                                POST   /v1/notebooks/:notebook_id/questions(.:format)       api/v1/questions#create {:subdomain=>"api", :format=>"json"}
+       api_v1_notebook_question GET    /v1/notebooks/:notebook_id/questions/:id(.:format)   api/v1/questions#show {:subdomain=>"api", :format=>"json"}
+                                PATCH  /v1/notebooks/:notebook_id/questions/:id(.:format)   api/v1/questions#update {:subdomain=>"api", :format=>"json"}
+                                PUT    /v1/notebooks/:notebook_id/questions/:id(.:format)   api/v1/questions#update {:subdomain=>"api", :format=>"json"}
+                                DELETE /v1/notebooks/:notebook_id/questions/:id(.:format)   api/v1/questions#destroy {:subdomain=>"api", :format=>"json"}
+          api_v1_notebook_tests GET    /v1/notebooks/:notebook_id/tests(.:format)           api/v1/tests#index {:subdomain=>"api", :format=>"json"}
+                                POST   /v1/notebooks/:notebook_id/tests(.:format)           api/v1/tests#create {:subdomain=>"api", :format=>"json"}
+           api_v1_notebook_test GET    /v1/notebooks/:notebook_id/tests/:id(.:format)       api/v1/tests#show {:subdomain=>"api", :format=>"json"}
+                                PATCH  /v1/notebooks/:notebook_id/tests/:id(.:format)       api/v1/tests#update {:subdomain=>"api", :format=>"json"}
+                                PUT    /v1/notebooks/:notebook_id/tests/:id(.:format)       api/v1/tests#update {:subdomain=>"api", :format=>"json"}
+                                DELETE /v1/notebooks/:notebook_id/tests/:id(.:format)       api/v1/tests#destroy {:subdomain=>"api", :format=>"json"}
+               api_v1_notebooks GET    /v1/notebooks(.:format)                              api/v1/notebooks#index {:subdomain=>"api", :format=>"json"}
+                                POST   /v1/notebooks(.:format)                              api/v1/notebooks#create {:subdomain=>"api", :format=>"json"}
+                api_v1_notebook GET    /v1/notebooks/:id(.:format)                          api/v1/notebooks#show {:subdomain=>"api", :format=>"json"}
+                                PATCH  /v1/notebooks/:id(.:format)                          api/v1/notebooks#update {:subdomain=>"api", :format=>"json"}
+                                PUT    /v1/notebooks/:id(.:format)                          api/v1/notebooks#update {:subdomain=>"api", :format=>"json"}
+                                DELETE /v1/notebooks/:id(.:format)                          api/v1/notebooks#destroy {:subdomain=>"api", :format=>"json"}

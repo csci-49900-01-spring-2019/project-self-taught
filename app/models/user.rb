@@ -47,6 +47,10 @@ class User
   ## Tokens
   field :tokens, type: Hash, default: {}
 
+  ## App fields
+  field :books, type: Array
+
+  ## Validations
   validates :email, presence: true, uniqueness: true
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -64,4 +68,37 @@ class User
   index({ confirmation_token: 1 }, { name: 'confirmation_token_index', unique: true, sparse: true, background: true })
   index({ uid: 1, provider: 1}, { name: 'uid_provider_index', unique: true, background: true })
   # index({ unlock_token: 1 }, { name: 'unlock_token_index', unique: true, sparse: true, background: true })
+
+  ## App functions
+  def notebook_owner? notebook_id
+    books && books.find(notebook_id)
+  end
+
+  def notebook_array
+    if books
+      Notebook.find(books)
+    else
+      []
+    end
+  end
+
+  def notebook_create notebook_params
+    notebook = Notebook.create(notebook_params)
+    if books
+      update(books: books.push(notebook.id))
+    else
+      update(books: [notebook.id])
+    end
+  end
+
+  def notebook_delete notebook_id
+    if books && books.find(notebook_id)
+      notebook = Notebook.find(notebook_id)
+      if notebook
+        notebook.delete
+      end
+      books.delete(notebook.id)
+      update(books: books)
+    end
+  end
 end

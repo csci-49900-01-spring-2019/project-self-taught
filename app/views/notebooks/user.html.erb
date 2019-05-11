@@ -4,7 +4,7 @@
   </head>
 
   <body>
-    <% if params[:id] == current_user[:username] %>
+    <% if params[:id] == current_user[:id].to_s %>
       <%= link_to "New Notebook", new_notebook_path %>
     <% end %>
     <% @notebooks.each do |notebook| %>

@@ -1,13 +1,13 @@
 <% if user_signed_in? %>
 	<div class="dropdown">
 		<%= link_to(root_path, {class: "my-nav-user d-flex flex-column justify-content-center text-center", 'data-toggle': "dropdown", 'aria-haspopup': "true", 'aria-expanded': "false"}) do %>
-			<div class="block"><%=current_user[:username]%> <i class="material-icons align-middle">arrow_drop_down</i></div>
+			<div class="block"><%=current_user[:email]%> <i class="material-icons align-middle">arrow_drop_down</i></div>
 		<% end %>
 		<div class="dropdown-menu">
-			<%= link_to "Notebooks", user_notebooks_path(current_user[:username]), { class: "dropdown-item" } %>
-			<%= link_to "Notes", user_notes_path(current_user[:username]), { class: "dropdown-item" } %>
-			<%= link_to "Tests", user_tests_path(current_user[:username]), { class: "dropdown-item" } %>
-			<%= link_to "Profile", user_notebooks_path(current_user[:username]), { class: "dropdown-item" } %>
+			<%= link_to "Notebooks", user_notebooks_path(current_user[:id]), { class: "dropdown-item" } %>
+			<%= link_to "Notes", user_notes_path(current_user[:id]), { class: "dropdown-item" } %>
+			<%= link_to "Tests", user_tests_path(current_user[:id]), { class: "dropdown-item" } %>
+			<%= link_to "Profile", user_notebooks_path(current_user[:id]), { class: "dropdown-item" } %>
 			<%= link_to "Sign Out", destroy_user_session_path, { class: "dropdown-item", method: :delete } %>
 		</div>
 	</div>

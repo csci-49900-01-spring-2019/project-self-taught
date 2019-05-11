@@ -1,7 +1,7 @@
-class NotebooksController < ApplicationController
+class NotebooksController < SiteBaseController
 	def show #Shows the contents and description of a single notebook
 		if user_signed_in?
-			@user = User.where(username: current_user[:username]).first
+			@user = current_user
 		end
 		@notebook = Notebook.find(params[:id])
 		@notes = @notebook.note_array
@@ -13,7 +13,7 @@ class NotebooksController < ApplicationController
 	end
 
 	def user #GET Notebooks of a specific user
-		@user = User.where(username: params[:id]).first
+		@user = User.find(params[:id])
 		if @user
 			@notebooks = @user.notebook_array
 		end
@@ -30,9 +30,9 @@ class NotebooksController < ApplicationController
 
 	def create #POST for a notebook creation
 		if user_signed_in?
-			@user = User.where(username: current_user[:username]).first
+			@user = current_user
 			@user.notebook_create(notebook_params)
-			redirect_to(user_notebooks_path(current_user[:username]))
+			redirect_to(user_notebooks_path(current_user[:id]))
 		else
 			redirect_to('/users/sign_in')
 		end
@@ -40,7 +40,7 @@ class NotebooksController < ApplicationController
 
 	def edit #GET for notebook editing
 		if user_signed_in?
-			@user = User.where(username: current_user[:username]).first
+			@user = current_user
 			@notebook = Notebook.find(params[:id])
 			if @user.notebook_owner?(@notebook.id)
 			else
@@ -52,11 +52,11 @@ class NotebooksController < ApplicationController
 
 	def update #PUT & PATCH for saving notebook edits
 		if user_signed_in?
-			@user = User.where(username: current_user[:username]).first
+			@user = current_user
 			@notebook = Notebook.find(params[:id])
 			if @user.notebook_owner?(@notebook.id)
 				@notebook.update(notebook_params)
-				redirect_to(user_notebooks_path(current_user[:username]))
+				redirect_to(user_notebooks_path(current_user[:id]))
 			end
 		else
 			redirect_to('/users/sign_in')
@@ -65,7 +65,7 @@ class NotebooksController < ApplicationController
 
 	def destroy #DELETE for a notebook deletion
 		if user_signed_in?
-			@user = User.where(username: current_user[:username]).first
+			@user = current_user
 			@user.notebook_delete(params[:id])
 		else
 		end

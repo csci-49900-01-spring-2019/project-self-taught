@@ -1,0 +1,3 @@
+class SiteBaseController < ApplicationController
+	
+end

@@ -1,4 +1,4 @@
-class NotesController < ApplicationController
+class NotesController < SiteBaseController
 	def show
 		@note = Note.find(params[:id])
 		respond_to do |format|
@@ -8,7 +8,7 @@ class NotesController < ApplicationController
 	end
 
 	def user
-		@user = User.where(username: params[:id]).first
+		@user = User.find(params[:id])
 		if @user
 			@notebooks = @user.notebook_array
 			@notes = []
@@ -33,7 +33,7 @@ class NotesController < ApplicationController
 
 	def create
 		if user_signed_in?
-			@user = User.where(username: current_user[:username]).first
+			@user = current_user
 			@notebook = Notebook.find(params[:notebook_id])
 			@notebook.note_create(note_params, @user.id, @notebook.id)
 			redirect_to(notebook_path(params[:notebook_id]))
@@ -44,7 +44,7 @@ class NotesController < ApplicationController
 
 	def edit #GET for notebook editing
 		if user_signed_in?
-			@user = User.where(username: current_user[:username]).first
+			@user = current_user
 			@notebook = Notebook.find(params[:notebook_id])
 			@note = Note.find(params[:id])
 			if @user.notebook_owner?(@notebook.id) && @notebook.note_owner?(@note.id)
@@ -57,7 +57,7 @@ class NotesController < ApplicationController
 
 	def update #PUT & PATCH for saving note edits
 		if user_signed_in?
-			@user = User.where(username: current_user[:username]).first
+			@user = current_user
 			@notebook = Notebook.find(params[:notebook_id])
 			@note = Note.find(params[:id])
 			if @user.notebook_owner?(@notebook.id) && @notebook.note_owner?(@note.id)

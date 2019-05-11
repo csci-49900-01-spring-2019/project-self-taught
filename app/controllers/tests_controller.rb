@@ -1,4 +1,4 @@
-class TestsController < ApplicationController
+class TestsController < SiteBaseController
 	include TestsHelper
 	def show
 	end
@@ -17,7 +17,7 @@ class TestsController < ApplicationController
 
 	def create
 		if user_signed_in?
-			@user = User.where(username: current_user[:username]).first
+			@user = current_user
 			@notebook = Notebook.find(params[:notebook_id])
 			@questions = make_questions_from_params(params)
 			@notebook.test_create(test_params, @user.id, @notebook.id, @questions)
@@ -29,7 +29,7 @@ class TestsController < ApplicationController
 
 	def edit #GET for test editing
 		if user_signed_in?
-			@user = User.where(username: current_user[:username]).first
+			@user = current_user
 			@notebook = Notebook.find(params[:notebook_id])
 			@test = Test.find(params[:id])
 			if @user.notebook_owner?(@notebook.id) && @notebook.test_owner?(@test.id)
@@ -42,7 +42,7 @@ class TestsController < ApplicationController
 
 	def update #PUT & PATCH for saving test edits
 		if user_signed_in?
-			@user = User.where(username: current_user[:username]).first
+			@user = current_user
 			@notebook = Notebook.find(params[:notebook_id])
 			@test = Test.find(params[:id])
 			@questions = make_questions_from_params(params)
