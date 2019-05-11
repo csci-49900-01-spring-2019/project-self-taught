@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+        include DeviseTokenAuth::Concerns::SetUserByToken
 	#has_mobile_fu #Mobile Device Detection
 	# Devise configuration
 	before_action :configure_permitted_parameters, if: :devise_controller?

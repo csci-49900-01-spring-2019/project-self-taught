@@ -19,4 +19,17 @@ Rails.application.routes.draw do
   resources :notebooks do
     resources :notes, :tests
   end
+
+  namespace 'api', path: '/', constraints: { subdomain: 'api' } do
+    namespace 'v1' do
+      mount_devise_token_auth_for 'User', at: 'users', constraints: { format: 'json' },
+        controllers:
+        { confirmations:      'api/v1/users/confirmations',
+          passwords:          'api/v1/users/passwords',
+          omniauth_callbacks: 'api/v1/users/omniauth_callbacks',
+          registrations:      'api/v1/users/registrations',
+          sessions:           'api/v1/users/sessions',
+          token_validations:  'api/v1/users/token_validations' }
+    end
+  end
 end
