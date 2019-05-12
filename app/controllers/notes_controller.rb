@@ -1,4 +1,4 @@
-class NotesController < ApplicationController
+class NotesController < MainSiteBaseController
 	def show
 		@note = Note.find(params[:id])
 		respond_to do |format|

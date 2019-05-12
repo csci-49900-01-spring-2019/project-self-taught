@@ -22,6 +22,14 @@ Format:
 # Changelog
 Self-Taught Application Changelog
 
+## v0.1.4 - 2019-05-12
+### Added
+- Tooltips for menu bar
+- Token authentication
+
+### Removed
+- username from the user model
+
 ## v0.1.3 - 2019-05-12
 ### Added
 - Website fav icon

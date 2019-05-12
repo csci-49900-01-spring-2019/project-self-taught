@@ -14,24 +14,6 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
-# Add-Ons
-# Use Mongoid as the MongoDB Connector
-gem 'mongoid', '~> 7.0', '>= 7.0.2'
-# Use Devise for User Authentication
-gem 'devise', '~> 4.6', '>= 4.6.2'
-# Use Bootstrap as the UI Framework
-gem 'bootstrap', '~> 4.3', '>= 4.3.1'
-gem 'sprockets-rails', '~> 3.2', '>= 3.2.1'
-gem 'jquery-rails'
-gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
-# Use mobile-fu for Mobile Device Detection
-gem 'mobile-fu', '~> 1.4'
-# Temporary Permission Elevation
-gem 'jekyll', '~> 3.8', '>= 3.8.5'
-# Carrierwave-Mongoid for file upload
-gem 'carrierwave-mongoid', '~> 1.2'
-#
-
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -74,3 +56,19 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Use Mongoid as the MongoDB Connector
+gem 'mongoid', '~> 7.0', '>= 7.0.2'
+gem 'mongoid-locker', '~> 1.0', '>= 1.0.1'
+# Use Devise for User Authentication
+gem 'devise', '~> 4.6', '>= 4.6.2'
+gem 'devise_token_auth', '~> 1.1'
+# Use Bootstrap as the UI Framework
+gem 'bootstrap', '~> 4.3', '>= 4.3.1'
+gem 'sprockets-rails', '~> 3.2', '>= 3.2.1'
+gem 'jquery-rails'
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
+# Use mobile-fu for Mobile Device Detection
+gem 'mobile-fu', '~> 1.4'
+# Temporary Permission Elevation
+gem 'jekyll', '~> 3.8', '>= 3.8.5'

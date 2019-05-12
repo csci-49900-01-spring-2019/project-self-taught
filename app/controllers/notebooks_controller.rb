@@ -1,4 +1,4 @@
-class NotebooksController < ApplicationController
+class NotebooksController < MainSiteBaseController
 	def show #Shows the contents and description of a single notebook
 		if user_signed_in?
 			@user = User.where(username: current_user[:username]).first
