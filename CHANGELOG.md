@@ -22,6 +22,13 @@ Format:
 # Changelog
 Self-Taught Application Changelog
 
+## v0.1.3 - 2019-05-12
+### Added
+- Website fav icon
+
+### Changed
+- Fixed menu anchors
+
 ## v0.1.2 - 2019-05-06
 ### Added
 - Added main menu drop down
