@@ -2,13 +2,13 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   module MainSubDomainConstraint
     def self.matches? request
-      request.subdomain = nil || request.subdomain = '' || request.subdomain = 'www'
+      request.subdomain == nil || request.subdomain == '' || request.subdomain == 'www'
     end
   end
 
   module ApiSubDomainConstraint
     def self.matches? request
-      request.subdomain = 'api' || request.subdomain = 'www.api'
+      request.subdomain == 'api' || request.subdomain == 'www.api'
     end
   end
 
