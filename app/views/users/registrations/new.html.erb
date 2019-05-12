@@ -1,63 +1,77 @@
-<div class="d-flex justify-content-center flex-column w-100 h-100">
-  <div class="card text-center mx-auto" style="width: 640px;">
-    <div class="card-header">
-      Registration
-    </div>
-    <div class="card-body">
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
-        <div class="input-group input-group-sm mb-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Full Name</span>
-          </div>
-          <%= f.text_field :first_name, type: "text", class: "form-control", 'aria-label': "first_name", placeholder: "First Name", 'aria-describedby': "addon-wrapping", autofocus: true, autocomplete: "first_name" %>
-          <%= f.text_field :last_name, type: "text", class: "form-control", 'aria-label': "last_name", placeholder: "Last Name", 'aria-describedby': "addon-wrapping", autocomplete: "last_name" %>
-        </div>
+<!DOCTYPE html>
+<html>
+<head>
+</head>
 
-        <div class="input-group input-group-sm mb-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Email</span>
-          </div>
-          <%= f.email_field :email, type: "text", class: "form-control", 'aria-label': "email", placeholder: "Email", 'aria-describedby': "addon-wrapping", autocomplete: "email" %>
+<body>
+<!-- Registration Section -->
+<div class="container-fluid padding my-auto">
+<div class="row welcome text-center justify-content-center">
+  <div class="col-12">
+    <h1 class="display-4">Registration</h1>
+  </div>
+  <hr>
+  <div class="col col-sm-8" style="max-width: 512px;">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      
+      <!-- Full Name -->
+      <div class="input-group input-group-sm mb-2">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Full Name</span>
         </div>
+        <%= f.text_field :first_name, type: "text", class: "form-control", 'aria-label': "first_name", placeholder: "First Name", 'aria-describedby': "addon-wrapping", autofocus: true, autocomplete: "first_name" %>
+        <%= f.text_field :last_name, type: "text", class: "form-control", 'aria-label': "last_name", placeholder: "Last Name", 'aria-describedby': "addon-wrapping", autocomplete: "last_name" %>
+      </div>
 
-        <div class="input-group input-group-sm mb-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Password</span>
-          </div>
-          <%= f.password_field :password, type: "password", class: "form-control", 'aria-label': "password", placeholder: "Password", autocomplete: "new-password" %>
+      <!-- Email -->
+      <div class="input-group input-group-sm mb-2">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Email</span>
         </div>
-        
-        <div class="input-group input-group-sm mb-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Password</span>
-          </div>
-          <%= f.password_field :password_confirmation, type: "password", class: "form-control", 'aria-label': "password_confirmation", placeholder: "Password Confirmation", autocomplete: "new-password" %>
+        <%= f.email_field :email, type: "text", class: "form-control", 'aria-label': "email", placeholder: "Email", 'aria-describedby': "addon-wrapping", autocomplete: "email" %>
+      </div>
+      
+      <!-- Password -->
+      <div class="input-group input-group-sm mb-2">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Password</span>
         </div>
+        <%= f.password_field :password, type: "password", class: "form-control", 'aria-label': "password", placeholder: "Password", autocomplete: "new-password" %>
+      </div>
+      
+      <!-- Password Confirmation -->
+      <div class="input-group input-group-sm mb-2">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Password</span>
+        </div>
+        <%= f.password_field :password_confirmation, type: "password", class: "form-control", 'aria-label': "password_confirmation", placeholder: "Password Confirmation", autocomplete: "new-password" %>
+      </div>
 
-        <div class="row">
-          <div class="col">
-            <div class="input-group input-group-sm mb-2">
-              <div class="input-group-prepend">
-                <label class="input-group-text" for="GenderGroupSelect">Gender</label>
-              </div>
-              <%= f.select(:gender, options_for_select($gender_options, "Choose..."), { class: "gender-select" }) %>
-            </div>
-          </div>
-          <div class="col">
-            <div class="input-group input-group-sm mb-2">
-              <div class="input-group-prepend">
-                <label class="input-group-text" for="GradeGroupSelect">Grade Lvl</label>
-              </div>
-              <%= f.select(:grade, options_for_select($grade_options, "Choose..."), { class: "grade-select" }) %>
-            </div>
-          </div>
+      <!-- Grade Level -->
+      <div class="input-group input-group-sm mb-2">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="GradeGroupSelect">Grade Lvl</label>
         </div>
+        <%= f.select(:grade, options_for_select($grade_options, "Choose..."), { class: "grade-select" }) %>
+      </div>
 
-        <div class="actions align-items-center">
-          <%= f.submit "Sign Up", class: "btn btn-sm btn-primary mx-2" %>
+      <!-- Gender -->
+      <div class="input-group input-group-sm mb-2">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="GenderGroupSelect">Gender</label>
         </div>
-      <% end %>
-    </div>
+        <%= f.select(:gender, options_for_select($gender_options, "Choose..."), { class: "gender-select" }) %>
+      </div>
+
+      <!-- Sign Up Submit -->
+      <div class="actions align-items-center">
+        <%= f.submit "Sign Up", class: "btn btn-sm btn-primary mx-2" %>
+      </div>
+    <% end %>
   </div>
 </div>
+</div>
+
+</body>
+</html>

@@ -22,6 +22,11 @@ Format:
 # Changelog
 Self-Taught Application Changelog
 
+## v0.1.5 - 2019-05-12
+### Changed
+- Login page is now responsive
+- Reigstration page is now responsive
+
 ## v0.1.4 - 2019-05-12
 ### Added
 - Tooltips for menu bar
