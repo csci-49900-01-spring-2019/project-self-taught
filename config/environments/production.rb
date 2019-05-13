@@ -12,8 +12,7 @@ Rails.application.configure do
     domain: "selftaughtapp.com",
     user_name: "team@selftaughtapp.com",
     password: "selftaughtapp123",
-    authentication: 'plain',
-    enable_starttls_auto: true
+    authentication: 'plain'
   }
 
   config.action_mailer.default_url_options = { :host => 'selftaughtapp.comyyyy' }
