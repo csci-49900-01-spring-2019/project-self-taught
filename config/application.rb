@@ -34,17 +34,5 @@ module Website
     config.generators do |g|
       g.orm :mongoid
     end
-
-    # Mailer configuration
-    config.action_mailer.perform_deliveries = true
-    config.action_mailer.delivery_method = :smtp
-    config.action_mailer.smtp_settings = {
-      address:              'smtp.ionos.com',
-      port:                 587,
-      domain:               'selftaughtapp.com',
-      user_name:            'team@selftaughtapp.com',
-      password:             ENV["MAILER_PASSWORD"],
-      authentication:       'plain',
-      enable_starttls_auto: true }
-      end
+  end
 end
