@@ -17,7 +17,7 @@ Rails.application.configure do
     domain:               'selftaughtapp.com',
     user_name:            'team@selftaughtapp.com',
     password:             ENV["MAILER_PASSWORD"],
-    authentication:       'plain',
+    authentication:       :plain,
     enable_starttls_auto: true }
 
   # In the development environment your application's code is reloaded on

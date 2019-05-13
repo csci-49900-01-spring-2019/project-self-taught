@@ -4,6 +4,18 @@ Rails.application.configure do
   # Devise configuration
   config.action_mailer.default_url_options = { host: 'selftaughtapp.com' }
 
+  # Mailer configuration
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.ionos.com',
+    port:                 587,
+    domain:               'selftaughtapp.com',
+    user_name:            'team@selftaughtapp.com',
+    password:             ENV["MAILER_PASSWORD"],
+    authentication:       :plain,
+    enable_starttls_auto: true }
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
