@@ -16,7 +16,7 @@ Rails.application.configure do
     port:                 587,
     domain:               'selftaughtapp.com',
     user_name:            'team@selftaughtapp.com',
-    password:             ENV["MAILER_PASSWORD"],
+    password:             'selftaughtapp123',
     authentication:       :plain,
     enable_starttls_auto: true }
 

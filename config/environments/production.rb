@@ -12,7 +12,7 @@ Rails.application.configure do
     port:                 465,
     domain:               'selftaughtapp.com',
     user_name:            'team@selftaughtapp.com',
-    password:             ENV["MAILER_PASSWORD"],
+    password:             'selftaughtapp123',
     authentication:       :plain }
 
   # Code is not reloaded between requests.
