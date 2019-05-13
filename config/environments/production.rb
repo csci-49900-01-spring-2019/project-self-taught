@@ -15,7 +15,7 @@ Rails.application.configure do
     authentication: 'plain'
   }
 
-  config.action_mailer.default_url_options = { :host => 'selftaughtapp.comyyyy' }
+  config.action_mailer.default_url_options = { :host => 'selftaughtapp.com' }
 
   # Code is not reloaded between requests.
   config.cache_classes = true
