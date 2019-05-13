@@ -9,12 +9,11 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:              'smtp.ionos.com',
-    port:                 587,
+    port:                 465,
     domain:               'selftaughtapp.com',
     user_name:            'team@selftaughtapp.com',
     password:             ENV["MAILER_PASSWORD"],
-    authentication:       :plain,
-    enable_starttls_auto: true }
+    authentication:       :plain }
 
   # Code is not reloaded between requests.
   config.cache_classes = true
