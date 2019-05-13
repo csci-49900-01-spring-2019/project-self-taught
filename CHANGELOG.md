@@ -22,6 +22,10 @@ Format:
 # Changelog
 Self-Taught Application Changelog
 
+## v0.1.7 - 2019-05-13
+### Added
+- Email Verification with devise
+
 ## v0.1.6 - 2019-05-13
 ### Added
 - Notebook pages

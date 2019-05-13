@@ -21,8 +21,12 @@ module Website
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
+    
+    # Settings in config/environments/* take precedence over those specified here.
+    # Application configuration can go into files in config/initializers
+    # -- all .rb files in that directory are automatically loaded after loading
+    # the framework and any gems in your application.
 
-    # Our configurations
     # Force HTTPS redirects
     config.force_ssl = true
     # Mongoid configuration
@@ -30,11 +34,17 @@ module Website
     config.generators do |g|
       g.orm :mongoid
     end
-    #
-    
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration can go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded after loading
-    # the framework and any gems in your application.
-  end
+
+    # Mailer configuration
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address:              'smtp.ionos.com',
+      port:                 587,
+      domain:               'selftaughtapp.com',
+      user_name:            'team@selftaughtapp.com',
+      password:             ENV["MAILER_PASSWORD"],
+      authentication:       'plain',
+      enable_starttls_auto: true }
+      end
 end

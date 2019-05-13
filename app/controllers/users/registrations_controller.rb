@@ -13,6 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super do |user|
       user.update(uid: user[:email])
+      SelfTaughtMailer.confirmation_instructions(user, user.confirmation_token).deliver_now
     end
   end
 

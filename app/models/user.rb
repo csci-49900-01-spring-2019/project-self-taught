@@ -60,7 +60,7 @@ class User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :confirmable, :validatable
   include DeviseTokenAuth::Concerns::User
 
   index({ email: 1 }, { name: 'email_index', unique: true, background: true })
