@@ -8,11 +8,12 @@ Rails.application.configure do
 
   config.action_mailer.smtp_settings = {
     address: "smtp.ionos.com",
-    port: 465,
+    port: 587,
     domain: "selftaughtapp.com",
     user_name: "team@selftaughtapp.com",
     password: "selftaughtapp123",
-    authentication: 'plain'
+    authentication: 'plain',
+    enable_starttls_auto: true
   }
 
   config.action_mailer.default_url_options = { :host => 'selftaughtapp.com' }
