@@ -2,19 +2,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Devise configuration
-  config.action_mailer.default_url_options = { host: 'selftaughtapp.com', port: 80 }
-
-  # Mailer configuration
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address:              'smtp.ionos.com',
-    port:                 465,
-    domain:               'selftaughtapp.com',
-    user_name:            'team@selftaughtapp.com',
-    password:             ENV["MAILER_PASSWORD"],
-    authentication:       'plain',
-    enable_starttls_auto: true }
+  config.action_mailer.default_url_options = { host: 'www.selftaughtapp.com' }
 
   # Code is not reloaded between requests.
   config.cache_classes = true
