@@ -25,12 +25,15 @@ Rails.application.routes.draw do
         passwords: 'users/passwords', registrations: 'users/registrations',
         sessions: 'users/sessions', shared: 'users/shared', unlocks: 'users/unlocks' }
 
-    get 'users/:id/notebooks', action: :user, controller: 'notebooks', as: :user_notebooks
-    get 'users/:id/notes', action: :user, controller: 'notes', as: :user_notes
-    get 'users/:id/tests', action: :user, controller: 'tests', as: :user_tests
+    get 'users/:user_id/notebooks', action: :user, controller: 'notebooks', as: :user_notebooks
+    get 'users/:user_id/notes',     action: :user, controller: 'notes',     as: :user_notes
+    get 'users/:user_id/questions', action: :user, controller: 'questions', as: :user_questions
+    get 'users/:user_id/tests',     action: :user, controller: 'tests',     as: :user_tests
 
-    resources :notebooks do
-      resources :notes, :questions, :tests
+    resources :notebooks, param: :notebook_id do
+      resources :notes,     param: :note_id
+      resources :questions, param: :question_id
+      resources :tests,     param: :test_id
     end
   end
 

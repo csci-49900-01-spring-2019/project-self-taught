@@ -1,5 +1,57 @@
-class NotebooksController < MainSiteBaseController
-	def show #Shows the contents and description of a single notebook
+class NotebooksController < MainSiteBaseController	
+	def user
+		# User-filtered Notebooks Viewing
+		begin
+			@user = User.find(params[:user_id])
+			@owner = (current_user.try(:id).to_s == params[:user_id])
+			@notebooks = Notebook.where(owner: @user[:id])
+		rescue => ex
+			# 404 Error if user_id is not a registered user
+			render :file => "#{Rails.root}/public/404", :layout => "application", :status => :not_found
+		end
+	end
+
+	def new
+		# Notebook Creation Page
+		if !user_signed_in?
+			# Only signed in users can access this page
+			redirect_to(new_user_session_path)
+		end
+	end
+
+	def create
+		# Notebook Creation to the Database
+		if !user_signed_in?
+			# Only signed in users can access this page
+			redirect_to(new_user_session_path)
+		end
+		
+		@entry_owner = current_user[:id]
+		
+		@entry_name = params[:notebook_name]
+		
+		@entry_description = params[:notebook_description]
+
+		if params[:notebook_tags]
+			@entry_tags = params[:notebook_tags].split(",")
+			@entry_tags.map! { |tag| tag = tag.strip }
+		end
+		if !@entry_tags
+			@entry_tags = []
+		end
+
+		if params[:notebook_private]
+			@entry_private = true
+		else
+			@entry_private = false
+		end
+
+		Notebook.create(owner: @entry_owner, name: @entry_name, description: @entry_description, tags: @entry_tags, private: @entry_private)
+		redirect_to(user_notebooks_path(current_user[:id]))
+	end
+	
+	def show
+		# Contents
 		if user_signed_in?
 			@user = User.where(username: current_user[:username]).first
 		end
@@ -12,62 +64,85 @@ class NotebooksController < MainSiteBaseController
     end
 	end
 
-	def user #GET Notebooks of a specific user
-		@user = User.where(username: params[:id]).first
-		if @user
-			@notebooks = @user.notebook_array
+	def edit
+		# Notebook Edit Page
+		if !user_signed_in?
+			# Only signed in users can attempt this
+			redirect_to(new_user_session_path)
+		end
+
+		begin
+			@notebook = Notebook.find(params[:notebook_id])
+			@owner = current_user
+			if @owner.id != @notebook.owner
+				# 401 Error if user is not the notebook owner
+				render :file => "public/401.html", :status => :unauthorized
+			end
+		rescue => ex
+			# 404 Error if user_id is not a registered user
+			render :file => "#{Rails.root}/public/404", :layout => "application", :status => :not_found
 		end
 	end
 
-	def new #GET Page for creating a new notebook
-		if user_signed_in?
-			@notebook = Notebook.new
-			render :new
-		else
-			redirect_to('/users/sign_in')
+	def update
+		# Notebook Edit to the Database
+		if !user_signed_in?
+			# Only signed in users can access this page
+			redirect_to(new_user_session_path)
 		end
-	end
 
-	def create #POST for a notebook creation
-		if user_signed_in?
-			@user = User.where(username: current_user[:username]).first
-			@user.notebook_create(notebook_params)
-			redirect_to(user_notebooks_path(current_user[:username]))
-		else
-			redirect_to('/users/sign_in')
-		end
-	end
+		begin
+			@notebook = Notebook.find(params[:notebook_id])
+		
+			@entry_owner = current_user[:id]
+			
+			@entry_name = params[:notebook_name]
+			
+			@entry_description = params[:notebook_description]
 
-	def edit #GET for notebook editing
-		if user_signed_in?
-			@user = User.where(username: current_user[:username]).first
-			@notebook = Notebook.find(params[:id])
-			if @user.notebook_owner?(@notebook.id)
+			if params[:notebook_tags]
+				@entry_tags = params[:notebook_tags].split(",")
+				@entry_tags.map! { |tag| tag = tag.strip }
+			end
+			if !@entry_tags
+				@entry_tags = []
+			end
+
+			if params[:notebook_private]
+				@entry_private = true
 			else
+				@entry_private = false
 			end
-		else
-			redirect_to('/users/sign_in')
+
+			
+			@notebook.update(owner: @entry_owner, name: @entry_name, description: @entry_description, tags: @entry_tags, private: @entry_private)
+			redirect_to(user_notebooks_path(current_user[:id]))
+		rescue => ex
+			# 404 Error if user_id is not a registered user
+			render :file => "#{Rails.root}/public/404", :layout => "application", :status => :not_found
 		end
 	end
 
-	def update #PUT & PATCH for saving notebook edits
-		if user_signed_in?
-			@user = User.where(username: current_user[:username]).first
-			@notebook = Notebook.find(params[:id])
-			if @user.notebook_owner?(@notebook.id)
-				@notebook.update(notebook_params)
-				redirect_to(user_notebooks_path(current_user[:username]))
-			end
-		else
-			redirect_to('/users/sign_in')
+	def destroy
+		# Notebook Deletion from the Database
+		if !user_signed_in?
+			# Only signed in users can attempt this
+			redirect_to(new_user_session_path)
 		end
-	end
 
-	def destroy #DELETE for a notebook deletion
-		if user_signed_in?
-			@user = User.where(username: current_user[:username]).first
-			@user.notebook_delete(params[:id])
-		else
+		begin
+			@notebook = Notebook.find(params[:notebook_id])
+			@owner = current_user
+			if @owner.id == @notebook.owner
+				@notebook.delete
+				redirect_to(user_notebooks_path(current_user[:id]))
+			else
+				# 401 Error if user is not the notebook owner
+				render :file => "public/401.html", :status => :unauthorized
+			end
+		rescue => ex
+			# 404 Error if user_id is not a registered user
+			render :file => "#{Rails.root}/public/404", :layout => "application", :status => :not_found
 		end
 	end
 	

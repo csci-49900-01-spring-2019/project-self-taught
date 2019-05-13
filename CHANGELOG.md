@@ -22,6 +22,10 @@ Format:
 # Changelog
 Self-Taught Application Changelog
 
+## v0.1.6 - 2019-05-13
+### Added
+- Notebook pages
+
 ## v0.1.5 - 2019-05-12
 ### Changed
 - Login page is now responsive
