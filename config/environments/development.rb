@@ -5,20 +5,22 @@ Rails.application.configure do
   # Disable HTTPS redirects for development
   config.force_ssl = false
   
-  # Devise configuration
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  
   # Mailer configuration
-  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+
   config.action_mailer.delivery_method = :smtp
+
   config.action_mailer.smtp_settings = {
-    address:              'smtp.ionos.com',
-    port:                 587,
-    domain:               'selftaughtapp.com',
-    user_name:            'team@selftaughtapp.com',
-    password:             'selftaughtapp123',
-    authentication:       :plain,
-    enable_starttls_auto: true }
+    address: "smtp.ionos.com",
+    port: 587,
+    domain: "selftaughtapp.com",
+    user_name: "team@selftaughtapp.com",
+    password: "selftaughtapp123",
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
+
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
