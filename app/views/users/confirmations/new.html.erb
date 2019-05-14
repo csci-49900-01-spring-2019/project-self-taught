@@ -1,16 +1,41 @@
-<h2>Resend confirmation instructions</h2>
+<!DOCTYPE html>
+<html>
+<head>
+</head>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<body>
+<div class="container-fluid padding" style="height:64px;"></div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+<!-- Email Verification -->
+<div class="container-fluid padding my-auto">
+<div class="row welcome text-center justify-content-center">
+  <div class="col-12">
+    <h1 class="display-4">Email Verification</h1>
   </div>
+  <hr>
+  <div class="col col-sm-8" style="max-width: 512px;">
+    <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      
+      <div class="input-group input-group-sm mb-2">
+        <!-- Email -->
+        <div class="input-group-prepend">
+          <span class="input-group-text">Email</span>
+        </div>
+        <%= f.email_field :email, class: "form-control", 'aria-label': "email", placeholder: "Email", 'aria-describedby': "addon-wrapping", autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
 
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
+        <!-- Sign Up Submit -->
+        <div class="actions">
+          <%= f.submit "Send Verification Email", class: "btn btn-sm btn-primary mx-2" %>
+        </div>
+      </div>
+      
+      <%= render "users/shared/links" %>
+    <% end %>
   </div>
-<% end %>
+</div>
+</div>
 
-<%= render "users/shared/links" %>
+<div class="container-fluid padding" style="height:64px;"></div>
+</body>
+</html>
