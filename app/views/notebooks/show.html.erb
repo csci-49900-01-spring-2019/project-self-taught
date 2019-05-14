@@ -1,34 +1,109 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  </head>
+<head>
+</head>
 
-  <body>
-    <% if user_signed_in? && @user.notebook_owner?(@notebook.id) %>
-      <p><%= link_to "New Note", new_notebook_note_path(@notebook.id) %></p>
+<body>
+<div class="container-fluid padding" style="height:64px;"></div>
+
+<!-- Notebook Heading -->
+<div class="container-fluid padding">
+<div class="row welcome text-center mb-2">
+  <div class="col-12">
+    <h1 class="display-4"><%= @notebook.name %></h1>
+  </div>
+</div>
+</div>
+<div class="container-fluid padding" style="height:64px;"></div>
+
+<!-- Note Viewing Section -->
+<div class="container-fluid padding">
+<div class="row welcome text-center mb-2">
+  <div class="col-12">
+    <h3><% if @owner %>Your<% else %>User<% end %> Notes</h3>
+  </div>
+</div>
+</div>
+
+<div class="container-fluid padding">
+<div class="row mx-2">
+  <div class="col-12 mb-2">
+    <% if @owner %>
+      <%= link_to(new_notebook_note_path(@notebook.id), { class: "btn btn-sm btn-primary" }) do %>
+        New Note
+        <span class="badge badge-pill badge-light">40</span>
+      <% end %>
     <% end %>
+  </div>
+  <hr>
+  <div class="d-flex flex-row flex-wrap justify-content-center mx-auto w-100">
     <% @notes.each do |note| %>
-      <span style="display:block">
-        <%= note.name %>
-        <%= link_to "Open", notebook_note_path(note.notebook, note.id)  %>
-        <% if user_signed_in? && @user.notebook_owner?(note.notebook) %>
-        <%= link_to "Edit", edit_notebook_note_path(note.notebook, note.id) %>
-        <%= link_to "Delete", notebook_note_path(note.notebook, note.id), { method: :delete } %>
-        <% end %>
-      </span><br/>
+      <div class="mx-4 my-2 w-100">
+        <%= render :template => "layouts/_item_entry", :locals => { :note => note, :entry_type => "note" } %>
+      </div>
     <% end %>
-    <% if user_signed_in? && @user.notebook_owner?(@notebook) %>
-      <p><%= link_to "New Test", new_notebook_test_path(@notebook.id) %></p>
+  </div>
+</div>
+</div>
+<div class="container-fluid padding" style="height:64px;"></div>
+
+<!-- Question Viewing Section -->
+<div class="container-fluid padding">
+<div class="row welcome text-center mb-2">
+  <div class="col-12">
+    <h3><% if @owner %>Your<% else %>User<% end %> Questions</h3>
+  </div>
+</div>
+</div>
+
+<div class="container-fluid padding">
+<div class="row mx-2">
+  <div class="col-12 mb-2">
+    <% if @owner %>
+      <%= link_to(new_notebook_question_path(@notebook.id), { class: "btn btn-sm btn-primary" }) do %>
+        New Question
+        <span class="badge badge-pill badge-light">25</span>
+      <% end %>
     <% end %>
-    <% @tests.each do |nb_test| %>
-      <span style="display:block">
-        <%= nb_test.name %>
-        <%= link_to "Take", new_notebook_test_session_path(nb_test.notebook)  %>
-        <% if user_signed_in? && @user.notebook_owner?(nb_test.notebook) %>
-        <%= link_to "Edit", edit_notebook_test_path(nb_test.notebook, nb_test.id) %>
-        <%= link_to "Delete", notebook_test_path(nb_test.notebook, nb_test.id), { method: :delete } %>
-        <% end %>
-      </span><br/>
+  </div>
+  <hr>
+  <div class="d-flex flex-row flex-wrap justify-content-center mx-auto">
+    <% @questions.each do |question| %>
+     
     <% end %>
-  </body>
+  </div>
+</div>
+</div>
+<div class="container-fluid padding" style="height:64px;"></div>
+
+<!-- Test Viewing Section -->
+<div class="container-fluid padding">
+<div class="row welcome text-center mb-2">
+  <div class="col-12">
+    <h3><% if @owner %>Your<% else %>User<% end %> Tests</h3>
+  </div>
+</div>
+</div>
+
+<div class="container-fluid padding">
+<div class="row mx-2">
+  <div class="col-12 mb-2">
+    <% if @owner %>
+      <%= link_to(new_notebook_test_path(@notebook.id), { class: "btn btn-sm btn-primary" }) do %>
+        New Test
+        <span class="badge badge-pill badge-light">15</span>
+      <% end %>
+    <% end %>
+  </div>
+  <hr>
+  <div class="d-flex flex-row flex-wrap justify-content-center mx-auto">
+    <% @tests.each do |test| %>
+     
+    <% end %>
+  </div>
+</div>
+</div>
+
+<div class="container-fluid padding" style="height:64px;"></div>
+</body>
 </html>

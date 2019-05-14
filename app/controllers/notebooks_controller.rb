@@ -1,4 +1,9 @@
 class NotebooksController < MainSiteBaseController	
+	def index
+		# Public Notebooks Viewing
+		@notebooks = Notebook.any_of({ private: false })
+	end
+
 	def user
 		# User-filtered Notebooks Viewing
 		begin
@@ -7,7 +12,31 @@ class NotebooksController < MainSiteBaseController
 			@notebooks = Notebook.where(owner: @user[:id])
 		rescue => ex
 			# 404 Error if user_id is not a registered user
-			render :file => "#{Rails.root}/public/404", :layout => "application", :status => :not_found
+			render :file => "#{Rails.root}/public/404", :status => :not_found
+		end
+	end
+
+	def show
+		# Single-Notebook Viewing
+		begin
+			@notebook = Notebook.find(params[:notebook_id])
+			@owner = current_user.try(:id) == @notebook.owner
+			if @owner or !@notebook.private
+				@notes = Note.where(notebook: params[:notebook_id])
+				@questions = Question.where(notebook: params[:notebook_id])
+				@tests = Test.where(notebook: params[:notebook_id])
+				if !@owner
+					@notes = @notes.where(private: false)
+					@questions = @questions.where(private: false)
+					@tests = @tests.where(private: false)
+				end
+			else
+				# 401 Error if user is not allowed to view the notebook
+				render :file => "#{Rails.root}/public/401", :status => :unauthorized
+			end
+		rescue => ex
+			# 404 Error if notebook_id is not a registered notebook
+			render :file => "#{Rails.root}/public/404", :status => :not_found
 		end
 	end
 
@@ -49,20 +78,6 @@ class NotebooksController < MainSiteBaseController
 		Notebook.create(owner: @entry_owner, name: @entry_name, description: @entry_description, tags: @entry_tags, private: @entry_private)
 		redirect_to(user_notebooks_path(current_user[:id]))
 	end
-	
-	def show
-		# Contents
-		if user_signed_in?
-			@user = User.where(username: current_user[:username]).first
-		end
-		@notebook = Notebook.find(params[:id])
-		@notes = @notebook.note_array
-		@tests = @notebook.test_array
-		respond_to do |format|
-      format.html
-      format.json { render :json => @notebook}
-    end
-	end
 
 	def edit
 		# Notebook Edit Page
@@ -75,12 +90,12 @@ class NotebooksController < MainSiteBaseController
 			@notebook = Notebook.find(params[:notebook_id])
 			@owner = current_user
 			if @owner.id != @notebook.owner
-				# 401 Error if user is not the notebook owner
-				render :file => "public/401.html", :status => :unauthorized
+				# 401 Error if user is not allowed to view the notebook
+				render :file => "#{Rails.root}/public/401", :status => :unauthorized
 			end
 		rescue => ex
-			# 404 Error if user_id is not a registered user
-			render :file => "#{Rails.root}/public/404", :layout => "application", :status => :not_found
+			# 404 Error if notebook_id is not a registered notebook
+			render :file => "#{Rails.root}/public/404", :status => :not_found
 		end
 	end
 
@@ -93,7 +108,12 @@ class NotebooksController < MainSiteBaseController
 
 		begin
 			@notebook = Notebook.find(params[:notebook_id])
-		
+			@owner = current_user
+			if @owner.id != @notebook.owner
+				# 401 Error if user is not allowed to view the notebook
+				render :file => "#{Rails.root}/public/401", :status => :unauthorized
+			end
+
 			@entry_owner = current_user[:id]
 			
 			@entry_name = params[:notebook_name]
@@ -118,8 +138,8 @@ class NotebooksController < MainSiteBaseController
 			@notebook.update(owner: @entry_owner, name: @entry_name, description: @entry_description, tags: @entry_tags, private: @entry_private)
 			redirect_to(user_notebooks_path(current_user[:id]))
 		rescue => ex
-			# 404 Error if user_id is not a registered user
-			render :file => "#{Rails.root}/public/404", :layout => "application", :status => :not_found
+			# 404 Error if notebook_id is not a registered notebook
+			render :file => "#{Rails.root}/public/404", :status => :not_found
 		end
 	end
 
@@ -137,17 +157,12 @@ class NotebooksController < MainSiteBaseController
 				@notebook.delete
 				redirect_to(user_notebooks_path(current_user[:id]))
 			else
-				# 401 Error if user is not the notebook owner
-				render :file => "public/401.html", :status => :unauthorized
+				# 401 Error if user is not allowed to view the notebook
+				render :file => "#{Rails.root}/public/401", :status => :unauthorized
 			end
 		rescue => ex
-			# 404 Error if user_id is not a registered user
-			render :file => "#{Rails.root}/public/404", :layout => "application", :status => :not_found
+			# 404 Error if notebook_id is not a registered notebook
+			render :file => "#{Rails.root}/public/404", :status => :not_found
 		end
 	end
-	
-	def notebook_params
-		params.require(:notebook).permit(:name)
-	end
-
 end

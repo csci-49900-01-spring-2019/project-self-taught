@@ -1,13 +1,68 @@
 <!DOCTYPE html>
 <html>
+<head>
+</head>
+
+<body>
+<div class="container-fluid padding" style="height:64px;"></div>
+
+<!-- Note Edit Section -->
+<div class="container-fluid padding my-auto">
+<div class="row justify-content-center">
+  <div class="col-12 text-center">
+    <h1 class="display-4">Edit Note</h1>
+  </div>
+  <hr>
+  <div class="col col-sm-8" style="max-width: 512px;">
+    <%= form_for @note, :url => notebook_note_path(@note.notebook, @note.id) do |f| %>
+      <label for="note-name">Name:</label>
+      <input name="note_name" id="note-name" value="<%= @note.name %>" type="text" class="form-control form-control-sm mb-2" aria-label="note name" aria-describedby="addon-wrapping" autofocus=true autocomplete="note name">
+
+      <label for="note-description">Description:</label>
+      <textarea name="note_description" id="note-description" class="form-control form-control-sm mb-2" style="height:96px" aria-label="note description" aria-describedby="addon-wrapping" autocomplete="note description"><%= @note.description %></textarea>
+      
+      <label>Image, Plain Text, or PDF:</label><br/>
+      <div class="input-group input-group-sm mb-2">
+        <button type="button" class="btn btn-sm btn-outline-primary mr-2">Upload File</button>
+        <label id="upload-file"></label>
+      </div>
+
+      <label for="note-tags">Tags:</label>
+      <input name="note_tags" id="note-tags" value="<%= @note.tags.join(", ") %>" type="text" class="form-control form-control-sm mb-2" aria-label="note tags" aria-describedby="addon-wrapping" autocomplete="note tags">
+
+      <span class="mb-2">
+        <label class="mr-2">Private:</label>
+        <label class="switch switch-sm">
+          <input name="note_private" type="checkbox" <% if @note.private %> checked="on" <% end %>>
+          <span class="slider slider-sm round"></span>
+        </label>
+      </span>
+
+      <div class="input-group input-group-sm">
+        <%= f.submit "Edit", type: "submit", class: "btn btn-sm btn-primary mx-auto" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+</div>
+
+<div class="container-fluid padding" style="height:64px;"></div>
+</body>
+</html>
+
+
+<% if false %>
+<!DOCTYPE html>
+<html>
   <head>
   </head>
 
   <body>
-    Edit Note
-    <%= form_for(@note, url: notebook_note_path) do |f| %>
-      <p><%= f.label :name %> <%= f.text_field :name,:value => @note.name %></p>
+    New Note
+    <%= form_for(@note, url: notebook_notes_path) do |f| %>
+      <p><%= f.label :name %> <%= f.text_field :name %></p>
       <p><%= f.submit %></p>
     <% end %>
   </body>
 </html>
+<% end %>

@@ -1,8 +1,24 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  </head>
+<head>
+</head>
 
-  <body>
-  </body>
+<body>
+<div class="container-fluid padding" style="height:64px;"></div>
+
+<!-- Note Heading -->
+<div class="container-fluid padding">
+<div class="row welcome text-center mb-2">
+  <div class="col-12">
+    <h1 class="display-4"><%= @notebook.name %>: <%= @note.name %></h1>
+  </div>
+  <hr>
+  <div class="col-12">
+    <p style="font-size:24px;"><%= @note.description %><p>
+  </div>
+</div>
+</div>
+
+<div class="container-fluid padding" style="height:64px;"></div>
+</body>
 </html>

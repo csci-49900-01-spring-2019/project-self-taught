@@ -1,13 +1,20 @@
 class Test
   include Mongoid::Document
 
-  field :name, type: String
-  field :questions, type: Array, default: []
-  field :tags, type: Array, default: []
-  field :date_created, type: DateTime, default: DateTime.now
+  field :owner,        type: User
+  field :notebook,     type: Notebook
+  field :private,      type: Boolean,  default: true
 
-  field :user, type: User
-  field :notebook, type: Notebook
+  field :name,         type: String
+  field :description,  type: String,   default: ""
+  field :tags,         type: Array,    default: []
+
+  field :questions,    type: Array,    default: []
+  field :time_limit,   type: String,   default: DateTime.now
+  
+  field :ratings,      type: Array,    default: []
+  field :comments,     type: Array,    default: []
+  field :date_created, type: DateTime, default: DateTime.now
 
   def question_array
     if questions

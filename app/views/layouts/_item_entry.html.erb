@@ -1,0 +1,55 @@
+<div class="d-flex flex-column justify-content-center w-100" style="height:48px; max-height:48px; border-width:2px; border-radius:25px; border-color:#606060; border-style:solid;">
+  <div class="d-flex flex-row w-100 h-100">
+		<% if entry_type == "notebook" %>
+			<div class="d-flex flex-row justify-content-center h-100", style="min-width:48px;">
+				<div class="d-flex flex-row justify-content-center my-auto bg-primary", style="width:40px; height:40px; border-radius:25px;">
+					<i class="material-icons-sharp my-auto" style="color:#00000060;" data-toggle="tooltip" data-placement="left" title="Notebook">
+						local_library
+					</i>
+				</div>
+			</div>
+		<% elsif entry_type == "note" %>
+			<div class="d-flex flex-row justify-content-center h-100", style="min-width:48px;">
+				<div class="d-flex flex-row justify-content-center my-auto bg-primary", style="width:40px; height:40px; border-radius:25px;">
+					<i class="material-icons-sharp my-auto" style="color:#00000060;" data-toggle="tooltip" data-placement="left" title="Note">
+						description
+					</i>
+				</div>
+			</div>
+			<div class="d-flex flex-row justify-content-center mx-2 my-auto">
+				<p class="text-secondary my-auto"><b><%= note.name %></b></p>
+			</div>
+			<div class="d-flex flex-row flex-fill mx-2 my-auto">
+				<p class="text-overflow text-secondary my-auto" style="height:20px;"><%= note.description %></p>
+			</div>
+			<%= link_to(notebook_note_path(note.notebook, note.id), { class:"d-flex flex-row justify-content-center mx-2 my-auto badge badge-pill badge-primary" }) do %>
+				<p class="my-auto"><b>Open</b></p>
+			<% end %>
+			<% if current_user.try(:id) == note[:owner] %>
+				<%= link_to(edit_notebook_note_path(note.notebook, note.id), { class:"d-flex flex-row justify-content-center mx-2 my-auto badge badge-pill badge-primary" }) do %>
+					<p class="my-auto"><b>Edit</b></p>
+				<% end %>
+				<%= link_to(notebook_note_path(note.notebook, note.id), { method: :delete, class:"d-flex flex-row justify-content-center mx-2 my-auto badge badge-pill badge-primary" }) do %>
+					<p class="my-auto"><b>Delete</b></p>
+				<% end %>
+			<% end %>
+		<% elsif entry_type == "question" %>
+			<div class="d-flex flex-row justify-content-center h-100", style="min-width:48px;">
+				<div class="d-flex flex-row justify-content-center my-auto bg-primary", style="width:40px; height:40px; border-radius:25px;">
+					<i class="material-icons-sharp my-auto" style="color:#00000060;" data-toggle="tooltip" data-placement="left" title="Question">
+						question_answer
+					</i>
+				</div>
+			</div>
+		<% elsif entry_type == "test" %>
+			<div class="d-flex flex-row justify-content-center h-100", style="min-width:48px;">
+				<div class="d-flex flex-row justify-content-center my-auto bg-primary", style="width:40px; height:40px; border-radius:25px;">
+					<i class="material-icons-sharp my-auto" style="color:#00000060;" data-toggle="tooltip" data-placement="left" title="Test">
+						assignment
+					</i>
+				</div>
+			</div>
+		<% end %>
+		
+	</div>
+</div>

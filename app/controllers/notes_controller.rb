@@ -1,83 +1,200 @@
 class NotesController < MainSiteBaseController
+	def index
+		# Public Notes Viewing
+		@notebooks = Notebook.any_of({ private: false })
+		
+		if @notebooks
+			@notebooks.each do |notebook|
+				note2 = Note.any_of({ notebook: notebook.id.to_s, private: false })
+				if @notes
+					@notes.merge(note2)
+				else
+					@notes = note2
+				end
+			end
+		end
+		if !@notes
+			@notes = []
+		end
+	end
+
 	def show
-		@note = Note.find(params[:id])
-		respond_to do |format|
-      format.html
-      format.json { render :json => @note}
-    end
+		# Single-Note Viewing
+		begin
+			@notebook = Notebook.find(params[:notebook_id])
+			@note = Note.find(params[:note_id])
+			@owner = current_user
+			if !((@owner.id == @notebook.owner  or (!@notebook.private and !@note.private)) and @note.notebook == @notebook.id.to_s)
+				# 401 Error if user is not allowed to view the notebook or if the note does not belong to the notebook
+				render :file => "#{Rails.root}/public/401", :status => :unauthorized
+			end
+		rescue => ex
+			# 404 Error if notebook_id or note_id is not a registered notebook or note
+			render :file => "#{Rails.root}/public/404", :status => :not_found
+		end
 	end
 
 	def user
-		@user = User.where(username: params[:id]).first
-		if @user
-			@notebooks = @user.notebook_array
-			@notes = []
-			@notebooks.each do |notebook|
-				@notes += notebook.note_array
-			end
-			respond_to do |format|
-				format.html
-				format.json { render :json => @notes}
-			end
+		# User-filtered Notes Viewing
+		begin
+			@user = User.find(params[:user_id])
+			@owner = (current_user.try(:id).to_s == params[:user_id])
+			@notes = Note.where(owner: @user[:id])
+		rescue => ex
+			# 404 Error if user_id is not a registered user
+			render :file => "#{Rails.root}/public/404", :status => :not_found
 		end
 	end
 
 	def new
-		if user_signed_in?
-			@note = Note.new
-			render :new
-		else
-			redirect_to('/users/sign_in')
+		# Note Creation Page
+		if !user_signed_in?
+			# Only signed in users can access this page
+			redirect_to(new_user_session_path)
+		end
+
+		begin
+			@notebook = Notebook.find(params[:notebook_id])
+		rescue => ex
+			# 404 Error if notebook_id is not a registered notebook
+			render :file => "#{Rails.root}/public/404", :status => :not_found
 		end
 	end
 
 	def create
-		if user_signed_in?
-			@user = User.where(username: current_user[:username]).first
-			@notebook = Notebook.find(params[:notebook_id])
-			@notebook.note_create(note_params, @user.id, @notebook.id)
-			redirect_to(notebook_path(params[:notebook_id]))
-		else
-			redirect_to('/users/sign_in')
+		# Note Creation to the Database
+		if !user_signed_in?
+			# Only signed in users can access this page
+			redirect_to(new_user_session_path)
 		end
-	end
-
-	def edit #GET for notebook editing
-		if user_signed_in?
-			@user = User.where(username: current_user[:username]).first
+		
+		begin
 			@notebook = Notebook.find(params[:notebook_id])
-			@note = Note.find(params[:id])
-			if @user.notebook_owner?(@notebook.id) && @notebook.note_owner?(@note.id)
+
+			@entry_owner = current_user[:id]
+			@entry_notebook = params[:notebook_id]
+			
+			@entry_name = params[:note_name]
+			
+			@entry_description = params[:note_description]
+
+			if params[:note_tags]
+				@entry_tags = params[:note_tags].split(",")
+				@entry_tags.map! { |tag| tag = tag.strip }
+			end
+			if !@entry_tags
+				@entry_tags = []
+			end
+
+			if params[:note_private]
+				@entry_private = true
 			else
+				@entry_private = false
 			end
-		else
-			redirect_to('/users/sign_in')
+
+			@note = Note.create(owner: @entry_owner, notebook: @entry_notebook, name: @entry_name, description: @entry_description, tags: @entry_tags, private: @entry_private)
+			if !@notebook.notes
+				@notebook.notes = []
+			end
+			@notebook.notes.push(@note.id)
+			@notebook.update(notes: @notebook.notes)
+
+			redirect_to(notebook_path(params[:notebook_id]))
+		rescue => ex
+			# 404 Error if notebook_id is not a registered notebook
+			render :file => "#{Rails.root}/public/404", :status => :not_found
 		end
 	end
 
-	def update #PUT & PATCH for saving note edits
-		if user_signed_in?
-			@user = User.where(username: current_user[:username]).first
+	def edit
+		# Note Edit Page
+		if !user_signed_in?
+			# Only signed in users can attempt this
+			redirect_to(new_user_session_path)
+		end
+
+		begin
 			@notebook = Notebook.find(params[:notebook_id])
-			@note = Note.find(params[:id])
-			if @user.notebook_owner?(@notebook.id) && @notebook.note_owner?(@note.id)
-				@note.update(note_params)
+			@note = Note.find(params[:note_id])
+			@owner = current_user
+			if !(@owner.id == @notebook.owner and @note.notebook == @notebook.id.to_s)
+				# 401 Error if user is not allowed to view the notebook or if the note does not belong to the notebook
+				render :file => "#{Rails.root}/public/401", :status => :unauthorized
+			end
+		rescue => ex
+			# 404 Error if notebook_id or note_id is not a registered notebook or note
+			render :file => "#{Rails.root}/public/404", :status => :not_found
+		end
+	end
+	
+	def update
+		# Note Edit to the Database
+		if !user_signed_in?
+			# Only signed in users can access this page
+			redirect_to(new_user_session_path)
+		end
+
+		begin
+			@notebook = Notebook.find(params[:notebook_id])
+			@note = Note.find(params[:note_id])
+			@owner = current_user
+			if !(@owner.id == @notebook.owner and @note.notebook == @notebook.id.to_s)
+				# 401 Error if user is not allowed to view the notebook or if the note does not belong to the notebook
+				render :file => "#{Rails.root}/public/401", :status => :unauthorized
+			end
+		
+			@entry_owner = current_user[:id]
+			
+			@entry_name = params[:note_name]
+			
+			@entry_description = params[:note_description]
+
+			if params[:note_tags]
+				@entry_tags = params[:note_tags].split(",")
+				@entry_tags.map! { |tag| tag = tag.strip }
+			end
+			if !@entry_tags
+				@entry_tags = []
+			end
+
+			if params[:note_private]
+				@entry_private = true
+			else
+				@entry_private = false
+			end
+
+			@note.update(owner: @entry_owner, name: @entry_name, description: @entry_description, tags: @entry_tags, private: @entry_private)
+			redirect_to(notebook_path(params[:notebook_id]))
+		rescue => ex
+			# 404 Error if notebook_id is not a registered notebook
+			render :file => "#{Rails.root}/public/404", :status => :not_found
+		end
+	end
+
+	def destroy
+		# Note Deletion from the Database
+		if !user_signed_in?
+			# Only signed in users can attempt this
+			redirect_to(new_user_session_path)
+		end
+
+		begin
+			@notebook = Notebook.find(params[:notebook_id])
+			@note = Note.find(params[:note_id])
+			@owner = current_user
+			if @owner.id == @notebook.owner and @note.notebook == @notebook.id.to_s
+				@note.delete
+				@notebook.notes.delete(@note.id)
+				@notebook.update(notes: @notebook.notes)
+				
 				redirect_to(notebook_path(params[:notebook_id]))
+			else
+				# 401 Error if user is not allowed to view the notebook or if the note does not belong to the notebook
+				render :file => "#{Rails.root}/public/401", :status => :unauthorized
 			end
-		else
-			redirect_to('/users/sign_in')
+		rescue => ex
+			# 404 Error if notebook_id or note_id is not a registered notebook or note
+			render :file => "#{Rails.root}/public/404", :status => :not_found
 		end
-	end
-
-	def destroy #DELETE for a note deletion
-		if user_signed_in?
-			@notebook = Notebook.find(params[:notebook_id])
-			@notebook.note_delete(params[:id])
-		else
-		end
-	end
-
-	def note_params
-		params.require(:note).permit(:name)
 	end
 end

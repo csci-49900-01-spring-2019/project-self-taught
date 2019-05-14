@@ -10,27 +10,18 @@
 <div class="container-fluid padding">
 <div class="row welcome text-center mb-2">
   <div class="col-12">
-    <h1 class="display-4"><% if @owner %>Your<% else %>User<% end %> Notebooks</h1>
+    <h1 class="display-4">Public Notebooks</h1>
   </div>
 </div>
 </div>
 
 <div class="container-fluid padding">
 <div class="row mx-2">
-  <div class="col-12 mb-2">
-    <% if @owner %>
-      <%= link_to(new_notebook_path, { class: "btn btn-sm btn-primary" }) do %>
-        New Notebook
-        <span class="badge badge-pill badge-light">5</span>
-      <% end %>
-    <% end %>
-  </div>
-  <hr>
   <div class="d-flex flex-row flex-wrap justify-content-center mx-auto">
     <% @notebooks.each do |notebook| %>
-      <div class="mx-4 my-2">
-       <%= render :template => "notebooks/_notebook", :locals => { :notebook => notebook } %>
-      </div>
+			<div class="mx-4 my-2">
+      	<%= render :template => "notebooks/_notebook", :locals => { :notebook => notebook } %>
+			</div>
     <% end %>
   </div>
 </div>

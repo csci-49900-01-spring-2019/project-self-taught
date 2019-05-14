@@ -29,12 +29,15 @@ Rails.application.routes.draw do
     get 'users/:user_id/notes',     action: :user, controller: 'notes',     as: :user_notes
     get 'users/:user_id/questions', action: :user, controller: 'questions', as: :user_questions
     get 'users/:user_id/tests',     action: :user, controller: 'tests',     as: :user_tests
+    
+    get 'notes',     action: :index, controller: 'notes',     as: :public_notes
+    get 'questions', action: :index, controller: 'questions', as: :public_questions
+    get 'tests',     action: :index, controller: 'tests',     as: :public_tests
 
-    resources :notebooks, param: :notebook_id do
-      resources :notes,     param: :note_id
-      resources :questions, param: :question_id
-      resources :tests,     param: :test_id
-    end
+    resources :notebooks, param: :notebook_id
+    resources :notes,     param: :note_id,     path: '/notebooks/:notebook_id/notes', as: :notebook_notes
+    resources :questions, param: :question_id, path: '/notebooks/:notebook_id/questions', as: :notebook_questions
+    resources :tests,     param: :test_id,     path: '/notebooks/:notebook_id/tests', as: :notebook_tests
   end
 
   namespace :api, path: nil, constraints: ApiSubDomainConstraint do
