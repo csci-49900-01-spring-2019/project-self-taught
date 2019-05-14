@@ -5,11 +5,11 @@ class NotesController < MainSiteBaseController
 		
 		if @notebooks
 			@notebooks.each do |notebook|
-				note2 = Note.any_of({ notebook: notebook.id.to_s, private: false })
+				notes2 = Note.any_of({ notebook: notebook.id.to_s, private: false })
 				if @notes
-					@notes.merge(note2)
+					@notes.merge(notes2)
 				else
-					@notes = note2
+					@notes = notes2
 				end
 			end
 		end

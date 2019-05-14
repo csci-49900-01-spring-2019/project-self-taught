@@ -111,8 +111,12 @@
         <%= link_to(user_notes_path(current_user[:id]), { class: "app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100", "data-toggle": "tooltip", "data-placement": "right", title: "Notes" }) do %>
           <i class="material-icons-sharp my-auto">description</i>
         <% end %>
-        <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100" data-toggle="tooltip" data-placement="right" title="Questions"><i class="material-icons-sharp my-auto">question_answer</i></a>
-        <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100" data-toggle="tooltip" data-placement="right" title="Tests"><i class="material-icons-sharp my-auto">assignment</i></a>
+        <%= link_to(user_questions_path(current_user[:id]), { class: "app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100", "data-toggle": "tooltip", "data-placement": "right", title: "Questions" }) do %>
+          <i class="material-icons-sharp my-auto">question_answer</i>
+        <% end %>
+        <%= link_to(user_tests_path(current_user[:id]), { class: "app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100", "data-toggle": "tooltip", "data-placement": "right", title: "Tests" }) do %>
+          <i class="material-icons-sharp my-auto">assignment</i>
+        <% end %>
         <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100" data-toggle="tooltip" data-placement="right" title="Planner"><i class="material-icons-sharp my-auto">event_note</i></a>
         <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100" data-toggle="tooltip" data-placement="right" title="Settings"><i class="material-icons-sharp my-auto">settings</i></a>
         <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100" data-toggle="tooltip" data-placement="right" title="Help"><i class="material-icons-sharp my-auto">help_outline</i></a>

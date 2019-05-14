@@ -49,20 +49,3 @@
 <div class="container-fluid padding" style="height:64px;"></div>
 </body>
 </html>
-
-
-<% if false %>
-<!DOCTYPE html>
-<html>
-  <head>
-  </head>
-
-  <body>
-    New Note
-    <%= form_for(@note, url: notebook_notes_path) do |f| %>
-      <p><%= f.label :name %> <%= f.text_field :name %></p>
-      <p><%= f.submit %></p>
-    <% end %>
-  </body>
-</html>
-<% end %>

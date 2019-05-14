@@ -17,7 +17,7 @@
 
 <div class="container-fluid padding">
 <div class="row mx-2">
-  <div class="d-flex flex-row flex-wrap justify-content-center mx-auto">
+  <div class="d-flex flex-row flex-wrap justify-content-center mx-auto w-100">
     <% @notes.each do |note| %>
       <div class="mx-4 my-2 w-100">
         <%= render :template => "layouts/_item_entry", :locals => { :note => note, :entry_type => "note" } %>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<body>
+<div class="container-fluid padding" style="height:64px;"></div>
+
+<!-- Question Creation Section -->
+<div class="container-fluid padding my-auto">
+<div class="row justify-content-center">
+  <div class="col-12 text-center">
+    <h1 class="display-4">New Question</h1>
+  </div>
+  <hr>
+  <div class="col col-sm-8" style="max-width: 512px;">
+    <%= form_for (Question.new), :url => notebook_questions_path do |f| %>
+      <label for="question-content">Content:</label>
+      <textarea name="question_content" id="question-content" class="form-control form-control-sm mb-2" style="height:96px" aria-label="question content" aria-describedby="addon-wrapping" autocomplete="question content"></textarea>
+
+      <label for="question-answer">Answer:</label>
+      <textarea name="question_answer" id="question-answer" class="form-control form-control-sm mb-2" style="height:96px" aria-label="question answer" aria-describedby="addon-wrapping" autocomplete="question answer"></textarea>
+
+      <label for="question-tags">Tags:</label>
+      <input name="question_tags" id="question-tags" type="text" class="form-control form-control-sm mb-2" aria-label="question tags" aria-describedby="addon-wrapping" autocomplete="question tags">
+
+      <span class="mb-2">
+        <label class="mr-2">Private:</label>
+        <label class="switch switch-sm">
+          <input name="question_private" type="checkbox" checked>
+          <span class="slider slider-sm round"></span>
+        </label>
+      </span>
+
+      <div class="input-group input-group-sm">
+        <%= f.submit "Create", type: "submit", class: "btn btn-sm btn-primary mx-auto" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+</div>
+
+<div class="container-fluid padding" style="height:64px;"></div>
+</body>
+</html>
