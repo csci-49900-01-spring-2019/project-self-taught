@@ -1,19 +1,78 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  </head>
+<head>
+</head>
 
-  <body>
-    <% if params[:id] == current_user[:username] %>
-      <%= link_to "New Notebook", new_notebook_path %>
+<body>
+<!-- Notebook Viewing Section -->
+<div class="container-fluid padding" style="height:64px;"></div>
+<div class="container-fluid padding">
+<div class="row welcome text-center mb-2">
+  <div class="col-12">
+    <h1 class="display-4"><% if @owner %>Your<% else %>User<% end %> Notebooks</h1>
+  </div>
+</div>
+</div>
+
+<div class="container-fluid padding">
+<div class="row mx-2">
+  <div class="col-12 mb-2">
+    <% if @owner %>
+      <%= link_to(new_notebook_path, { class: "btn btn-sm btn-primary" }) do %>
+        New Notebook
+        <span class="badge badge-pill badge-light">5</span>
+      <% end %>
     <% end %>
+  </div>
+  <hr>
+  <div class="d-flex flex-row flex-wrap justify-content-center mx-auto">
     <% @notebooks.each do |notebook| %>
-			<span style="display:block">
+      <div class="mx-4 my-2">
+        <div style="width:288px; height:336px; border-radius: 0px 16px 16px 0px;">
+          <div class="d-flex flex-row float-left" style="margin-left:1px; margin-top:1px; width:286px; height:319px; border-radius: 0px 16px 16px 0px;">
+            <div class="app-notebook-menu d-flew flex-row justify-content-end h-100 bg-primary" style="min-width:31px;">
+              <!-- Notebook Control Panel -->
+              <a href="#" class="app-sidebar-item app-notebook-item d-flex flex-row justify-content-center" style="height:48px;" data-toggle="tooltip" data-placement="left" title="Open">
+                <i class="material-icons-sharp my-auto">open_in_new</i>
+              </a>
+              <%= link_to(edit_notebook_path(notebook[:id]), { class:"app-sidebar-item app-notebook-item d-flex flex-row justify-content-center", style:"height:48px;", 'data-toggle':"tooltip", 'data-placement':"left", title:"Edit" }) do %>
+                <i class="material-icons-sharp my-auto">edit</i>
+              <% end %>
+              <%= link_to(notebook_path(notebook[:id]), { method: :delete, class:"app-sidebar-item app-notebook-item d-flex flex-row justify-content-center", style:"height:48px;", 'data-toggle':"tooltip", 'data-placement':"left", title:"Delete" }) do %>
+                <i class="material-icons-sharp my-auto">delete</i>
+              <% end %>
+            </div>
+            <div class="d-flex flex-column flex-fill h-100 bg-white" style="border-radius: 0px 16px 16px 0px;">
+              <!-- Notebook Contents -->
+              <div class="text-center mx-1 my-2"><%= notebook.name %></div>
+              <div class="text-center mx-1 my-auto"><%= notebook.description %></div>
+              <div class="text-center mx-1 my-2"><% if notebook.private %><i class="material-icons-sharp">lock</i><% end %></div>
+            </div>
+          </div>
+
+          <div class="app-notebook-border" style="width:288px; height:336px; border-radius:0px 16px 16px 0px; border-width:1px;">
+            <div class="float-left bg-primary" style="width:31px; height:15px;"><div class="w-100 h-100" style="background-color:#00000030;"></div></div>
+            <div class="h-100 bg-white" style="margin-left:31px; max-width:256px; background-color:#00000030; border-radius:0px 16px 16px 0px;">
+              <div class="w-100 h-100" style="background-color:#00000030; border-radius:0px 16px 16px 0px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+</div>
+
+<div class="container-fluid padding" style="height:64px;"></div>
+
+<% if false %>
+<span style="display:block">
         <%= notebook.name %>
         <%= link_to "Open", notebook_path(notebook.id)  %>
         <%= link_to "Edit", edit_notebook_path(notebook.id) %>
         <%= link_to "Delete", notebook_path(notebook.id), { method: :delete } %>
       </span><br/>
-		<% end %>
-  </body>
+<% end %>
+
+</body>
 </html>

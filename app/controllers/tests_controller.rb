@@ -1,4 +1,4 @@
-class TestsController < ApplicationController
+class TestsController < MainSiteBaseController
 	include TestsHelper
 	def show
 	end

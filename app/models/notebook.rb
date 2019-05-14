@@ -1,8 +1,19 @@
 class Notebook
   include Mongoid::Document
-  field :name, type: String
-  field :notes, type: Array, default: []
-  field :tests, type: Array, default: []
+
+  field :owner,        type: User
+  field :private,      type: Boolean,  default: true
+
+  field :name,         type: String
+  field :description,  type: String,   default: ""
+  field :tags,         type: Array,    default: []
+
+  field :notes,        type: Array,    default: []
+  field :questions,    type: Array,    default: []
+  field :tests,        type: Array,    default: []
+
+  field :ratings,      type: Array,    default: []
+  field :comments,     type: Array,    default: []
   field :date_created, type: DateTime, default: DateTime.now
 
   def note_owner? note_id

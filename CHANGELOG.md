@@ -22,6 +22,62 @@ Format:
 # Changelog
 Self-Taught Application Changelog
 
+## v0.1.7 - 2019-05-13
+### Added
+- Email Verification with devise
+
+## v0.1.6 - 2019-05-13
+### Added
+- Notebook pages
+
+## v0.1.5 - 2019-05-12
+### Changed
+- Login page is now responsive
+- Reigstration page is now responsive
+
+## v0.1.4 - 2019-05-12
+### Added
+- Tooltips for menu bar
+- Token authentication
+
+### Removed
+- username from the user model
+
+## v0.1.3 - 2019-05-12
+### Added
+- Website fav icon
+
+### Changed
+- Fixed menu anchors
+
+## v0.1.2 - 2019-05-06
+### Added
+- Added main menu drop down
+
+## v0.1.1 - 2019-05-06
+### Added
+- Added user control panel sidebar
+
+### Changed
+- More Navigation Bar Re-Design
+
+### Removed
+- material-icons gem, unnecessary
+
+## v0.1.0 - 2019-05-05
+### Added
+- Mini App Logo
+- A few royalty-free OpenType fonts
+- font awesome gem for logos of different online brands
+
+### Changed
+- Homepage Re-Design
+- Navigation Bar Re-Design
+- CSS Files
+
+### Removed
+- Temporary removal of website behavior
+
 ## v0.0.9 - 2019-04-15
 ### Added
 - Sign out button

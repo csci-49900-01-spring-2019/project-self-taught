@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+
+  <body>
+		<div>Self-Taught Rest-API Version 1</div>
+		<table class="table w-100 h-100">
+			<thead>
+				<tr>
+					<th scope="col">Path</th>
+					<th scope="col">Method</th>
+					<th scope="col">URL Params</th>
+					<th scope="col">Header Params</th>
+					<th scope="col">Usage</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- User Authentication -->
+				<tr>
+					<th scope="row">api.<%=request.domain%>/v1/users/sign_in</th>
+					<td>POST</td>
+					<td>email & password</td>
+					<td></td>
+					<td>
+						User Authentication.<br/>
+						Required for access to user-only information.<br/>
+						On Success:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 200 Ok Status.<br/>
+							Returns the JSON representation of the User model.<br/>
+							Header response containing the access-token, client, and uid.<br/>
+							access-token, client, and uid must be used in the Header for User Authentication.<br/>
+							API calls with User Authentication will contain a new access-token in the Header, replace the old token with this one.
+						</p>
+						On Failure:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 401 Unauthorized Status:<br/>
+							Returns a JSON error message.
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">api.<%=request.domain%>/v1/users/validate_token</th>
+					<td>GET</td>
+					<td></td>
+					<td>User Authentication</td>
+					<td>
+						Used to validate tokens for returned visits to the client.<br/>
+						On Success:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 200 Ok Status.<br/>
+							Returns the JSON representation of the User model.
+						</p>
+						On Failure:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 401 Unauthorized Status:<br/>
+							Returns a JSON error message.
+						</p>
+					</td>
+				</tr>
+
+				<!-- User-filtered Viewing -->
+				<tr>
+					<th scope="row">api.<%=request.domain%>/v1/users/:user_id/notebooks</th>
+					<td>GET</td>
+					<td></td>
+					<td>User Authentication</td>
+					<td>
+						User-filtered Notebooks Viewing.<br/>
+						On Success:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 200 Ok Status.<br/>
+							Successful when the user_id is a registered user.<br/>
+							Returns the JSON array of notebooks that are viewable by the authenticated user provided.<br/>
+							If the authenticated user is the owner, all notebooks of the user will be in the array.<br/>
+							If the authenticated user is not the owner, all notebooks of the user that are shared or public will be in the array.
+						</p>
+						On Failure:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 404 Page Not Found Status:<br/>
+							When the user_id is not a registered user.<br/>
+							HTTP 401 Unauthorized Status:<br/>
+							When the user authentication is invalid.<br/>
+							Returns a JSON error message.
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">api.<%=request.domain%>/v1/users/:user_id/notes</th>
+					<td>GET</td>
+					<td></td>
+					<td>User Authentication</td>
+					<td>
+						User-filtered Notes Viewing.<br/>
+						On Success:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 200 Ok Status.<br/>
+							Successful when the user_id is a registered user.<br/>
+							Returns the JSON array of notes that are viewable by the authenticated user provided.<br/>
+							If the authenticated user is the owner, all notes of the user will be in the array.<br/>
+							If the authenticated user is not the owner, all notes of the user that are shared or public will be in the array.
+						</p>
+						On Failure:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 404 Page Not Found Status:<br/>
+							When the user_id is not a registered user.<br/>
+							HTTP 401 Unauthorized Status:<br/>
+							When the user authentication is invalid.<br/>
+							Returns a JSON error message.
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">api.<%=request.domain%>/v1/users/:user_id/questions</th>
+					<td>GET</td>
+					<td></td>
+					<td>User Authentication</td>
+					<td>
+						User-filtered Questions Viewing.<br/>
+						On Success:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 200 Ok Status.<br/>
+							Successful when the user_id is a registered user.<br/>
+							Returns the JSON array of questions that are viewable by the authenticated user provided.<br/>
+							If the authenticated user is the owner, all questions of the user will be in the array.<br/>
+							If the authenticated user is not the owner, all questions of the user that are shared or public will be in the array.
+						</p>
+						On Failure:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 404 Page Not Found Status:<br/>
+							When the user_id is not a registered user.<br/>
+							HTTP 401 Unauthorized Status:<br/>
+							When the user authentication is invalid.<br/>
+							Returns a JSON error message.
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">api.<%=request.domain%>/v1/users/:user_id/tests</th>
+					<td>GET</td>
+					<td></td>
+					<td>User Authentication</td>
+					<td>
+						User-filtered Tests Viewing.<br/>
+						On Success:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 200 Ok Status.<br/>
+							Successful when the user_id is a registered user.<br/>
+							Returns the JSON array of notebooks that are viewable by the authenticated user provided.<br/>
+							If the authenticated user is the owner, all tests of the user will be in the array.<br/>
+							If the authenticated user is not the owner, all tests of the user that are shared or public will be in the array.
+						</p>
+						On Failure:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 404 Page Not Found Status:<br/>
+							When the user_id is not a registered user.<br/>
+							HTTP 401 Unauthorized Status:<br/>
+							When the user authentication is invalid.<br/>
+							Returns a JSON error message.
+						</p>
+					</td>
+				</tr>
+
+				<!-- Notebooks -->
+				<tr>
+					<th scope="row">api.<%=request.domain%>/v1/notebooks</th>
+					<td>GET</td>
+					<td></td>
+					<td>User Authentication</td>
+					<td>
+						Notebook Library.<br/>
+						On Success:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 200 Ok Status.<br/>
+							Returns the JSON array of all of the notebooks that are viewable by the authenticated user provided.
+						</p>
+						On Failure:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 401 Unauthorized Status:<br/>
+							When the user authentication is invalid.<br/>
+							Returns a JSON error message.
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">api.<%=request.domain%>/v1/notebooks</th>
+					<td>POST</td>
+					<td>name & description & tags</td>
+					<td>User Authentication</td>
+					<td>
+						Notebook Creation.<br/>
+						On Success:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 200 Ok Status.<br/>
+							The name parameter cannot be empty.<br/>
+							The tags parameter are separated by commas then turned into an array.<br/>
+							Returns the JSON representation of the notebook that the user created.
+						</p>
+						On Failure:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 401 Unauthorized Status:<br/>
+							When the user authentication is invalid, an invalid parameter, or the user cannot create more notebooks.<br/>
+							Returns a JSON error message.
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">api.<%=request.domain%>/v1/notebooks/:notebook_id</th>
+					<td>GET</td>
+					<td></td>
+					<td>User Authentication</td>
+					<td>
+						Notebook Viewing.<br/>
+						On Success:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 200 Ok Status.<br/>
+							Successful if the notebook exists and it is viewable by the authenticated user provided.<br/>
+							Returns a JSON array in this form:<br/>
+								1st Index: The JSON respresentation of the notebook.<br/>
+								2nd Index: The JSON array of the notebook notes that are viewable by the authenticated user.<br/>
+								3rd Index: The JSON array of the notebook questions that are viewable by the authenticated user.<br/>
+								4th Index: The JSON array of the notebook tests that are viewable by the authenticated user.
+						</p>
+						On Failure:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 404 Page Not Found Status:<br/>
+							When the notebook_id is not a registered notebook.<br/>
+							HTTP 401 Unauthorized Status:<br/>
+							When the user authentication is invalid or the user is not allowed to view the notebook.<br/>
+							Returns a JSON error message.
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">api.<%=request.domain%>/v1/notebooks/:notebook_id</th>
+					<td>PUT</td>
+					<td>name & description & tags</td>
+					<td>User Authentication</td>
+					<td>
+						Notebook Editing.<br/>
+						On Success:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 200 Ok Status.<br/>
+							Successful if the notebook exists and it is owned by the authenticated user provided.<br/>
+							Any empty parameters will not be updated.<br/>
+							The tags parameter are separated by commas then turned into an array.<br/>
+							Returns the JSON representation of the notebook that the user created.
+						</p>
+						On Failure:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 404 Page Not Found Status:<br/>
+							When the notebook_id is not a registered notebook.<br/>
+							HTTP 401 Unauthorized Status:<br/>
+							When the user authentication is invalid or the user is not the owner of the notebook.<br/>
+							Returns a JSON error message.
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">api.<%=request.domain%>/v1/notebooks/:notebook_id</th>
+					<td>DELETE</td>
+					<td></td>
+					<td>User Authentication</td>
+					<td>
+						Notebook Deletion.<br/>
+						On Success:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 200 Ok Status.<br/>
+							Successful if the notebook exists and it is owned by the authenticated user provided.<br/>
+							Returns the JSON representation of the notebook that was deleted.
+						</p>
+						On Failure:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 404 Page Not Found Status:<br/>
+							When the notebook_id is not a registered notebook.<br/>
+							HTTP 401 Unauthorized Status:<br/>
+							When the user authentication is invalid or the user is not the owner of the notebook.<br/>
+							Returns a JSON error message.
+						</p>
+					</td>
+				</tr>
+
+				<!-- Notes -->
+				<tr>
+					<th scope="row">api.<%=request.domain%>/v1/notebooks/:notebook_id/notes</th>
+					<td>GET</td>
+					<td></td>
+					<td>User Authentication</td>
+					<td>
+						Notebook-filtered Notes Library.<br/>
+						On Success:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 200 Ok Status.<br/>
+							Returns the JSON array of all of the notes from the notebook that are viewable by the authenticated user provided.
+						</p>
+						On Failure:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 404 Page Not Found Status:<br/>
+							When the notebook_id is not a registered notebook.<br/>
+							HTTP 401 Unauthorized Status:<br/>
+							When the user authentication is invalid or the user is not allowed to view the notebook.<br/>
+							Returns a JSON error message.
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">api.<%=request.domain%>/v1/notebooks/:notebook_id/notes</th>
+					<td>POST</td>
+					<td>name & description & file & tags</td>
+					<td>User Authentication</td>
+					<td>
+						Note Creation.<br/>
+						On Success:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 200 Ok Status.<br/>
+							The name parameter cannot be empty.<br/>
+							A file is optional.<br/>
+							The file parameter can be a text, image, or pdf file.<br/>
+							The file cannot exceed 1 mb.<br/>
+							The tags parameter are separated by commas then turned into an array.<br/>
+							Returns the JSON representation of the note that the user created.
+						</p>
+						On Failure:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 404 Page Not Found Status:<br/>
+							When the notebook_id is not a registered notebook.<br/>
+							HTTP 401 Unauthorized Status:<br/>
+							When the user authentication is invalid, user is not the owner of the notebook, an invalid parameter, or the user cannot create more notes.<br/>
+							Returns a JSON error message.
+						</p>
+					</td>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">api.<%=request.domain%>/v1/notebooks/:notebook_id/notes/:note_id</th>
+					<td>GET</td>
+					<td></td>
+					<td>User Authentication</td>
+					<td>
+						Note Viewing.<br/>
+						On Success:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 200 Ok Status.<br/>
+							Successful if the notebook and note exists and they are viewable by the authenticated user provided.<br/>
+							Returns the JSON representation of the note.
+						</p>
+						On Failure:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 404 Page Not Found Status:<br/>
+							When the notebook_id is not a registered notebook or the note_id is not a registered note.<br/>
+							HTTP 401 Unauthorized Status:<br/>
+							When the user authentication is invalid or the user is not allowed to view the notebook or the note.<br/>
+							Returns a JSON error message.
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">api.<%=request.domain%>/v1/notebooks/:notebook_id/notes/:note_id</th>
+					<td>PUT</td>
+					<td>name & description & file & tags</td>
+					<td>User Authentication</td>
+					<td>
+						Note Editing.<br/>
+						On Success:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 200 Ok Status.<br/>
+							Successful if the notebook and note exists and they are owned by the authenticated user provided.<br/>
+							Any empty parameters will not be updated.<br/>
+							A file is optional.<br/>
+							The file parameter can be a text, image, or pdf file.<br/>
+							The file cannot exceed 1 mb.<br/>
+							The tags parameter are separated by commas then turned into an array.<br/>
+							Returns the JSON representation of the notebook that the user created.
+						</p>
+						On Failure:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 404 Page Not Found Status:<br/>
+							When the notebook_id is not a registered notebook or the note_id is not a registered note.<br/>
+							HTTP 401 Unauthorized Status:<br/>
+							When the user authentication is invalid or the user is not the owner of the notebook or the note.<br/>
+							Returns a JSON error message.
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">api.<%=request.domain%>/v1/notebooks/:notebook_id/notes/:note_id</th>
+					<td>DELETE</td>
+					<td></td>
+					<td>User Authentication</td>
+					<td>
+						Note Deletion.<br/>
+						On Success:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 200 Ok Status.<br/>
+							Successful if the notebook and note exists and they are owned by the authenticated user provided.<br/>
+							Returns the JSON representation of the note that was deleted.
+						</p>
+						On Failure:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 404 Page Not Found Status:<br/>
+							When the notebook_id is not a registered notebook or the note_id is not a registered note.<br/>
+							HTTP 401 Unauthorized Status:<br/>
+							When the user authentication is invalid or the user is not the owner of the notebook or the note.<br/>
+							Returns a JSON error message.
+						</p>
+					</td>
+				</tr>
+
+				<!-- Questions -->
+				<tr>
+					<th scope="row">api.<%=request.domain%>/v1/notebooks/:notebook_id/questions</th>
+					<td>GET</td>
+					<td></td>
+					<td>User Authentication</td>
+					<td>
+						Notebook-filtered Questions Library.<br/>
+						On Success:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 200 Ok Status.<br/>
+							Returns the JSON array of all of the questions from the notebook that are viewable by the authenticated user provided.
+						</p>
+						On Failure:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 404 Page Not Found Status:<br/>
+							When the notebook_id is not a registered notebook.<br/>
+							HTTP 401 Unauthorized Status:<br/>
+							When the user authentication is invalid or the user is not allowed to view the notebook.<br/>
+							Returns a JSON error message.
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">api.<%=request.domain%>/v1/notebooks/:notebook_id/questions</th>
+					<td>POST</td>
+					<td>name & description & answer & tags</td>
+					<td>User Authentication</td>
+					<td>
+						Question Creation.<br/>
+						On Success:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 200 Ok Status.<br/>
+							The name parameter cannot be empty.<br/>
+							The answer parameter cannot be empty.<br/>
+							The tags parameter are separated by commas then turned into an array.<br/>
+							Returns the JSON representation of the question that the user created.
+						</p>
+						On Failure:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 404 Page Not Found Status:<br/>
+							When the notebook_id is not a registered notebook.<br/>
+							HTTP 401 Unauthorized Status:<br/>
+							When the user authentication is invalid, user is not the owner of the notebook, an invalid parameter, or the user cannot create more questions.<br/>
+							Returns a JSON error message.
+						</p>
+					</td>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">api.<%=request.domain%>/v1/notebooks/:notebook_id/questions/:question_id</th>
+					<td>GET</td>
+					<td></td>
+					<td>User Authentication</td>
+					<td>
+						Question Viewing.<br/>
+						On Success:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 200 Ok Status.<br/>
+							Successful if the notebook and question exists and they are viewable by the authenticated user provided.<br/>
+							Returns the JSON representation of the question.
+						</p>
+						On Failure:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 404 Page Not Found Status:<br/>
+							When the notebook_id is not a registered notebook or the question_id is not a registered question.<br/>
+							HTTP 401 Unauthorized Status:<br/>
+							When the user authentication is invalid or the user is not allowed to view the notebook or the question.<br/>
+							Returns a JSON error message.
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">api.<%=request.domain%>/v1/notebooks/:notebook_id/questions/:question_id</th>
+					<td>PUT</td>
+					<td>name & description & answer & tags</td>
+					<td>User Authentication</td>
+					<td>
+						Question Editing.<br/>
+						On Success:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 200 Ok Status.<br/>
+							Successful if the notebook and question exists and they are owned by the authenticated user provided.<br/>
+							Any empty parameters will not be updated.<br/>
+							The tags parameter are separated by commas then turned into an array.<br/>
+							Returns the JSON representation of the question that the user created.
+						</p>
+						On Failure:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 404 Page Not Found Status:<br/>
+							When the notebook_id is not a registered notebook or the question_id is not a registered question.<br/>
+							HTTP 401 Unauthorized Status:<br/>
+							When the user authentication is invalid or the user is not the owner of the notebook or the question.<br/>
+							Returns a JSON error message.
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">api.<%=request.domain%>/v1/notebooks/:notebook_id/questions/:question_id</th>
+					<td>DELETE</td>
+					<td></td>
+					<td>User Authentication</td>
+					<td>
+						Question Deletion.<br/>
+						On Success:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 200 Ok Status.<br/>
+							Successful if the notebook and question exists and they are owned by the authenticated user provided.<br/>
+							Returns the JSON representation of the question that was deleted.
+						</p>
+						On Failure:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 404 Page Not Found Status:<br/>
+							When the notebook_id is not a registered notebook or the question_id is not a registered question.<br/>
+							HTTP 401 Unauthorized Status:<br/>
+							When the user authentication is invalid or the user is not the owner of the notebook or the question.<br/>
+							Returns a JSON error message.
+						</p>
+					</td>
+				</tr>
+
+				<!-- Tests -->
+				<tr>
+					<th scope="row">api.<%=request.domain%>/v1/notebooks/:notebook_id/tests</th>
+					<td>GET</td>
+					<td></td>
+					<td>User Authentication</td>
+					<td>
+						Notebook-filtered Tests Library.<br/>
+						On Success:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 200 Ok Status.<br/>
+							Returns the JSON array of all of the tests from the notebook that are viewable by the authenticated user provided.
+						</p>
+						On Failure:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 404 Page Not Found Status:<br/>
+							When the notebook_id is not a registered notebook.<br/>
+							HTTP 401 Unauthorized Status:<br/>
+							When the user authentication is invalid or the user is not allowed to view the notebook.<br/>
+							Returns a JSON error message.
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">api.<%=request.domain%>/v1/notebooks/:notebook_id/tests</th>
+					<td>POST</td>
+					<td>name & description & questions & time & tags</td>
+					<td>User Authentication</td>
+					<td>
+						Test Creation.<br/>
+						On Success:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 200 Ok Status.<br/>
+							The name parameter cannot be empty.<br/>
+							The questions parameter cannot be empty.<br/>
+							The questions parameter contains question_ids and are separated by commas then turned into an array.<br/>
+							The time parameter is the number of minutes in the test.<br/>
+							The tags parameter are separated by commas then turned into an array.<br/>
+							Returns the JSON representation of the test that the user created.
+						</p>
+						On Failure:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 404 Page Not Found Status:<br/>
+							When the notebook_id is not a registered notebook.<br/>
+							HTTP 401 Unauthorized Status:<br/>
+							When the user authentication is invalid, user is not the owner of the notebook, an invalid parameter, or the user cannot create more tests.<br/>
+							Returns a JSON error message.
+						</p>
+					</td>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">api.<%=request.domain%>/v1/notebooks/:notebook_id/tests/:test_id</th>
+					<td>GET</td>
+					<td></td>
+					<td>User Authentication</td>
+					<td>
+						Test Viewing.<br/>
+						On Success:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 200 Ok Status.<br/>
+							Successful if the notebook and test exists and they are viewable by the authenticated user provided.<br/>
+							Returns the JSON representation of the question.
+						</p>
+						On Failure:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 404 Page Not Found Status:<br/>
+							When the notebook_id is not a registered notebook or the test_id is not a registered test.<br/>
+							HTTP 401 Unauthorized Status:<br/>
+							When the user authentication is invalid or the user is not allowed to view the notebook or the test.<br/>
+							Returns a JSON error message.
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">api.<%=request.domain%>/v1/notebooks/:notebook_id/tests/:test_id</th>
+					<td>PUT</td>
+					<td>name & description & questions & time & tags</td>
+					<td>User Authentication</td>
+					<td>
+						Test Editing.<br/>
+						On Success:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 200 Ok Status.<br/>
+							Successful if the notebook and question exists and they are owned by the authenticated user provided.<br/>
+							Any empty parameters will not be updated.<br/>
+							The questions parameter contains question_ids and are separated by commas then turned into an array.<br/>
+							The tags parameter are separated by commas then turned into an array.<br/>
+							Returns the JSON representation of the question that the user created.
+						</p>
+						On Failure:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 404 Page Not Found Status:<br/>
+							When the notebook_id is not a registered notebook or the test_id is not a registered test.<br/>
+							HTTP 401 Unauthorized Status:<br/>
+							When the user authentication is invalid or the user is not the owner of the notebook or the test.<br/>
+							Returns a JSON error message.
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<th scope="row">api.<%=request.domain%>/v1/notebooks/:notebook_id/tests/:test_id</th>
+					<td>DELETE</td>
+					<td></td>
+					<td>User Authentication</td>
+					<td>
+						Test Deletion.<br/>
+						On Success:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 200 Ok Status.<br/>
+							Successful if the notebook and test exists and they are owned by the authenticated user provided.<br/>
+							Returns the JSON representation of the test that was deleted.
+						</p>
+						On Failure:<br/>
+						<p style="margin-left: 4mm">
+							HTTP 404 Page Not Found Status:<br/>
+							When the notebook_id is not a registered notebook or the test_id is not a registered test.<br/>
+							HTTP 401 Unauthorized Status:<br/>
+							When the user authentication is invalid or the user is not the owner of the notebook or the test.<br/>
+							Returns a JSON error message.
+						</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+  </body>
+</html>

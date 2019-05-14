@@ -1,4 +1,4 @@
-class HomepageController < ApplicationController
+class HomepageController < MainSiteBaseController
 	def index
 	end
 	def mobile

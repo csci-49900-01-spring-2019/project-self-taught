@@ -1,27 +1,133 @@
 <!DOCTYPE html>
-<html class="h-100">
-  <head>
-    <title><%= $app_title %> Application</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<html lang="en" style="height: 100%;">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <title>Self-Taught</title>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
 
-  <body class="w-100 h-100 mh-100" style="background-color: #E2E2E2;">
-    <div class="d-flex justify-content-start flex-column  w-100 h-100">
-      <% if (0 != @navbars & ApplicationController::Navbar::FULL_TOP) %>
-        <%= render 'layouts/full_top' %>
-      <% end %>
-      <div class="w-100 flex-fill">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-        <%= yield %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'custom' %>
+  <%= favicon_link_tag asset_path('cap-logo.png') %>
+</head>
+
+<body style="height: 100%;">
+<!-- Navigation -->
+<div class="d-flex flex-column w-100 h-100">
+<div class="fixed-top">
+<div class="container-fluid padding bg-white border-bottom border-dark">
+  <div class="row">
+    <%= link_to(root_path) do %>
+      <div class="mx-2 my-2">
+        <%= image_tag "cap-logo.svg", class: "app-nav-brand-link", style: "width: 32px; height: 32px;" %>
       </div>
-      <% if (0 != @navbars & ApplicationController::Navbar::FOOTER) %>
-        <%= render 'layouts/footer' %>
-      <% end %>
+    <% end %>
+    <%= link_to(root_path, { class: "app-nav-brand-link d-none d-sm-block text-dark my-auto" }) do %>
+      <p class="app-nav-brand-link mx-2 my-auto" style="font-size: 20px;">Self-Taught</p>
+    <% end %>
+    <div class="ml-auto">
+      <div class="d-inline-block h-100">
+        <span class="d-inline-flex flex-column justify-content-center h-100">&nbsp;</span>
+        <%= link_to(root_path, { class: "app-nav-item-link d-none d-lg-inline-flex flex-column justify-content-center text-secondary h-100" }) do %>
+          <span class="mx-2">Home</span>
+        <% end %>
+        <%= link_to(root_path(anchor: "About"), { class: "app-nav-item-link d-none d-lg-inline-flex flex-column justify-content-center text-secondary h-100" }) do %>
+          <span class="mx-2">About</span>
+        <% end %>
+        <%= link_to(root_path(anchor: "Pricing"), { class: "app-nav-item-link d-none d-lg-inline-flex flex-column justify-content-center text-secondary h-100" }) do %>
+          <span class="mx-2">Pricing</span>
+        <% end %>
+        <%= link_to(root_path(anchor: "Team"), { class: "app-nav-item-link d-none d-lg-inline-flex flex-column justify-content-center text-secondary h-100" }) do %>
+          <span class="mx-2">Team</span>
+        <% end %>
+        <%= link_to(root_path(anchor: "Developer"), { class: "app-nav-item-link d-none d-lg-inline-flex flex-column justify-content-center text-secondary h-100" }) do %>
+          <span class="mx-2">Developer</span>
+        <% end %>
+      </div>
+      <div class="d-inline-block mr-2 h-100">
+        <% if current_user %>
+          <%= link_to(root_path, { class: "app-nav-item-link d-none d-sm-inline-flex flex-column justify-content-center text-secondary h-100" }) do %>
+            <span class="mx-2"><b><%="#{current_user[:first_name]} #{current_user[:last_name]}"%></b></span>
+          <% end %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-sm btn-danger" %>
+        <% else %>
+          <%= link_to "Login", new_user_session_path, class: "btn btn-sm btn-outline-primary" %>
+          <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-sm btn-primary" %>
+        <% end %>
+        <button class="btn btn-sm btn-dark" type="button" data-toggle="collapse" data-target="#search-collapse"><i class="material-icons-sharp align-middle">search</i></button>
+        <div class="d-inline dropdown">
+          <button class="btn btn-sm btn-dark" type="button" data-toggle="dropdown" id="main-drop-down" aria-haspopup="true" aria-expanded="false"><i class="material-icons-sharp align-middle">more_horiz</i></button>
+          <div class="dropdown-menu bg-light" aria-labelledby="main-drop-down">
+            <%= link_to("Home", root_path, { class: "dropdown-item bg-light" }) %>
+            <%= link_to("About", root_path(anchor: "About"), { class: "dropdown-item bg-light" }) %>
+            <%= link_to("Pricing", root_path(anchor: "Pricing"), { class: "dropdown-item bg-light" }) %>
+            <%= link_to("Team", root_path(anchor: "Team"), { class: "dropdown-item bg-light" }) %>
+            <%= link_to("Developer", root_path(anchor: "Developer"), { class: "dropdown-item bg-light" }) %>
+            <div class="dropdown-divider"></div>
+            <%= link_to("Support", root_path, { class: "dropdown-item bg-light" }) %>
+            <%= link_to("Terms of Service", root_path, { class: "dropdown-item bg-light" }) %>
+          </div>
+        </div>
+      </div>
     </div>
-  </body>
+  </div> 
+</div>
+
+<!-- Navigation Search Collapsable -->
+<div class="padding collapse" id="search-collapse">
+  <div class="d-flex flex-row">
+    <% if current_user %><div style="margin-left: 48px;"></div><% end %>
+    <div class="flex-fill bg-white border-bottom border-dark">
+      <div class="input-group input-group-sm ml-auto w-100" style="max-width: 416px;">
+        <div class="input-group-prepend my-2 ml-2">
+          <span class="input-group-text" id="search-addon">Search</span>
+        </div>
+        <input type="text" class="form-control my-2 mr-2" aria-label="Search" aria-describedby="search-addon">
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="d-flex flew-row flex-fill">
+  <!-- Control Panel Sidebar -->
+  <% if current_user %>
+    <div class="d-flex flex-column bg-primary border-right border-dark" style="min-width: 48px;">
+      <div class="position-fixed" style="margin-top: 49px; min-width: 48px;">
+        <%= link_to(root_path, { class: "app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100", "data-toggle": "tooltip", "data-placement": "right", title: "Notifications" }) do %>
+          <i class="material-icons-sharp my-auto">notifications</i>
+        <% end %>
+        <%= link_to(user_notebooks_path(current_user[:id]), { class: "app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100", "data-toggle": "tooltip", "data-placement": "right", title: "Notebooks" }) do %>
+          <i class="material-icons-sharp my-auto">folder_open</i>
+        <% end %>
+        <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100" data-toggle="tooltip" data-placement="right" title="Notes"><i class="material-icons-sharp my-auto">description</i></a>
+        <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100" data-toggle="tooltip" data-placement="right" title="Questions"><i class="material-icons-sharp my-auto">question_answer</i></a>
+        <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100" data-toggle="tooltip" data-placement="right" title="Tests"><i class="material-icons-sharp my-auto">assignment</i></a>
+        <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100" data-toggle="tooltip" data-placement="right" title="Planner"><i class="material-icons-sharp my-auto">event_note</i></a>
+        <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100" data-toggle="tooltip" data-placement="right" title="Settings"><i class="material-icons-sharp my-auto">settings</i></a>
+        <a href="#" class="app-sidebar-item d-flex flex-row justify-content-center border-bottom border-dark w-100" data-toggle="tooltip" data-placement="right" title="Help"><i class="material-icons-sharp my-auto">help_outline</i></a>
+      </div>
+    </div>
+  <% end %>
+  <div class="d-flex flex-column flex-fill">
+    <!-- Remaining Page -->
+    <%= yield %>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer style="z-index: 2000">
+<div class="container-fluid padding border-top border-dark text-light bg-dark position-static">
+<div style="height:8px;"></div>
+<div class="row text-center">
+  <div class="col-12">
+    <h6>SelfTaughtApp.com &copy; <%= Date.today.year %></h6>
+</div>
+</div>
+</footer>
+</div>
+</body>
 </html>

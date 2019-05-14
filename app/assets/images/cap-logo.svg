@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="135.46666mm"
+   height="135.46666mm"
+   viewBox="0 0 135.46666 135.46667"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="Graduation Cap.svg"
+   enable-background="new">
+  <defs
+     id="defs2">
+    <marker
+       inkscape:stockid="Tail"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Tail"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <g
+         id="g6185"
+         transform="scale(-1.2)">
+        <path
+           id="path6173"
+           d="M -3.8048674,-3.9585227 L 0.54352094,0"
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.8;stroke-linecap:round" />
+        <path
+           id="path6175"
+           d="M -1.2866832,-3.9585227 L 3.0617053,0"
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.8;stroke-linecap:round" />
+        <path
+           id="path6177"
+           d="M 1.3053582,-3.9585227 L 5.6537466,0"
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.8;stroke-linecap:round" />
+        <path
+           id="path6179"
+           d="M -3.8048674,4.1775838 L 0.54352094,0.21974226"
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.8;stroke-linecap:round" />
+        <path
+           id="path6181"
+           d="M -1.2866832,4.1775838 L 3.0617053,0.21974226"
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.8;stroke-linecap:round" />
+        <path
+           id="path6183"
+           d="M 1.3053582,4.1775838 L 5.6537466,0.21974226"
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.8;stroke-linecap:round" />
+      </g>
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lstart"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Lstart"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path6137"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
+         transform="scale(0.8) translate(12.5,0)" />
+    </marker>
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter6717">
+      <feBlend
+         inkscape:collect="always"
+         mode="darken"
+         in2="BackgroundImage"
+         id="feBlend6719" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35355339"
+     inkscape:cx="-349.45555"
+     inkscape:cy="339.54966"
+     inkscape:document-units="mm"
+     inkscape:current-layer="g6815"
+     showgrid="true"
+     inkscape:window-width="1600"
+     inkscape:window-height="837"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     units="mm"
+     showguides="true"
+     inkscape:snap-object-midpoints="true"
+     inkscape:snap-page="true"
+     inkscape:pagecheckerboard="false"
+     borderlayer="false"
+     inkscape:snap-center="true"
+     inkscape:snap-midpoints="true"
+     inkscape:snap-global="false" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer17"
+     inkscape:label="Cap Structure"
+     transform="translate(0,-161.53332)"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <g
+       inkscape:groupmode="layer"
+       id="layer8"
+       inkscape:label="Cap Bottom Outline"
+       transform="translate(0,161.53332)"
+       style="display:inline"
+       sodipodi:insensitive="true">
+      <rect
+         style="display:inline;opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.23606801;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:100;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+         id="rect4935-8-5"
+         width="75.728172"
+         height="75.728172"
+         x="-47.330093"
+         y="47.330086"
+         transform="matrix(0.89442718,-0.44721362,0.89442718,0.44721362,0,0)" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer9"
+       inkscape:label="Cap Bottom Color"
+       transform="translate(0,161.53332)"
+       style="display:inline"
+       sodipodi:insensitive="true">
+      <rect
+         style="display:inline;opacity:1;fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:1.11803436;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect4935-8"
+         width="75.728172"
+         height="75.728172"
+         x="-47.330093"
+         y="47.330086"
+         transform="matrix(0.89442718,-0.44721362,0.89442718,0.44721362,0,0)" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer13"
+       inkscape:label="Cap Top Outline"
+       style="display:inline;filter:url(#filter6717)"
+       sodipodi:insensitive="true">
+      <rect
+         style="display:inline;opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.23606801;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:100;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+         id="rect4935-5-5"
+         width="75.728172"
+         height="75.728172"
+         x="-218.46382"
+         y="218.46382"
+         transform="matrix(0.89442718,-0.44721362,0.89442718,0.44721362,0,0)" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer14"
+       inkscape:label="Cap Top Color"
+       style="display:inline"
+       sodipodi:insensitive="true">
+      <rect
+         style="display:inline;opacity:1;fill:#333333;fill-opacity:1;stroke:none;stroke-width:1.11803436;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect4935-5"
+         width="75.728172"
+         height="75.728172"
+         x="-218.46382"
+         y="218.46382"
+         transform="matrix(0.89442718,-0.44721362,0.89442718,0.44721362,0,0)" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer6"
+       inkscape:label="Cap Circle Outline"
+       sodipodi:insensitive="true">
+      <ellipse
+         style="display:inline;opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:100;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+         id="path5803-5"
+         cx="67.733337"
+         cy="195.39999"
+         rx="8.4666662"
+         ry="4.2333331" />
+    </g>
+    <g
+       style="display:inline"
+       inkscape:label="Tassel Outline"
+       id="g6732"
+       inkscape:groupmode="layer"
+       sodipodi:insensitive="true">
+      <path
+         style="display:inline;opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:7.55905533;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:100;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+         d="m 272,120 -32,16 128,64 9.18945,132.5957 32,-16 L 400,184 Z"
+         transform="matrix(0.26458333,0,0,0.26458333,0,161.53332)"
+         id="rect6730"
+         inkscape:connector-curvature="0" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer10"
+       inkscape:label="Tassel Side Color"
+       transform="translate(0,161.53332)"
+       style="display:inline"
+       sodipodi:insensitive="true">
+      <rect
+         style="display:inline;opacity:1;fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:0.38094461;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect4943-9-4"
+         width="9.4660358"
+         height="35.166588"
+         x="-110.71597"
+         y="-133.59917"
+         transform="matrix(-0.8944273,0.44721338,-0.06914292,-0.99760676,0,0)"
+         inkscape:transform-center-x="-1.2157888"
+         inkscape:transform-center-y="17.541223" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer11"
+       inkscape:label="Tassel Top Color"
+       sodipodi:insensitive="true">
+      <rect
+         style="display:inline;opacity:1;fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:0.3952848;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect4943-8"
+         width="9.4660206"
+         height="37.864086"
+         x="-185.33275"
+         y="256.32791"
+         transform="matrix(0.89442718,-0.44721362,0.89442718,0.44721362,0,0)" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layer16"
+       inkscape:label="Cap Circle Color"
+       sodipodi:insensitive="true">
+      <ellipse
+         style="display:inline;opacity:1;fill:#333333;fill-opacity:1;stroke:none;stroke-width:1.33102453;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+         id="path5803-2"
+         cx="67.73333"
+         cy="195.39999"
+         rx="8.4666662"
+         ry="4.2333331" />
+    </g>
+  </g>
+  <g
+     style="display:inline"
+     inkscape:label="Cap Image"
+     id="g6845"
+     inkscape:groupmode="layer"
+     transform="translate(0,-161.53332)">
+    <g
+       style="display:inline"
+       transform="translate(0,161.53332)"
+       inkscape:label="Cap Bottom Outline"
+       id="g6811"
+       inkscape:groupmode="layer"
+       sodipodi:insensitive="true">
+      <rect
+         style="display:inline;opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.16141605;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:100;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+         id="rect6847"
+         width="73.199966"
+         height="73.199966"
+         x="-76.31768"
+         y="79.098129"
+         transform="matrix(0.89145806,-0.45310322,0.89145806,0.45310322,0,0)" />
+      <rect
+         transform="matrix(0.8929366,-0.45018243,0.8929366,0.45018243,0,0)"
+         y="79.307465"
+         x="-77.117249"
+         height="73.664345"
+         width="73.664345"
+         id="rect6809"
+         style="display:inline;opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.17512822;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:100;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke" />
+    </g>
+    <g
+       style="display:inline"
+       transform="translate(0,161.53332)"
+       inkscape:label="Cap Bottom Color"
+       id="g6815"
+       inkscape:groupmode="layer"
+       sodipodi:insensitive="true">
+      <rect
+         style="display:inline;opacity:1;fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:1.08070838;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect6849"
+         width="73.199966"
+         height="73.199966"
+         x="-76.31768"
+         y="79.098129"
+         transform="matrix(0.89145806,-0.45310322,0.89145806,0.45310322,0,0)" />
+      <rect
+         transform="matrix(0.8929366,-0.45018243,0.8929366,0.45018243,0,0)"
+         y="79.307465"
+         x="-77.117249"
+         height="73.664345"
+         width="73.664345"
+         id="rect6813"
+         style="display:inline;opacity:1;fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:1.08756447;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers" />
+    </g>
+    <g
+       style="display:inline;filter:url(#filter6717)"
+       inkscape:label="Cap Top Outline"
+       id="g6819"
+       inkscape:groupmode="layer"
+       sodipodi:insensitive="true">
+      <rect
+         style="display:inline;opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.16141605;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:100;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+         id="rect6851"
+         width="73.199966"
+         height="73.199966"
+         x="-245.42006"
+         y="248.2005"
+         transform="matrix(0.89145806,-0.45310322,0.89145806,0.45310322,0,0)" />
+      <rect
+         transform="matrix(0.8929366,-0.45018243,0.8929366,0.45018243,0,0)"
+         y="249.50809"
+         x="-247.31784"
+         height="73.664345"
+         width="73.664345"
+         id="rect6817"
+         style="display:inline;opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.17512822;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:100;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke" />
+    </g>
+    <g
+       style="display:inline"
+       inkscape:label="Cap Top Color"
+       id="g6823"
+       inkscape:groupmode="layer">
+      <rect
+         style="display:inline;opacity:1;fill:#333333;fill-opacity:1;stroke:none;stroke-width:1.08070838;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect6853"
+         width="73.199966"
+         height="73.199966"
+         x="-245.42006"
+         y="248.2005"
+         transform="matrix(0.89145806,-0.45310322,0.89145806,0.45310322,0,0)" />
+      <rect
+         transform="matrix(0.8929366,-0.45018243,0.8929366,0.45018243,0,0)"
+         y="249.50809"
+         x="-247.31784"
+         height="73.664345"
+         width="73.664345"
+         id="rect6821"
+         style="display:inline;opacity:1;fill:#333333;fill-opacity:1;stroke:none;stroke-width:1.08756447;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers" />
+    </g>
+    <g
+       inkscape:label="Cap Circle Outline"
+       id="g6827"
+       inkscape:groupmode="layer"
+       sodipodi:insensitive="true">
+      <ellipse
+         style="display:inline;opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.94268489;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:100;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+         id="ellipse6855"
+         cx="67.733337"
+         cy="223.66057"
+         rx="8.1568346"
+         ry="4.1458907" />
+      <ellipse
+         ry="4.145298"
+         rx="8.2221966"
+         cy="223.66203"
+         cx="67.733337"
+         id="ellipse6825"
+         style="display:inline;opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.95031345;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:100;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="g6831"
+       inkscape:label="Tassel Outline"
+       style="display:inline"
+       sodipodi:insensitive="true">
+      <path
+         style="display:inline;opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.94268489;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:100;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+         d="m 71.811749,221.58817 -8.156833,4.14588 32.627344,16.58357 2.3424,34.35797 8.15683,-4.14589 -2.34239,-34.35799 z"
+         id="path6857"
+         inkscape:connector-curvature="0" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path6829"
+         d="m 71.844431,221.58992 -8.222197,4.14529 32.888793,16.5812 2.361171,34.35305 8.222192,-4.1453 -2.36116,-34.35306 z"
+         style="display:inline;opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.95031345;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:100;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke" />
+    </g>
+    <g
+       style="display:inline"
+       transform="translate(0,161.53332)"
+       inkscape:label="Tassel Side Color"
+       id="g6835"
+       inkscape:groupmode="layer"
+       sodipodi:insensitive="true">
+      <rect
+         style="display:inline;opacity:1;fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:0.3706291;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect6859"
+         width="9.1500082"
+         height="34.437546"
+         x="-107.56635"
+         y="-160.10565"
+         transform="matrix(-0.89145819,0.45310296,-0.0680229,-0.99768376,0,0)"
+         inkscape:transform-center-x="-33.798582"
+         inkscape:transform-center-y="23.562026" />
+      <rect
+         inkscape:transform-center-y="17.176446"
+         inkscape:transform-center-x="-1.1806826"
+         transform="matrix(-0.89293673,0.45018217,-0.06857518,-0.99764595,0,0)"
+         y="-159.83351"
+         x="-107.66075"
+         height="34.433926"
+         width="9.2080564"
+         id="rect6833"
+         style="display:inline;opacity:1;fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:0.37178332;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers" />
+    </g>
+    <g
+       inkscape:label="Tassel Top Color"
+       id="g6839"
+       inkscape:groupmode="layer"
+       sodipodi:insensitive="true">
+      <rect
+         style="display:inline;opacity:1;fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:0.38208809;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect6861"
+         width="9.1499949"
+         height="36.599983"
+         x="-213.39507"
+         y="284.79974"
+         transform="matrix(0.89145806,-0.45310322,0.89145806,0.45310322,0,0)" />
+      <rect
+         transform="matrix(0.8929366,-0.45018243,0.8929366,0.45018243,0,0)"
+         y="286.34106"
+         x="-215.08971"
+         height="36.832172"
+         width="9.2080421"
+         id="rect6837"
+         style="display:inline;opacity:1;fill:#1a1a1a;fill-opacity:1;stroke:none;stroke-width:0.38451207;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers" />
+    </g>
+    <g
+       inkscape:label="Cap Circle Color"
+       id="g6843"
+       inkscape:groupmode="layer">
+      <ellipse
+         style="display:inline;opacity:1;fill:#333333;fill-opacity:1;stroke:none;stroke-width:1.29288065;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+         id="ellipse6863"
+         cx="67.73333"
+         cy="223.66057"
+         rx="8.1568346"
+         ry="4.1458907" />
+      <ellipse
+         ry="4.145298"
+         rx="8.2221966"
+         cy="223.66203"
+         cx="67.73333"
+         id="ellipse6841"
+         style="display:inline;opacity:1;fill:#333333;fill-opacity:1;stroke:none;stroke-width:1.29795766;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers" />
+    </g>
+  </g>
+</svg>
