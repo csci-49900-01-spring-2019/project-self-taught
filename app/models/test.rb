@@ -10,7 +10,7 @@ class Test
   field :tags,         type: Array,    default: []
 
   field :questions,    type: Array,    default: []
-  field :time_limit,   type: String,   default: DateTime.now
+  field :time_limit,   type: Float,   default: 0
   
   field :ratings,      type: Array,    default: []
   field :comments,     type: Array,    default: []
@@ -24,8 +24,9 @@ class Test
     end
   end
 
+  validates :owner, presence: true
+  validates :notebook, presence: true
+
   validates :name, presence: true
   validates :date_created, presence: true
-  validates :user, presence: true
-  validates :notebook, presence: true
 end

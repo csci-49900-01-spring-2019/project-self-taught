@@ -29,7 +29,7 @@ class QuestionsController < MainSiteBaseController
 				render :file => "#{Rails.root}/public/401", :status => :unauthorized
 			end
 		rescue => ex
-			# 404 Error if notebook_id or note_id is not a registered notebook or question
+			# 404 Error if notebook_id or question_id is not a registered notebook or question
 			render :file => "#{Rails.root}/public/404", :status => :not_found
 		end
 	end
@@ -75,7 +75,6 @@ class QuestionsController < MainSiteBaseController
 			@entry_notebook = params[:notebook_id]
 			
 			@entry_content = params[:question_content]
-			
 			@entry_answer = params[:question_answer]
 
 			if params[:question_tags]
@@ -146,7 +145,6 @@ class QuestionsController < MainSiteBaseController
 			@entry_owner = current_user[:id]
 			
 			@entry_content = params[:question_content]
-			
 			@entry_answer = params[:question_answer]
 
 			if params[:question_tags]

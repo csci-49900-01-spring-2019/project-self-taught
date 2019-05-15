@@ -1,0 +1,106 @@
+@import "_bootstrap.scss";
+
+$note-entry-width: 100%;
+$note-entry-height: 40px;
+$note-entry-shadow-offset: 4px;
+
+$note-entry-soft-shade-color: rgba(0, 0, 0, 0.25);
+$note-entry-shade-color: rgba(0, 0, 0, 0.4);
+
+$note-entry-panel-item-width: 40px;
+$note-entry-panel-item-height: 40px;
+$note-entry-panel-color: white;
+
+.note-entry-container {
+  @extend .d-flex;
+  @extend .flex-row;
+  @extend .shadow;
+
+	min-width: $note-entry-width;
+	min-height: $note-entry-height + $note-entry-shadow-offset;
+
+  border-radius: 25px 25px 25px 25px;
+}
+
+.note-entry-panel-container {
+  background-color: $note-entry-panel-color;
+  min-width: $note-entry-panel-item-width;
+  min-height: $note-entry-height + $note-entry-shadow-offset;
+}
+
+.note-entry-panel {
+  @extend .d-flex;
+  @extend .flex-column;
+  @extend .float-left;
+
+  background-color: $note-entry-panel-color;
+  min-width: $note-entry-panel-item-width;
+  min-height: $note-entry-height;
+  max-height: $note-entry-height;
+
+  border-style: solid;
+  border-color: $note-entry-soft-shade-color;
+  border-width: 1px 0px 1px 0px;
+}
+.note-entry-panel-shade {
+  background-color: $note-entry-soft-shade-color;
+  min-width: $note-entry-panel-item-width;
+  min-height: $note-entry-height + $note-entry-shadow-offset;
+}
+
+.note-entry-panel-left {
+  border-radius: 25px 0px 0px 25px;
+}
+.note-entry-panel.note-entry-panel-left {
+  border-style: solid;
+  border-left-width: 1px;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+}
+.note-entry-panel-right {
+  border-radius: 0px 25px 25px 0px;
+}
+.note-entry-panel.note-entry-panel-right {
+  border-right-width: 1px;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+}
+
+.note-entry-panel-item.note-entry-panel-left {
+  border-right-width: 1px;
+}
+.note-entry-panel-item.note-entry-panel-right {
+  border-right-width: 0px;
+}
+
+.note-entry-panel-shade {
+  background-color: $note-entry-soft-shade-color;
+  min-width: $note-entry-panel-item-width;
+  min-height: $note-entry-height + $note-entry-shadow-offset;
+}
+
+.note-entry-panel-item {
+  @extend .d-flex;
+  @extend .flex-row;
+  @extend .justify-content-center;
+
+  color: $note-entry-shade-color;
+  min-width: $note-entry-panel-item-width - 1px;
+  min-height: $note-entry-panel-item-height;
+  max-height: $note-entry-panel-item-height;
+
+  border-style: solid;
+  border-color: $note-entry-soft-shade-color;
+  border-width: 0px 1px 0px 0px;
+}
+.note-entry-panel-item:link, .note-entry-panel-item:visited, .note-entry-panel-item:hover, .note-entry-panel-item:active {
+  text-decoration: none;
+}
+.note-entry-panel-item.note-entry-panel-item-no-link:hover {
+  color: $note-entry-shade-color;
+  background-color: rgba(0, 0, 0, 0.0);
+}
+.note-entry-panel-item:hover {
+  color: #FFFFFFE0;
+  background-color: $note-entry-shade-color;
+}

@@ -1,32 +1,27 @@
-<div style="width:288px; height:336px; border-radius: 0px 16px 16px 0px;">
-	<div class="d-flex flex-row float-left" style="margin-left:1px; margin-top:1px; width:286px; height:319px; border-radius: 0px 16px 16px 0px;">
-		<div class="app-notebook-menu d-flew flex-row justify-content-end h-100 bg-primary" style="min-width:31px;">
-			<!-- Notebook Control Panel -->
-			<%= link_to(notebook_path(notebook[:id]), { class:"app-sidebar-item app-notebook-item d-flex flex-row justify-content-center", style:"height:48px;", 'data-toggle':"tooltip", 'data-placement':"left", title:"Open" }) do %>
+<div class="notebook-container">
+	<div class="notebook-panel-container">
+		<div class="notebook-panel">
+			<%= link_to(notebook_path(notebook[:id]), { class:"notebook-panel-item", 'data-toggle':"tooltip", 'data-placement':"left", title:"Open" }) do %>
 				<i class="material-icons-sharp my-auto">open_in_new</i>
 			<% end %>
 			<% if current_user.try(:id) == notebook[:owner] %>
-				<%= link_to(edit_notebook_path(notebook[:id]), { class:"app-sidebar-item app-notebook-item d-flex flex-row justify-content-center", style:"height:48px;", 'data-toggle':"tooltip", 'data-placement':"left", title:"Edit" }) do %>
+				<%= link_to(edit_notebook_path(notebook[:id]), { class:"notebook-panel-item", 'data-toggle':"tooltip", 'data-placement':"left", title:"Edit" }) do %>
 					<i class="material-icons-sharp my-auto">edit</i>
 				<% end %>
-				<%= link_to(notebook_path(notebook[:id]), { method: :delete, class:"app-sidebar-item app-notebook-item d-flex flex-row justify-content-center", style:"height:48px;", 'data-toggle':"tooltip", 'data-placement':"left", title:"Delete" }) do %>
+				<%= link_to(notebook_path(notebook[:id]), { method: :delete, class:"notebook-panel-item", 'data-toggle':"tooltip", 'data-placement':"left", title:"Delete" }) do %>
 					<i class="material-icons-sharp my-auto">delete</i>
 				<% end %>
 			<% end %>
 		</div>
-		<div class="d-flex flex-column flex-fill h-100 bg-white" style="border-radius: 0px 16px 16px 0px;">
-			<!-- Notebook Contents -->
+		<div class="notebook-panel-shade"></div>
+	</div>
+	<div class="notebook-content-container">
+		<div class="notebook-content">
 			<div class="text-center mx-1 my-2"><%= @notebook_owner = User.where(id: notebook.owner).first; @notebook_owner ? @notebook_owner[:first_name] + " " + @notebook_owner[:last_name] : "" %></div> 
 			<div class="text-center mx-1 my-2"><%= notebook.name %></div>
 			<div class="text-center mx-1 my-auto"><%= notebook.description %></div>
 			<div class="text-center mx-1 my-2"><% if notebook.private %><i class="material-icons-sharp">lock</i><% end %></div>
 		</div>
-	</div>
-
-	<div class="app-notebook-border" style="width:288px; height:336px; border-radius:0px 16px 16px 0px; border-width:1px;">
-		<div class="float-left bg-primary" style="width:31px; height:15px;"><div class="w-100 h-100" style="background-color:#00000030;"></div></div>
-		<div class="h-100 bg-white" style="margin-left:31px; max-width:256px; background-color:#00000030; border-radius:0px 16px 16px 0px;">
-			<div class="w-100 h-100" style="background-color:#00000030; border-radius:0px 16px 16px 0px;"></div>
-		</div>
+		<div class="notebook-content-shade"></div>
 	</div>
 </div>

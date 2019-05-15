@@ -98,9 +98,11 @@
     <% end %>
   </div>
   <hr>
-  <div class="d-flex flex-row flex-wrap justify-content-center mx-auto">
+  <div class="d-flex flex-row flex-wrap justify-content-center mx-auto w-100">
     <% @tests.each do |test| %>
-     
+     <div class="mx-4 my-2 w-100">
+        <%= render :template => "layouts/_item_entry", :locals => { :test => test, :entry_type => "test" } %>
+      </div>
     <% end %>
   </div>
 </div>

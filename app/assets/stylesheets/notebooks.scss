@@ -1,3 +1,109 @@
 // Place all the styles related to the notebooks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "note_entry.scss";
+
+/*-- Large Notebook CSS --*/
+$notebook-width: 288px;
+$notebook-height: 320px;
+$notebook-shadow-offset: 16px;
+
+$notebook-soft-shade-color: $note-entry-soft-shade-color;
+$notebook-shade-color: rgba(0, 0, 0, 0.4);
+
+$notebook-panel-item-width: 32px;
+$notebook-panel-item-height: 48px;
+$notebook-panel-color: theme-color($key: "primary");
+
+.notebook-container {
+  @extend .d-flex;
+	@extend .flex-row;
+  @extend .shadow;
+
+	min-width: $notebook-width;
+	min-height: $notebook-height + $notebook-shadow-offset;
+
+  border-radius: 0px 25px 25px 0px;
+}
+
+.notebook-panel-container {
+  background-color: $notebook-panel-color;
+  min-width: $notebook-panel-item-width;
+  min-height: $notebook-height + $notebook-shadow-offset;
+}
+
+.notebook-panel {
+  @extend .d-flex;
+  @extend .flex-column;
+  @extend .float-left;
+  
+  background-color: $notebook-panel-color;
+  min-width: $notebook-panel-item-width;
+  max-width: $notebook-panel-item-width;
+  min-height: $notebook-height;
+
+  border-style: solid;
+  border-color: $notebook-soft-shade-color;
+  border-width: 1px 1px 0px 1px;
+}
+
+.notebook-panel-shade {
+  background-color: $notebook-soft-shade-color;
+  min-width: $notebook-panel-item-width;
+  min-height: $notebook-height + $notebook-shadow-offset;
+}
+
+.notebook-panel-item {
+  @extend .d-flex;
+  @extend .flex-row;
+  @extend .justify-content-center;
+
+  color: $notebook-shade-color;
+  min-width: $notebook-panel-item-width - 1px;
+  min-height: $notebook-panel-item-height;
+
+  border-style: solid;
+  border-color: $notebook-soft-shade-color;
+  border-width: 0px;
+  border-bottom-width: 1px;
+}
+.notebook-panel-item:link, .notebook-panel-item:visited, .notebook-panel-item:hover, .notebook-panel-item:active {
+  text-decoration: none;
+}
+.notebook-panel-item:hover {
+  color: #FFFFFFE0;
+  background-color: $notebook-shade-color;
+}
+
+.notebook-content-container {
+  background-color: white;
+  min-width: $notebook-width - $notebook-panel-item-width;
+  min-height: $notebook-height + $notebook-shadow-offset;
+
+  border-radius: 0px 25px 25px 0px;
+}
+
+.notebook-content {
+  @extend .d-flex;
+  @extend .flex-column;
+  @extend .float-left;
+  
+  background-color: white;
+  min-width: $notebook-width - $notebook-panel-item-width;
+  max-width: $notebook-width - $notebook-panel-item-width;
+  min-height: $notebook-height;
+
+  border-style: solid;
+  border-color: $notebook-soft-shade-color;
+  border-width: 1px 1px 0px 0px;
+  border-radius: 0px 25px 25px 0px;
+}
+
+.notebook-content-shade {
+  background-color: $notebook-soft-shade-color;
+  min-width: $notebook-panel-item-width;
+  min-height: $notebook-height + $notebook-shadow-offset;
+
+  border-radius: 0px 25px 25px 0px;
+}

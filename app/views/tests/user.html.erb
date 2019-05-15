@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<body>
+<div class="container-fluid padding" style="height:64px;"></div>
+
+<!-- Question Viewing Section -->
+<div class="container-fluid padding">
+<div class="row welcome text-center mb-2">
+  <div class="col-12">
+    <h1 class="display-4"><% if @owner %>Your<% else %>User<% end %> Questions</h1>
+  </div>
+</div>
+</div>
+
+<div class="container-fluid padding">
+<div class="row mx-2">
+  <div class="d-flex flex-row flex-wrap justify-content-center mx-auto w-100">
+    <% @questions.each do |question| %>
+      <div class="mx-4 my-2 w-100">
+        <%= render :template => "layouts/_item_entry", :locals => { :question => question, :entry_type => "question" } %>
+      </div>
+    <% end %>
+  </div>
+</div>
+</div>
+
+<div class="container-fluid padding" style="height:64px;"></div>
+</body>
+</html>

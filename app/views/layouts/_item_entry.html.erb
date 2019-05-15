@@ -1,69 +1,183 @@
-<div class="d-flex flex-column justify-content-center w-100" style="height:48px; max-height:48px; border-width:2px; border-radius:25px; border-color:#606060; border-style:solid;">
-  <div class="d-flex flex-row w-100 h-100">
-		<% if entry_type == "notebook" %>
-			<div class="d-flex flex-row justify-content-center h-100", style="min-width:48px;">
-				<div class="d-flex flex-row justify-content-center my-auto bg-primary", style="width:40px; height:40px; border-radius:25px;">
-					<i class="material-icons-sharp my-auto" style="color:#00000060;" data-toggle="tooltip" data-placement="left" title="Notebook">
-						local_library
-					</i>
-				</div>
-			</div>
-		<% elsif entry_type == "note" %>
-			<div class="d-flex flex-row justify-content-center h-100", style="min-width:48px;">
-				<div class="d-flex flex-row justify-content-center my-auto bg-primary", style="width:40px; height:40px; border-radius:25px;">
-					<i class="material-icons-sharp my-auto" style="color:#00000060;" data-toggle="tooltip" data-placement="left" title="Note">
-						description
-					</i>
-				</div>
-			</div>
-			<div class="d-flex flex-row justify-content-center mx-2 my-auto">
-				<p class="text-secondary my-auto"><b><%= note.name %></b></p>
-			</div>
-			<div class="d-flex flex-row flex-fill mx-2 my-auto">
-				<p class="text-overflow text-secondary my-auto" style="height:20px;"><%= note.description %></p>
-			</div>
-			<%= link_to(notebook_note_path(note.notebook, note.id), { class:"d-flex flex-row justify-content-center mx-2 my-auto badge badge-pill badge-primary" }) do %>
-				<p class="my-auto"><b>Open</b></p>
+<div class="note-entry-container">
+<% if entry_type == "notebook" %>
+	<!-- Notebook Entry -->
+<% elsif entry_type == "note" %>
+	<!-- Note Entry -->
+	<div class="note-entry-panel-container note-entry-panel-left bg-primary">
+		<div class="note-entry-panel note-entry-panel-left bg-primary">
+			<%= link_to(notebook_note_path(note.notebook, note.id), { class:"note-entry-panel-item note-entry-panel-left", 'data-toggle':"tooltip", 'data-placement':"top", 'title':"Open" }) do %>
+				<i class="material-icons-sharp my-auto">open_in_new</i>
 			<% end %>
-			<% if current_user.try(:id) == note[:owner] %>
-				<%= link_to(edit_notebook_note_path(note.notebook, note.id), { class:"d-flex flex-row justify-content-center mx-2 my-auto badge badge-pill badge-primary" }) do %>
-					<p class="my-auto"><b>Edit</b></p>
-				<% end %>
-				<%= link_to(notebook_note_path(note.notebook, note.id), { method: :delete, class:"d-flex flex-row justify-content-center mx-2 my-auto badge badge-pill badge-primary" }) do %>
-					<p class="my-auto"><b>Delete</b></p>
-				<% end %>
-			<% end %>
-		<% elsif entry_type == "question" %>
-			<div class="d-flex flex-row justify-content-center h-100", style="min-width:48px;">
-				<div class="d-flex flex-row justify-content-center my-auto bg-primary", style="width:40px; height:40px; border-radius:25px;">
-					<i class="material-icons-sharp my-auto" style="color:#00000060;" data-toggle="tooltip" data-placement="left" title="Question">
-						question_answer
-					</i>
-				</div>
-			</div>
-			<div class="d-flex flex-row flex-fill justify-content-center mx-2 my-auto">
-				<p class="text-overflow text-secondary my-auto" style="height:20px;"><%= question.content %></p>
-			</div>
-			<%= link_to(notebook_question_path(question.notebook, question.id), { class:"d-flex flex-row justify-content-center mx-2 my-auto badge badge-pill badge-primary" }) do %>
-				<p class="my-auto"><b>Open</b></p>
-			<% end %>
-			<% if current_user.try(:id) == question[:owner] %>
-				<%= link_to(edit_notebook_question_path(question.notebook, question.id), { class:"d-flex flex-row justify-content-center mx-2 my-auto badge badge-pill badge-primary" }) do %>
-					<p class="my-auto"><b>Edit</b></p>
-				<% end %>
-				<%= link_to(notebook_question_path(question.notebook, question.id), { method: :delete, class:"d-flex flex-row justify-content-center mx-2 my-auto badge badge-pill badge-primary" }) do %>
-					<p class="my-auto"><b>Delete</b></p>
-				<% end %>
-			<% end %>
-		<% elsif entry_type == "test" %>
-			<div class="d-flex flex-row justify-content-center h-100", style="min-width:48px;">
-				<div class="d-flex flex-row justify-content-center my-auto bg-primary", style="width:40px; height:40px; border-radius:25px;">
-					<i class="material-icons-sharp my-auto" style="color:#00000060;" data-toggle="tooltip" data-placement="left" title="Test">
-						assignment
-					</i>
-				</div>
-			</div>
-		<% end %>
-		
+		</div>
+		<div class="note-entry-panel-shade note-entry-panel-left"></div>
 	</div>
+	<div class="note-entry-panel-container bg-primary">
+		<div class="note-entry-panel bg-primary">
+			<% if current_user.try(:id) == note[:owner] %>
+				<%= link_to(edit_notebook_note_path(note.notebook, note.id), { class:"note-entry-panel-item", 'data-toggle':"tooltip", 'data-placement':"top", 'title':"Edit" }) do %>
+					<i class="material-icons-sharp my-auto">edit</i>
+				<% end %>
+			<% end %>
+		</div>
+		<div class="note-entry-panel-shade"></div>
+	</div>
+	<div class="note-entry-panel-container bg-primary">
+		<div class="note-entry-panel bg-primary">
+			<% if current_user.try(:id) == note[:owner] %>
+				<%= link_to(notebook_note_path(note.notebook, note.id), { method: :delete, class:"note-entry-panel-item", 'data-toggle':"tooltip", 'data-placement':"top", 'title':"Delete" }) do %>
+					<i class="material-icons-sharp my-auto">delete</i>
+				<% end %>
+			<% end %>
+		</div>
+		<div class="note-entry-panel-shade"></div>
+	</div>
+	<div class="note-entry-panel-container">
+		<div class="note-entry-panel">
+			<div class="note-entry-panel-item note-entry-panel-item-no-link">
+				<p class="text-overflow text-secondary mx-2 my-auto" style="height:20px;"><b><%= note.name %></b></p>
+			</div>
+		</div>
+		<div class="note-entry-panel-shade"></div>
+	</div>
+	<div class="note-entry-panel-container flex-fill">
+		<div class="note-entry-panel w-100">
+			<div class="note-entry-panel-item note-entry-panel-item-no-link w-100">
+				<p class="text-overflow text-secondary mx-2 my-auto" style="height:20px;"><%= note.description %></p>
+			</div>
+		</div>
+		<div class="note-entry-panel-shade w-100"></div>
+	</div>
+	<div class="note-entry-panel-container note-entry-panel-right bg-primary">
+		<div class="note-entry-panel note-entry-panel-right bg-primary">
+			<div class="note-entry-panel-item note-entry-panel-item-no-link note-entry-panel-right" data-toggle="tooltip" data-placement="top" title="Note" >
+				<i class="material-icons-sharp mx-2 my-auto">
+					description
+				</i>
+			</div>
+		</div>
+		<div class="note-entry-panel-shade note-entry-panel-right"></div>
+	</div>
+<% elsif entry_type == "question" %>
+	<!-- Question Entry -->
+	<div class="note-entry-panel-container note-entry-panel-left bg-primary">
+		<div class="note-entry-panel note-entry-panel-left bg-primary">
+			<%= link_to(notebook_question_path(question.notebook, question.id), { class:"note-entry-panel-item note-entry-panel-left", 'data-toggle':"tooltip", 'data-placement':"top", 'title':"Open" }) do %>
+				<i class="material-icons-sharp my-auto">open_in_new</i>
+			<% end %>
+		</div>
+		<div class="note-entry-panel-shade note-entry-panel-left"></div>
+	</div>
+	<div class="note-entry-panel-container bg-primary">
+		<div class="note-entry-panel bg-primary">
+			<% if current_user.try(:id) == question[:owner] %>
+				<%= link_to(edit_notebook_question_path(question.notebook, question.id), { class:"note-entry-panel-item", 'data-toggle':"tooltip", 'data-placement':"top", 'title':"Edit" }) do %>
+					<i class="material-icons-sharp my-auto">edit</i>
+				<% end %>
+			<% end %>
+		</div>
+		<div class="note-entry-panel-shade"></div>
+	</div>
+	<div class="note-entry-panel-container bg-primary">
+		<div class="note-entry-panel bg-primary">
+			<% if current_user.try(:id) == question[:owner] %>
+				<%= link_to(notebook_note_path(question.notebook, question.id), { method: :delete, class:"note-entry-panel-item", 'data-toggle':"tooltip", 'data-placement':"top", 'title':"Delete" }) do %>
+					<i class="material-icons-sharp my-auto">delete</i>
+				<% end %>
+			<% end %>
+		</div>
+		<div class="note-entry-panel-shade"></div>
+	</div>
+	<div class="note-entry-panel-container flex-fill">
+		<div class="note-entry-panel w-100">
+			<div class="note-entry-panel-item note-entry-panel-item-no-link w-100">
+				<p class="text-overflow text-secondary mx-2 my-auto" style="height:20px;"><b><%= question.content %></b></p>
+			</div>
+		</div>
+		<div class="note-entry-panel-shade"></div>
+	</div>
+	<div class="note-entry-panel-container note-entry-panel-right bg-primary">
+		<div class="note-entry-panel note-entry-panel-right bg-primary">
+			<div class="note-entry-panel-item note-entry-panel-item-no-link note-entry-panel-right" data-toggle="tooltip" data-placement="top" title="Question" >
+				<i class="material-icons-sharp mx-2 my-auto">
+					question_answer
+				</i>
+			</div>
+		</div>
+		<div class="note-entry-panel-shade note-entry-panel-right"></div>
+	</div>
+<% elsif entry_type == "test" %>
+	<!-- Test Entry -->
+	<div class="note-entry-panel-container note-entry-panel-left bg-primary">
+		<div class="note-entry-panel note-entry-panel-left bg-primary">
+			<%= link_to(notebook_test_path(test.notebook, test.id), { class:"note-entry-panel-item note-entry-panel-left", 'data-toggle':"tooltip", 'data-placement':"top", 'title':"Open" }) do %>
+				<i class="material-icons-sharp my-auto">open_in_new</i>
+			<% end %>
+		</div>
+		<div class="note-entry-panel-shade note-entry-panel-left"></div>
+	</div>
+	<div class="note-entry-panel-container bg-primary">
+		<div class="note-entry-panel bg-primary">
+			<% if current_user.try(:id) == test[:owner] %>
+				<%= link_to(edit_notebook_test_path(test.notebook, test.id), { class:"note-entry-panel-item", 'data-toggle':"tooltip", 'data-placement':"top", 'title':"Edit" }) do %>
+					<i class="material-icons-sharp my-auto">edit</i>
+				<% end %>
+			<% end %>
+		</div>
+		<div class="note-entry-panel-shade"></div>
+	</div>
+	<div class="note-entry-panel-container bg-primary">
+		<div class="note-entry-panel bg-primary">
+			<% if current_user.try(:id) == test[:owner] %>
+				<%= link_to(notebook_test_path(test.notebook, test.id), { method: :delete, class:"note-entry-panel-item", 'data-toggle':"tooltip", 'data-placement':"top", 'title':"Delete" }) do %>
+					<i class="material-icons-sharp my-auto">delete</i>
+				<% end %>
+			<% end %>
+		</div>
+		<div class="note-entry-panel-shade"></div>
+	</div>
+	<div class="note-entry-panel-container">
+		<div class="note-entry-panel">
+			<div class="note-entry-panel-item note-entry-panel-item-no-link">
+				<p class="text-overflow text-secondary mx-2 my-auto" style="height:20px;"><b><%= test.name %></b></p>
+			</div>
+		</div>
+		<div class="note-entry-panel-shade"></div>
+	</div>
+	<div class="note-entry-panel-container flex-fill">
+		<div class="note-entry-panel w-100">
+			<div class="note-entry-panel-item note-entry-panel-item-no-link w-100">
+				<p class="text-overflow text-secondary mx-2 my-auto" style="height:20px;"><%= test.description %></p>
+			</div>
+		</div>
+		<div class="note-entry-panel-shade"></div>
+	</div>
+	<div class="note-entry-panel-container bg-primary">
+		<div class="note-entry-panel bg-primary">
+			<div class="note-entry-panel-item note-entry-panel-item-no-link" data-toggle="tooltip" data-placement="top" title="Time Limit">
+				<i class="material-icons-sharp ml-2 my-auto">access_time</i>
+				<p class="text-overflow text-white mx-2 my-auto" style="height:20px;"><b><%= test.time_limit %></b></p>
+			</div>
+		</div>
+		<div class="note-entry-panel-shade"></div>
+	</div>
+	<div class="note-entry-panel-container bg-primary">
+		<div class="note-entry-panel bg-primary">
+			<div class="note-entry-panel-item note-entry-panel-item-no-link" data-toggle="tooltip" data-placement="top" title="Questions in Total">
+				<i class="material-icons-sharp ml-2 my-auto">help</i>
+				<p class="text-overflow text-white mx-2 my-auto" style="height:20px;"><b><%= test.questions.length %></b></p>
+			</div>
+		</div>
+		<div class="note-entry-panel-shade"></div>
+	</div>
+	<div class="note-entry-panel-container note-entry-panel-right bg-primary">
+		<div class="note-entry-panel note-entry-panel-right bg-primary">
+			<div class="note-entry-panel-item note-entry-panel-item-no-link note-entry-panel-right" data-toggle="tooltip" data-placement="top" title="Test" >
+				<i class="material-icons-sharp mx-2 my-auto">
+					assignment
+				</i>
+			</div>
+		</div>
+		<div class="note-entry-panel-shade note-entry-panel-right"></div>
+	</div>
+<% end %>
 </div>

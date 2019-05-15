@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<body>
+<div class="container-fluid padding" style="height:64px;"></div>
+
+<!-- Test Edit Section -->
+<div class="container-fluid padding my-auto">
+<div class="row justify-content-center">
+  <div class="col-12 text-center">
+    <h1 class="display-4">Edit Test</h1>
+  </div>
+  <hr>
+  <div class="col col-sm-8" style="max-width: 512px;">
+    <%= form_for @test, :url => notebook_test_path(@test.notebook, @test.id) do |f| %>
+      <label for="test-name">Name:</label>
+      <input name="test_name" id="test-name" value="<%= @test.name %>" type="text" class="form-control form-control-sm mb-2" aria-label="test name" aria-describedby="addon-wrapping" autofocus=true autocomplete="test name">
+
+      <label for="test-description">Description:</label>
+      <textarea name="test_description" id="test-description" class="form-control form-control-sm mb-2" style="height:96px" aria-label="test description" aria-describedby="addon-wrapping" autocomplete="test description"><%= @test.description %></textarea>
+
+      <label>Questions:</label>
+      <% if @questions %>
+        <% question_ctr = 0 %>
+        <% @questions.each do |question| %>
+          <% question_ctr = question_ctr + 1 %>
+          <div class="d-flex flex-row ml-4 my-2">
+            <div class="d-flex flex-column justify-content-center">
+              <input name="question-<%= question.id %>" class="form-check-input my-auto" type="checkbox" <% if @test.questions.include?(question.id.to_s) %> checked="on" <% end %>>
+            </div>
+            <div class="d-flex flex-column flex-fill justify-content-center">
+              <%= render :template => "layouts/_item_entry", :locals => { :question => question, :entry_type => "question" } %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+      <span><label for="test-time-limit">Time Limit (Mins):</label></span>
+      <input name="test_time_limit" id="test-time-limit" value="<%= @test.time_limit %>" type="text" class="form-control form-control-sm mb-2" aria-label="test time limit" aria-describedby="addon-wrapping" autocomplete="test time limit">
+
+      <label for="test-tags">Tags:</label>
+      <input name="test_tags" id="test-tags" value="<%= @test.tags.join(", ") %>" type="text" class="form-control form-control-sm mb-2" aria-label="test tags" aria-describedby="addon-wrapping" autocomplete="test tags">
+
+      <span class="mb-2">
+        <label class="mr-2">Private:</label>
+        <label class="switch switch-sm">
+          <input name="test_private" type="checkbox" <% if @test.private %> checked="on" <% end %>>
+          <span class="slider slider-sm round"></span>
+        </label>
+      </span>
+
+      <div class="input-group input-group-sm">
+        <%= f.submit "Edit", type: "submit", class: "btn btn-sm btn-primary mx-auto" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+</div>
+
+<div class="container-fluid padding" style="height:64px;"></div>
+</body>
+</html>
