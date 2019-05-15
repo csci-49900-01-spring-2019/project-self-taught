@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     get 'eula', action: :eula, controller: 'homepage', as: :eula
     get 'support', action: :support, controller: 'homepage', as: :support
 
+    get 'search', action: :index, controller: 'search', as: :search
+
     devise_for :users,
       controllers:
       { confirmations: 'users/confirmations', mailer: 'users/mailer',

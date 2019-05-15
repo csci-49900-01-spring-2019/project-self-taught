@@ -22,4 +22,12 @@ class Note
   
   validates :name,         presence: true
   validates :date_created, presence: true
+
+  def can_view? user_id, notebook_id
+    notebook_id.to_s == notebook and (user_id == owner or private == false)
+  end
+
+  def search_match? search_input
+    name.match?(/#{search_input}/i) or description.match?(/#{search_input}/i) or tags.any?{ |tag| tag.match?(/#{search_input}/i) }
+  end
 end

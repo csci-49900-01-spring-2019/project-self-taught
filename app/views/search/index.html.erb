@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<body>
+<div class="container-fluid padding" style="height:64px;"></div>
+
+<!-- Search Heading -->
+<div class="container-fluid padding">
+<div class="row welcome text-center mb-2">
+  <div class="col-12">
+    <h1 class="display-4">Search Results</h1>
+  </div>
+	<hr>
+  <div class="d-flex flex-row flex-wrap justify-content-center mx-auto w-100">
+    <% @results.each do |result| %>
+      <div class="mx-4 my-2 w-100">
+				
+				<% if result.class.to_s == "Notebook" %>
+					<%= render :template => "layouts/_item_entry", :locals => { :notebook => result, :entry_type => "notebook" } %>
+        <% elsif result.class.to_s == "Note" %>
+					<%= render :template => "layouts/_item_entry", :locals => { :note => result, :entry_type => "note" } %>
+				<% elsif result.class.to_s == "Question" %>
+					<%= render :template => "layouts/_item_entry", :locals => { :question => result, :entry_type => "question" } %>
+				<% elsif result.class.to_s == "Test" %>
+					<%= render :template => "layouts/_item_entry", :locals => { :test => result, :entry_type => "test" } %>
+				<% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+</div>
+
+<div class="container-fluid padding" style="height:64px;"></div>
+</body>
+</html>

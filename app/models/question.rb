@@ -15,4 +15,12 @@ class Question
   field :date_created, type: DateTime, default: DateTime.now
 
   validates :date_created, presence: true
+
+  def can_view? user_id, notebook_id
+    notebook_id.to_s == notebook and (user_id == owner or private == false)
+  end
+
+  def search_match? search_input
+    content.match?(/#{search_input}/i) or answer.match?(/#{search_input}/i) or tags.any?{ |tag| tag.match?(/#{search_input}/i) }
+  end
 end

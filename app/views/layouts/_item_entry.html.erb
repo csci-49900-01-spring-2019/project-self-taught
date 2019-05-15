@@ -1,6 +1,59 @@
 <div class="note-entry-container">
 <% if entry_type == "notebook" %>
 	<!-- Notebook Entry -->
+	<div class="note-entry-panel-container note-entry-panel-left bg-primary">
+		<div class="note-entry-panel note-entry-panel-left bg-primary">
+			<%= link_to(notebook_path(notebook.id), { class:"note-entry-panel-item note-entry-panel-left", 'data-toggle':"tooltip", 'data-placement':"top", 'title':"Open" }) do %>
+				<i class="material-icons-sharp my-auto">open_in_new</i>
+			<% end %>
+		</div>
+		<div class="note-entry-panel-shade note-entry-panel-left"></div>
+	</div>
+	<% if current_user.try(:id) == notebook.owner %>
+		<div class="note-entry-panel-container bg-primary">
+			<div class="note-entry-panel bg-primary">
+				<%= link_to(edit_notebook_path(notebook.id), { class:"note-entry-panel-item", 'data-toggle':"tooltip", 'data-placement':"top", 'title':"Edit" }) do %>
+					<i class="material-icons-sharp my-auto">edit</i>
+				<% end %>
+			</div>
+			<div class="note-entry-panel-shade"></div>
+		</div>
+		
+		<div class="note-entry-panel-container bg-primary">
+			<div class="note-entry-panel bg-primary">
+				<%= link_to(notebook_path(notebook.id), { method: :delete, class:"note-entry-panel-item", 'data-toggle':"tooltip", 'data-placement':"top", 'title':"Delete" }) do %>
+					<i class="material-icons-sharp my-auto">delete</i>
+				<% end %>
+			</div>
+			<div class="note-entry-panel-shade"></div>
+		</div>
+	<% end %>
+	<div class="note-entry-panel-container">
+		<div class="note-entry-panel">
+			<div class="note-entry-panel-item note-entry-panel-item-no-link">
+				<p class="text-overflow text-secondary mx-2 my-auto" style="height:20px;"><b><%= notebook.name %></b></p>
+			</div>
+		</div>
+		<div class="note-entry-panel-shade"></div>
+	</div>
+	<div class="note-entry-panel-container flex-fill">
+		<div class="note-entry-panel w-100">
+			<div class="note-entry-panel-item note-entry-panel-item-no-link w-100">
+				<p class="text-overflow text-secondary mx-2 my-auto" style="height:20px;"><%= notebook.description %></p>
+			</div>
+		</div>
+		<div class="note-entry-panel-shade w-100"></div>
+	</div>
+	<div class="note-entry-panel-container note-entry-panel-right bg-primary">
+		<div class="note-entry-panel note-entry-panel-right bg-primary">
+			<div class="note-entry-panel-item note-entry-panel-item-no-link note-entry-panel-right" data-toggle="tooltip" data-placement="top" title="Notebook" >
+				<i class="material-icons-sharp mx-2 my-auto">
+					local_library
+				</i>
+			</div>
+		</div>
+		<div class="note-entry-panel-shade note-entry-panel-right"></div>
+	</div>
 <% elsif entry_type == "note" %>
 	<!-- Note Entry -->
 	<div class="note-entry-panel-container note-entry-panel-left bg-primary">
@@ -11,26 +64,24 @@
 		</div>
 		<div class="note-entry-panel-shade note-entry-panel-left"></div>
 	</div>
-	<div class="note-entry-panel-container bg-primary">
-		<div class="note-entry-panel bg-primary">
-			<% if current_user.try(:id) == note[:owner] %>
+	<% if current_user.try(:id) == note.owner %>
+		<div class="note-entry-panel-container bg-primary">
+			<div class="note-entry-panel bg-primary">
 				<%= link_to(edit_notebook_note_path(note.notebook, note.id), { class:"note-entry-panel-item", 'data-toggle':"tooltip", 'data-placement':"top", 'title':"Edit" }) do %>
 					<i class="material-icons-sharp my-auto">edit</i>
 				<% end %>
-			<% end %>
+			</div>
+			<div class="note-entry-panel-shade"></div>
 		</div>
-		<div class="note-entry-panel-shade"></div>
-	</div>
-	<div class="note-entry-panel-container bg-primary">
-		<div class="note-entry-panel bg-primary">
-			<% if current_user.try(:id) == note[:owner] %>
+		<div class="note-entry-panel-container bg-primary">
+			<div class="note-entry-panel bg-primary">
 				<%= link_to(notebook_note_path(note.notebook, note.id), { method: :delete, class:"note-entry-panel-item", 'data-toggle':"tooltip", 'data-placement':"top", 'title':"Delete" }) do %>
 					<i class="material-icons-sharp my-auto">delete</i>
 				<% end %>
-			<% end %>
+			</div>
+			<div class="note-entry-panel-shade"></div>
 		</div>
-		<div class="note-entry-panel-shade"></div>
-	</div>
+	<% end %>
 	<div class="note-entry-panel-container">
 		<div class="note-entry-panel">
 			<div class="note-entry-panel-item note-entry-panel-item-no-link">
@@ -67,26 +118,25 @@
 		</div>
 		<div class="note-entry-panel-shade note-entry-panel-left"></div>
 	</div>
-	<div class="note-entry-panel-container bg-primary">
-		<div class="note-entry-panel bg-primary">
-			<% if current_user.try(:id) == question[:owner] %>
+	<% if current_user.try(:id) == question.owner %>
+		<div class="note-entry-panel-container bg-primary">
+			<div class="note-entry-panel bg-primary">
 				<%= link_to(edit_notebook_question_path(question.notebook, question.id), { class:"note-entry-panel-item", 'data-toggle':"tooltip", 'data-placement':"top", 'title':"Edit" }) do %>
 					<i class="material-icons-sharp my-auto">edit</i>
 				<% end %>
-			<% end %>
+			</div>
+			<div class="note-entry-panel-shade"></div>
 		</div>
-		<div class="note-entry-panel-shade"></div>
-	</div>
-	<div class="note-entry-panel-container bg-primary">
-		<div class="note-entry-panel bg-primary">
-			<% if current_user.try(:id) == question[:owner] %>
-				<%= link_to(notebook_note_path(question.notebook, question.id), { method: :delete, class:"note-entry-panel-item", 'data-toggle':"tooltip", 'data-placement':"top", 'title':"Delete" }) do %>
+
+		<div class="note-entry-panel-container bg-primary">
+			<div class="note-entry-panel bg-primary">
+				<%= link_to(notebook_question_path(question.notebook, question.id), { method: :delete, class:"note-entry-panel-item", 'data-toggle':"tooltip", 'data-placement':"top", 'title':"Delete" }) do %>
 					<i class="material-icons-sharp my-auto">delete</i>
 				<% end %>
-			<% end %>
+			</div>
+			<div class="note-entry-panel-shade"></div>
 		</div>
-		<div class="note-entry-panel-shade"></div>
-	</div>
+	<% end %>
 	<div class="note-entry-panel-container flex-fill">
 		<div class="note-entry-panel w-100">
 			<div class="note-entry-panel-item note-entry-panel-item-no-link w-100">
@@ -115,26 +165,26 @@
 		</div>
 		<div class="note-entry-panel-shade note-entry-panel-left"></div>
 	</div>
-	<div class="note-entry-panel-container bg-primary">
-		<div class="note-entry-panel bg-primary">
-			<% if current_user.try(:id) == test[:owner] %>
+	
+	<% if current_user.try(:id) == test.owner %>
+		<div class="note-entry-panel-container bg-primary">
+			<div class="note-entry-panel bg-primary">
 				<%= link_to(edit_notebook_test_path(test.notebook, test.id), { class:"note-entry-panel-item", 'data-toggle':"tooltip", 'data-placement':"top", 'title':"Edit" }) do %>
 					<i class="material-icons-sharp my-auto">edit</i>
 				<% end %>
-			<% end %>
+			</div>
+			<div class="note-entry-panel-shade"></div>
 		</div>
-		<div class="note-entry-panel-shade"></div>
-	</div>
-	<div class="note-entry-panel-container bg-primary">
-		<div class="note-entry-panel bg-primary">
-			<% if current_user.try(:id) == test[:owner] %>
+
+		<div class="note-entry-panel-container bg-primary">
+			<div class="note-entry-panel bg-primary">
 				<%= link_to(notebook_test_path(test.notebook, test.id), { method: :delete, class:"note-entry-panel-item", 'data-toggle':"tooltip", 'data-placement':"top", 'title':"Delete" }) do %>
 					<i class="material-icons-sharp my-auto">delete</i>
 				<% end %>
-			<% end %>
+			</div>
+			<div class="note-entry-panel-shade"></div>
 		</div>
-		<div class="note-entry-panel-shade"></div>
-	</div>
+	<% end %>
 	<div class="note-entry-panel-container">
 		<div class="note-entry-panel">
 			<div class="note-entry-panel-item note-entry-panel-item-no-link">
