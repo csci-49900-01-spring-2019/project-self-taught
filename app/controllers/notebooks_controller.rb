@@ -22,9 +22,9 @@ class NotebooksController < MainSiteBaseController
 			@notebook = Notebook.find(params[:notebook_id])
 			@owner = current_user.try(:id) == @notebook.owner
 			if @owner or !@notebook.private
-				@notes = Note.where(notebook: params[:notebook_id])
-				@questions = Question.where(notebook: params[:notebook_id])
-				@tests = Test.where(notebook: params[:notebook_id])
+				@notes = Note.where(notebook: @notebook.id)
+				@questions = Question.where(notebook: @notebook.id)
+				@tests = Test.where(notebook: @notebook.id)
 				if !@owner
 					@notes = @notes.where(private: false)
 					@questions = @questions.where(private: false)

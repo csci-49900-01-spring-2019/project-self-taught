@@ -19,16 +19,30 @@ class Api::V1::NotesController < Api::ApiBaseController
 	end
 
 
-	# def user
-	# 	# User-filtered Notebooks Viewing
-	# 	begin
-	# 		user_model = User.find(params[:user_id])
-	# 		render json: user_model.notebook_models(current_user.id)
-	# 	rescue => ex
-	# 		# 404 Error if user_id is not a registered user
-	# 		render json: "user does not exists", :status => :not_found
-	# 	end
-	# end
+	def user
+		# User-filtered Notes Viewing
+		begin
+			user_model = User.find(params[:user_id])
+			notebook_collection = user_model.notebook_models(current_user.id)
+			notes = nil
+			if notebook_collection
+				notebook_collection.each do |notebook_model|
+					note_collection = notebook_model.note_models(current_user.id)
+					if note_collection
+						if notes
+							notes.merge(note_collection)
+						else
+							notes = note_collection
+						end
+					end
+				end
+			end
+			render json: notes
+		rescue => ex
+			# 404 Error if user_id is not a registered user
+			render json: "user does not exists", :status => :not_found
+		end
+	end
 
 	# def create
 	# 	# Notebook Creation to the Database

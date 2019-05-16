@@ -54,6 +54,15 @@ class Notebook
     tests
   end
 
+  def note_models user_id
+    note_mdls = Note.where(owner: owner, notebook: id) 
+    if note_mdls and !user_auth?(user_id)
+      note_mdls.where(private: false)
+    else
+      note_mdls
+    end
+  end
+  
   def update_notebook(user_id, notebook_name, notebook_description, notebook_tags, notebook_private)
     entry_owner = user_id
     entry_name = notebook_name
@@ -73,20 +82,5 @@ class Notebook
     rescue => ex
     end
     self
-  end
-
-  def note_models
-    note_mdls = Note.where(:id.in => notes)
-    note_mdls ? note_mdls : []
-  end
-
-  def question_models
-    question_mdls = Question.where(:id.in => questions)
-    question_mdls ? question_mdls : []
-  end
-
-  def test_models
-    test_mdls = Test.where(:id.in => tests)
-    test_mdls ? test_mdls : []
   end
 end

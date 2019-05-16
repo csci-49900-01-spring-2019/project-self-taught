@@ -97,7 +97,7 @@ class User
         notebook_mdls
       end
     else
-      []
+      nil
     end
   end
 end

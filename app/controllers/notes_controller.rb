@@ -72,7 +72,7 @@ class NotesController < MainSiteBaseController
 			@notebook = Notebook.find(params[:notebook_id])
 
 			@entry_owner = current_user[:id]
-			@entry_notebook = params[:notebook_id]
+			@entry_notebook = @notebook.id
 			
 			@entry_name = params[:note_name]
 			
