@@ -186,7 +186,7 @@
 				<tr>
 					<th scope="row">api.<%=request.domain%>/v1/notebooks</th>
 					<td>POST</td>
-					<td>name & description & tags</td>
+					<td>name & description & tags & private</td>
 					<td>User Authentication</td>
 					<td>
 						Notebook Creation.<br/>
@@ -195,6 +195,7 @@
 							HTTP 200 Ok Status.<br/>
 							The name parameter cannot be empty.<br/>
 							The tags parameter are separated by commas then turned into an array.<br/>
+							Set private to false to make the book public, other the book will be private.<br/>
 							Returns the JSON representation of the notebook that the user created.
 						</p>
 						On Failure:<br/>
@@ -235,7 +236,7 @@
 				<tr>
 					<th scope="row">api.<%=request.domain%>/v1/notebooks/:notebook_id</th>
 					<td>PUT</td>
-					<td>name & description & tags</td>
+					<td>name & description & tags & private</td>
 					<td>User Authentication</td>
 					<td>
 						Notebook Editing.<br/>
@@ -245,6 +246,7 @@
 							Successful if the notebook exists and it is owned by the authenticated user provided.<br/>
 							Any empty parameters will not be updated.<br/>
 							The tags parameter are separated by commas then turned into an array.<br/>
+							Set private to false to make the book public, other the book will be private.<br/>
 							Returns the JSON representation of the notebook that the user created.
 						</p>
 						On Failure:<br/>

@@ -13,7 +13,18 @@ class Api::V1::NotebooksController < Api::ApiBaseController
 			render json: @user.notebook_models(current_user.id)
 		rescue => ex
 			# 404 Error if user_id is not a registered user
-			render json: "user_id is incorrect", :status => :not_found
+			render json: "user does not exists", :status => :not_found
+		end
+	end
+
+	def create
+		# Notebook Creation to the Database
+		begin
+			render json: current_user.create_notebook(params[:name], params[:description], params[:tags], params[:private])
+		rescue => ex
+			# 401 Error on bad user_auth or bad parameter
+			p ex
+			render json: "bad parameter", :status => :unauthorized
 		end
 	end
 end

@@ -69,6 +69,21 @@ class User
   index({ uid: 1, provider: 1}, { name: 'uid_provider_index', unique: true, background: true })
   # index({ unlock_token: 1 }, { name: 'unlock_token_index', unique: true, sparse: true, background: true })
 
+  def create_notebook(notebook_name, notebook_description, notebook_tags, notebook_private)
+    @entry_owner = id
+    @entry_name = notebook_name
+    @entry_description = notebook_description
+    if notebook_tags
+			@entry_tags = notebook_tags.split(",")
+			@entry_tags.map! { |tag| tag = tag.strip }
+		end
+		if !@entry_tags
+			@entry_tags = []
+		end
+    @entry_private = (!notebook_private or notebook_private != "false" ? true : false)
+    Notebook.create(owner: @entry_owner, name: @entry_name, description: @entry_description, tags: @entry_tags, private: @entry_private)
+  end
+
   def notebook_models user_id
     notebook_mdls = Notebook.where(owner: id)
     if notebook_mdls
