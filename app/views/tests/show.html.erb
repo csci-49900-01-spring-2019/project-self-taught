@@ -6,15 +6,27 @@
 <body>
 <div class="container-fluid padding" style="height:64px;"></div>
 
-<!-- Question Heading -->
+<!-- Test Heading -->
 <div class="container-fluid padding">
 <div class="row welcome text-center mb-2">
   <div class="col-12">
-    <h1 class="display-4"><%= @notebook.name %>: <%= @question.content %></h1>
+    <h1 class="display-4"><%= @notebook.name %>: <%= @test.name %></h1>
   </div>
   <hr>
   <div class="col-12">
-    <p style="font-size:24px;"><%= @question.answer %><p>
+    <p style="font-size:24px;"><%= @test.description %><p>
+  </div>
+  <hr>
+  <div class="col-12">
+    <p style="font-size:24px;">Time Limit: <%= @test.time_limit %> Min(s)<p>
+  </div>
+  <hr>
+  <div class="col-12">
+    <% @questions.each do |question| %>
+      <div class="mx-4 my-2">
+        <%= render :template => "layouts/_item_entry", :locals => { :question => question, :entry_type => "question" } %>
+      </div>
+    <% end %>
   </div>
 </div>
 </div>

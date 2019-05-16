@@ -69,36 +69,16 @@ class User
   index({ uid: 1, provider: 1}, { name: 'uid_provider_index', unique: true, background: true })
   # index({ unlock_token: 1 }, { name: 'unlock_token_index', unique: true, sparse: true, background: true })
 
-  ## App functions
-  def notebook_owner? notebook_id
-    books && books.find(notebook_id)
-  end
-
-  def notebook_array
-    if books
-      Notebook.find(books)
+  def notebook_models user_id
+    notebook_mdls = Notebook.where(owner: id)
+    if notebook_mdls
+      if user_id.to_s != id.to_s
+        notebook_mdls.where(private: false)
+      else
+        notebook_mdls
+      end
     else
       []
-    end
-  end
-
-  def notebook_create notebook_params
-    notebook = Notebook.create(notebook_params)
-    if books
-      update(books: books.push(notebook.id))
-    else
-      update(books: [notebook.id])
-    end
-  end
-
-  def notebook_delete notebook_id
-    if books && books.find(notebook_id)
-      notebook = Notebook.find(notebook_id)
-      if notebook
-        notebook.delete
-      end
-      books.delete(notebook.id)
-      update(books: books)
     end
   end
 end

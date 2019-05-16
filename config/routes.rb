@@ -39,7 +39,10 @@ Rails.application.routes.draw do
     resources :notebooks, param: :notebook_id
     resources :notes,     param: :note_id,     path: '/notebooks/:notebook_id/notes', as: :notebook_notes
     resources :questions, param: :question_id, path: '/notebooks/:notebook_id/questions', as: :notebook_questions
+
     resources :tests,     param: :test_id,     path: '/notebooks/:notebook_id/tests', as: :notebook_tests
+    post 'notebooks/:notebook_id/tests/:test_id/session', action: :create_session, controller: 'tests', as: :notebook_test_sessions
+    get  'notebooks/:notebook_id/tests/:test_id/sessions/:session_id', action: :show_session, controller: 'tests', as: :notebook_test_session
   end
 
   namespace :api, path: nil, constraints: ApiSubDomainConstraint do
@@ -57,10 +60,10 @@ Rails.application.routes.draw do
           sessions:           'api/v1/users/sessions',
           token_validations:  'api/v1/users/token_validations' }
       
-      get 'users/:id/notebooks', action: :user, controller: 'notebooks', as: :user_notebooks
-      get 'users/:id/notes', action: :user, controller: 'notes', as: :user_notes
-      get 'users/:id/questions', action: :user, controller: 'questions', as: :user_questions
-      get 'users/:id/tests', action: :user, controller: 'tests', as: :user_tests
+      get 'users/:user_id/notebooks', action: :user, controller: 'notebooks', as: :user_notebooks
+      get 'users/:user_id/notes',     action: :user, controller: 'notes',     as: :user_notes
+      get 'users/:user_id/questions', action: :user, controller: 'questions', as: :user_questions
+      get 'users/:user_id/tests',     action: :user, controller: 'tests',     as: :user_tests
 
       resources :notebooks, only: [:index, :create, :show, :update, :destroy], constraints: { format: 'json' } do
         resources :notes, only: [:index, :create, :show, :update, :destroy]

@@ -159,11 +159,29 @@
 	<!-- Test Entry -->
 	<div class="note-entry-panel-container note-entry-panel-left bg-primary">
 		<div class="note-entry-panel note-entry-panel-left bg-primary">
-			<%= link_to(notebook_test_path(test.notebook, test.id), { class:"note-entry-panel-item note-entry-panel-left", 'data-toggle':"tooltip", 'data-placement':"top", 'title':"Open" }) do %>
-				<i class="material-icons-sharp my-auto">open_in_new</i>
+			<%= link_to(notebook_test_path(test.notebook, test.id), { class:"note-entry-panel-item note-entry-panel-left", 'data-toggle':"tooltip", 'data-placement':"top", 'title':"Results" }) do %>
+				<i class="material-icons-sharp my-auto">check_circle</i>
 			<% end %>
 		</div>
 		<div class="note-entry-panel-shade note-entry-panel-left"></div>
+	</div>
+
+	<div class="note-entry-panel-container bg-primary">
+		<div class="note-entry-panel bg-primary">
+			<%= link_to(notebook_test_sessions_path(test.notebook, test.id), { method: :post, class:"note-entry-panel-item", 'data-toggle':"tooltip", 'data-placement':"top", 'title':"Take" }) do %>
+				<i class="material-icons-sharp my-auto">assignment_return</i>
+			<% end %>
+		</div>
+		<div class="note-entry-panel-shade"></div>
+	</div>
+
+	<div class="note-entry-panel-container bg-primary">
+		<div class="note-entry-panel bg-primary">
+			<%= link_to(notebook_test_path(test.notebook, test.id), { class:"note-entry-panel-item", 'data-toggle':"tooltip", 'data-placement':"top", 'title':"Open" }) do %>
+				<i class="material-icons-sharp my-auto">open_in_new</i>
+			<% end %>
+		</div>
+		<div class="note-entry-panel-shade"></div>
 	</div>
 	
 	<% if current_user.try(:id) == test.owner %>

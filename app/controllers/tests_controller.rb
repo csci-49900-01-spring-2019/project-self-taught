@@ -23,6 +23,7 @@ class TestsController < MainSiteBaseController
 		begin
 			@notebook = Notebook.find(params[:notebook_id])
 			@test = Test.find(params[:test_id])
+			@questions = Question.where(:_id.in => @notebook.questions)
 			@owner = current_user
 			if !((@owner.id == @notebook.owner  or (!@notebook.private and !@test.private)) and @test.notebook == @notebook.id.to_s)
 				# 401 Error if user is not allowed to view the notebook or if the test does not belong to the notebook
@@ -207,6 +208,46 @@ class TestsController < MainSiteBaseController
 				@notebook.update(tests: @notebook.tests)
 				
 				redirect_to(notebook_path(params[:notebook_id]))
+			else
+				# 401 Error if user is not allowed to view the notebook or if the test does not belong to the notebook
+				render :file => "#{Rails.root}/public/401", :status => :unauthorized
+			end
+		rescue => ex
+			# 404 Error if notebook_id or test_id is not a registered notebook or test
+			render :file => "#{Rails.root}/public/404", :status => :not_found
+		end
+	end
+
+	def show_session
+		# Test Session Viewing
+		begin
+			@notebook = Notebook.find(params[:notebook_id])
+			@test = Test.find(params[:test_id])
+			@session = TestSession.find(params[:session_id])
+			@questions = Question.where(:_id.in => @session.questions)
+			if !@session.user_auth?(current_user.id, @notebook.id, @test)
+				# 401 Error if user is not allowed to view the notebook or if the test does not belong to the notebook
+				render :file => "#{Rails.root}/public/401", :status => :unauthorized
+			end
+		rescue => ex
+			# 404 Error if notebook_id or test_id is not a registered notebook or test
+			render :file => "#{Rails.root}/public/404", :status => :not_found
+		end
+	end
+
+	def create_session
+		# Test Session Creation
+		if !user_signed_in?
+			# Only signed in users can attempt this
+			redirect_to(new_user_session_path)
+		end
+
+		begin
+			@notebook = Notebook.find(params[:notebook_id])
+			@test = Test.find(params[:test_id])
+			if @test.user_auth?(current_user.id, @notebook.id)
+				@test.new_session(current_user.id)
+				redirect_to(notebook_test_session_path(params[:notebook_id], params[:test_id], @test.session))
 			else
 				# 401 Error if user is not allowed to view the notebook or if the test does not belong to the notebook
 				render :file => "#{Rails.root}/public/401", :status => :unauthorized
