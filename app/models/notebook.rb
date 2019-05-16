@@ -29,6 +29,10 @@ class Notebook
     user_auth?(user_id) or private == false
   end
 
+  def can_create_note? user_id
+    user_auth? user_id
+  end
+
   def search_match? search_input
     name.match?(/#{search_input}/i) or description.match?(/#{search_input}/i) or tags.any?{ |tag| tag.match?(/#{search_input}/i) }
   end
@@ -82,5 +86,17 @@ class Notebook
     rescue => ex
     end
     self
+  end
+
+  def create_note(note_name, note_description, note_tags, note_private)
+    entry_owner = owner
+    entry_notebook = id
+    entry_name = note_name
+    entry_description = note_description
+    entry_tags = text2tags(note_tags)
+    entry_private = (!note_private or note_private != "false" ? true : false)
+    note = Note.create(owner: entry_owner, notebook: entry_notebook, name: entry_name, description: entry_description, tags: entry_tags, private: entry_private)
+    update(notes: note_ids().push(note.id))
+    note
   end
 end

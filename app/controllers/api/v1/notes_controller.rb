@@ -18,7 +18,6 @@ class Api::V1::NotesController < Api::ApiBaseController
 		end
 	end
 
-
 	def user
 		# User-filtered Notes Viewing
 		begin
@@ -44,15 +43,21 @@ class Api::V1::NotesController < Api::ApiBaseController
 		end
 	end
 
-	# def create
-	# 	# Notebook Creation to the Database
-	# 	begin
-	# 		render json: current_user.create_notebook(params[:name], params[:description], params[:tags], params[:private])
-	# 	rescue => ex
-	# 		# 401 Error on bad user_auth or bad parameter
-	# 		render json: "bad parameter", :status => :unauthorized
-	# 	end
-	# end
+	def create
+		# Note Creation to the Database
+		begin
+			notebook_model = Notebook.find(params[:notebook_id])
+			if !(notebook_model.can_create_note? current_user.id)
+				# 401 Error if user is not allowed to create a note
+				render json: "not allowed to create a note", :status => :unauthorized
+			end
+			
+			render json: notebook_model.create_note(params[:name], params[:description], params[:tags], params[:private])
+		rescue => ex
+			# 404 Error if notebook_id is not a registered notebook
+			render json: "notebook does not exists", :status => :not_found
+		end
+	end
 	
 	# def update
 	# 	# Notebook Edit to the Database
