@@ -68,7 +68,7 @@ class NotebooksController < MainSiteBaseController
 		begin
 			@notebook = Notebook.find(params[:notebook_id])
 			@owner = current_user
-			if @notebook.user_auth?(@owner.id)
+			if !@notebook.user_auth?(@owner.id)
 				# 401 Error if user is not allowed to view the notebook
 				render :file => "#{Rails.root}/public/401", :status => :unauthorized
 			end
