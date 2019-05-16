@@ -21,6 +21,8 @@ class User
   field :last_name,          type: String, default: ''
   field :gender,             type: String, default: ''
   field :grade,              type: String, default: ''
+  
+  field :notebooks,          type: Array,  default: []
 
   ## Recoverable
   field :reset_password_token,        type: String
@@ -49,9 +51,6 @@ class User
   ## Tokens
   field :tokens,   type: Hash, default: {}
 
-  ## App fields
-  field :books,    type: Array
-
   ## Validations
   validates :email, presence: true, uniqueness: true
   validates :first_name, presence: true
@@ -71,13 +70,22 @@ class User
   index({ uid: 1, provider: 1}, { name: 'uid_provider_index', unique: true, background: true })
   # index({ unlock_token: 1 }, { name: 'unlock_token_index', unique: true, sparse: true, background: true })
 
+  def notebook_ids
+    if !notebooks
+      update(notebooks: [])
+    end
+    notebooks
+  end
+
   def create_notebook(notebook_name, notebook_description, notebook_tags, notebook_private)
     entry_owner = id
     entry_name = notebook_name
     entry_description = notebook_description
     entry_tags = text2tags(notebook_tags)
     entry_private = (!notebook_private or notebook_private != "false" ? true : false)
-    Notebook.create(owner: entry_owner, name: entry_name, description: entry_description, tags: entry_tags, private: entry_private)
+    notebook = Notebook.create(owner: entry_owner, name: entry_name, description: entry_description, tags: entry_tags, private: entry_private)
+    update(notebooks: notebook_ids().push(notebook.id))
+    notebook
   end
 
   def notebook_models user_id

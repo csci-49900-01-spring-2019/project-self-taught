@@ -33,6 +33,27 @@ class Notebook
     name.match?(/#{search_input}/i) or description.match?(/#{search_input}/i) or tags.any?{ |tag| tag.match?(/#{search_input}/i) }
   end
 
+  def note_ids
+    if !notes
+      update(notes: [])
+    end
+    notes
+  end
+
+  def question_ids
+    if !questions
+      update(questions: [])
+    end
+    questions
+  end
+
+  def test_ids
+    if !tests
+      update(tests: [])
+    end
+    tests
+  end
+
   def update_notebook(user_id, notebook_name, notebook_description, notebook_tags, notebook_private)
     entry_owner = user_id
     entry_name = notebook_name
@@ -40,6 +61,17 @@ class Notebook
     entry_tags = text2tags(notebook_tags)
     entry_private = (!notebook_private or notebook_private != "false" ? true : false)
     update(owner: entry_owner, name: entry_name, description: entry_description, tags: entry_tags, private: entry_private)
+    self
+  end
+
+  def delete_notebook
+    delete()
+    begin
+      notebook_owner = User.find(owner)
+      notebook_owner.notebook_ids().delete(id)
+      notebook_owner.update(notebooks: notebook_owner.notebook_ids())
+    rescue => ex
+    end
     self
   end
 

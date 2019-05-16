@@ -9,8 +9,8 @@ class Api::V1::NotebooksController < Api::ApiBaseController
 	def user
 		# User-filtered Notebooks Viewing
 		begin
-			@user = User.find(params[:user_id])
-			render json: @user.notebook_models(current_user.id)
+			user_model = User.find(params[:user_id])
+			render json: user_model.notebook_models(current_user.id)
 		rescue => ex
 			# 404 Error if user_id is not a registered user
 			render json: "user does not exists", :status => :not_found
@@ -30,13 +30,30 @@ class Api::V1::NotebooksController < Api::ApiBaseController
 	def update
 		# Notebook Edit to the Database
 		begin
-			@notebook = Notebook.find(params[:notebook_id])
-			if !(@notebook.user_auth? current_user.id)
-				# 401 Error if user is not allowed to view the notebook
+			notebook_model = Notebook.find(params[:notebook_id])
+			if !(notebook_model.user_auth? current_user.id)
+				# 401 Error if user is not allowed to access the notebook
 				render json: "not allowed to access this notebook", :status => :unauthorized
 			end
 			
-			render json: @notebook.update_notebook(current_user.id, params[:name], params[:description], params[:tags], params[:private])
+			render json: notebook_model.update_notebook(current_user.id, params[:name], params[:description], params[:tags], params[:private])
+		rescue => ex
+			# 404 Error if notebook_id is not a registered notebook
+			render json: "notebook does not exists", :status => :not_found
+		end
+	end
+
+	def destroy
+		# Notebook Deletion from the Database
+		begin
+			notebook_model = Notebook.find(params[:notebook_id])
+			if !(notebook_model.user_auth? current_user.id)
+				# 401 Error if user is not allowed to access the notebook
+				render json: "not allowed to access this notebook", :status => :unauthorized
+			end
+			notebook_model.delete_notebook()
+
+			render json: notebook_model
 		rescue => ex
 			# 404 Error if notebook_id is not a registered notebook
 			render json: "notebook does not exists", :status => :not_found
