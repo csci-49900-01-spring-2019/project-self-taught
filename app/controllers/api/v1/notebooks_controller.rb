@@ -3,7 +3,7 @@ class Api::V1::NotebooksController < Api::ApiBaseController
 	
 	def index
 		# Public Notebooks Viewing
-		render json: Notebook.any_of({ private: false })
+		render json: Notebook.any_of({ owner: current_user.id }, { private: false })
 	end
 
 	def user
