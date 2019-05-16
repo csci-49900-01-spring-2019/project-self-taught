@@ -25,12 +25,12 @@ class Note
   validates :name,         presence: true
   validates :date_created, presence: true
 
-  def notebook_auth? notebook_id
-    notebook == notebook_id
+  def user_auth? user_id, notebook_id
+    user_id == owner and notebook_id == notebook
   end
 
   def can_view? user_id, notebook_id
-    notebook_id.to_s == notebook and (user_id == owner or private == false)
+    notebook_id == notebook and (user_id == owner or private == false)
   end
 
   def search_match? search_input

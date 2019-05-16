@@ -26,11 +26,11 @@ class Test
   validates :date_created, presence: true
 
   def user_auth? user_id, notebook_id
-    user_id.to_s == owner.to_s and notebook_id.to_s == notebook.to_s
+    user_id == owner and notebook_id == notebook
   end
 
   def can_view? user_id, notebook_id
-    notebook_id.to_s == notebook.to_s and (user_id == owner.to_s or private == false)
+    notebook_id == notebook and (user_id == owner or private == false)
   end
 
   def search_match? search_input

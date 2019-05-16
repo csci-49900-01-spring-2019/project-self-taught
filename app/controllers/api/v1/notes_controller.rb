@@ -5,7 +5,7 @@ class Api::V1::NotesController < Api::ApiBaseController
 		# Notebook-filtered Notes Viewing
 		begin
 			notebook_model = Notebook.find(params[:notebook_id])
-			if !(notebook_model.can_view? current_user.id)
+			if !(notebook_model.can_view?(current_user.id))
 				# 401 Error if user is not allowed to view the notebook
 				render json: "not allowed to view this notebook", :status => :unauthorized
 			end
@@ -15,6 +15,23 @@ class Api::V1::NotesController < Api::ApiBaseController
 		rescue => ex
 			# 404 Error if notebook_id is not a registered notebook
 			render json: "notebook does not exists", :status => :not_found
+		end
+	end
+
+	def show
+		# Single-Note Viewing
+		begin
+			notebook_model = Notebook.find(params[:notebook_id])
+			note_model = Note.find(params[:note_id])
+			if !(note_model.can_view?(current_user.id, notebook_model.id))
+				# 401 Error if user is not allowed to access the note
+				render json: "not allowed to view this note", :status => :unauthorized
+			end
+			
+			render json: note_model
+		rescue => ex
+			# 404 Error if notebook_id is not a registered notebook
+			render json: "notebook or note does not exists", :status => :not_found
 		end
 	end
 
@@ -63,15 +80,10 @@ class Api::V1::NotesController < Api::ApiBaseController
 		# Note Edit to the Database
 		begin
 			notebook_model = Notebook.find(params[:notebook_id])
-			if !(notebook_model.user_auth? current_user.id)
+			note_model = Note.find(params[:note_id])
+			if !(note_model.user_auth?(current_user.id, notebook_model.id))
 				# 401 Error if user is not allowed to access the note
 				render json: "not allowed to access this note", :status => :unauthorized
-			end
-
-			note_model = Note.find(params[:note_id])
-			if !(note_model.notebook_auth? notebook_model.id)
-				# 401 Error if user is not allowed to access the note
-				render json: "notebook does not contain this note", :status => :unauthorized
 			end
 			
 			render json: note_model.update_note(current_user.id, notebook_model.id, params[:name], params[:description], params[:tags], params[:private])
@@ -85,15 +97,10 @@ class Api::V1::NotesController < Api::ApiBaseController
 		# Notebook Deletion from the Database
 		begin
 			notebook_model = Notebook.find(params[:notebook_id])
-			if !(notebook_model.user_auth? current_user.id)
+			note_model = Note.find(params[:note_id])
+			if !(note_model.user_auth?(current_user.id, notebook_model.id))
 				# 401 Error if user is not allowed to access the note
 				render json: "not allowed to access this note", :status => :unauthorized
-			end
-
-			note_model = Note.find(params[:note_id])
-			if !(note_model.notebook_auth? notebook_model.id)
-				# 401 Error if user is not allowed to access the note
-				render json: "notebook does not contain this note", :status => :unauthorized
 			end
 			
 			render json: note_model.delete_note()
