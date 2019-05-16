@@ -50,7 +50,8 @@ Rails.application.routes.draw do
     
     namespace :v1 do
       root to: "home#index"
-      
+      get 'search', action: :index, controller: 'search', as: :search
+
       mount_devise_token_auth_for 'User', at: 'users', constraints: { format: 'json' },
         controllers:
         { confirmations:      'api/v1/users/confirmations',
