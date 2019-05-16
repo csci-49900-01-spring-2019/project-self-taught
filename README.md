@@ -64,8 +64,14 @@ As for the security requirement for the project, we have email verification, enc
 
 For future projects, we would like to improve on the technical aspect and the design. We would want it to be designed with a more user features like adding friends and adding a chat system to allow users to add friends. Another feature we would like to implement would be the comment section to allow users to comment. The other feature that would be nice would be to flag spam or any unwanted content that would be on the site.
 
+## Website
+* https://selftaughtapp.com
+
 ## API Documentation
 * https://api.selftaughtapp.com/v1
+
+## Slides
+* https://docs.google.com/presentation/d/1D4zDyZ9ZFVdfpCI2JVu2iByrJnUzFK3VWtIxLMtaw2w/edit?usp=sharing
 
 ## Technology
 * Ruby version 2.6.2
