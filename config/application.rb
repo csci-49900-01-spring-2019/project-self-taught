@@ -27,6 +27,9 @@ module Website
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
+    # Autoload lib dir
+    config.autoload_paths << Rails.root.join("lib")
+    config.eager_load_paths << Rails.root.join("lib")
     # Force HTTPS redirects
     config.force_ssl = true
     # Mongoid configuration

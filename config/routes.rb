@@ -65,11 +65,10 @@ Rails.application.routes.draw do
       get 'users/:user_id/questions', action: :user, controller: 'questions', as: :user_questions
       get 'users/:user_id/tests',     action: :user, controller: 'tests',     as: :user_tests
 
-      resources :notebooks, only: [:index, :create, :show, :update, :destroy], constraints: { format: 'json' } do
-        resources :notes, only: [:index, :create, :show, :update, :destroy]
-        resources :questions, only: [:index, :create, :show, :update, :destroy]
-        resources :tests, only: [:index, :create, :show, :update, :destroy]
-      end 
+      resources :notebooks, param: :notebook_id, only: [:index, :create, :show, :update, :destroy], constraints: { format: 'json' }
+      resources :notes,     param: :note_id, path: '/notebooks/:notebook_id/notes', as: :notebook_notes, only: [:index, :create, :show, :update, :destroy], constraints: { format: 'json' }
+      resources :questions, param: :question_id, path: '/notebooks/:notebook_id/questions', as: :notebook_questions, only: [:index, :create, :show, :update, :destroy], constraints: { format: 'json' }
+      resources :tests,     param: :test_id, path: '/notebooks/:notebook_id/tests', as: :notebook_tests, only: [:index, :create, :show, :update, :destroy], constraints: { format: 'json' }
     end
   end
 end

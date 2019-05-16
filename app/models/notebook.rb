@@ -1,6 +1,8 @@
 class Notebook
   include Mongoid::Document
 
+  include NoteEntryHelper
+
   field :owner,        type: User
   field :private,      type: Boolean,  default: true
 
@@ -19,12 +21,26 @@ class Notebook
   validates :name, presence: true
   validates :date_created, presence: true
 
+  def user_auth? user_id
+    user_id == owner
+  end
+
   def can_view? user_id
-    user_id == owner or private == false
+    user_auth?(user_id) or private == false
   end
 
   def search_match? search_input
     name.match?(/#{search_input}/i) or description.match?(/#{search_input}/i) or tags.any?{ |tag| tag.match?(/#{search_input}/i) }
+  end
+
+  def update_notebook(user_id, notebook_name, notebook_description, notebook_tags, notebook_private)
+    entry_owner = user_id
+    entry_name = notebook_name
+    entry_description = notebook_description
+    entry_tags = text2tags(notebook_tags)
+    entry_private = (!notebook_private or notebook_private != "false" ? true : false)
+    update(owner: entry_owner, name: entry_name, description: entry_description, tags: entry_tags, private: entry_private)
+    self
   end
 
   def note_models

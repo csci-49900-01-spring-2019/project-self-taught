@@ -5,6 +5,8 @@ class User
   include Mongoid::Timestamps
   include Mongoid::Locker
 
+  include NoteEntryHelper
+
   field :locker_locked_at, type: Time
   field :locker_locked_until, type: Time
 
@@ -70,18 +72,12 @@ class User
   # index({ unlock_token: 1 }, { name: 'unlock_token_index', unique: true, sparse: true, background: true })
 
   def create_notebook(notebook_name, notebook_description, notebook_tags, notebook_private)
-    @entry_owner = id
-    @entry_name = notebook_name
-    @entry_description = notebook_description
-    if notebook_tags
-			@entry_tags = notebook_tags.split(",")
-			@entry_tags.map! { |tag| tag = tag.strip }
-		end
-		if !@entry_tags
-			@entry_tags = []
-		end
-    @entry_private = (!notebook_private or notebook_private != "false" ? true : false)
-    Notebook.create(owner: @entry_owner, name: @entry_name, description: @entry_description, tags: @entry_tags, private: @entry_private)
+    entry_owner = id
+    entry_name = notebook_name
+    entry_description = notebook_description
+    entry_tags = text2tags(notebook_tags)
+    entry_private = (!notebook_private or notebook_private != "false" ? true : false)
+    Notebook.create(owner: entry_owner, name: entry_name, description: entry_description, tags: entry_tags, private: entry_private)
   end
 
   def notebook_models user_id
