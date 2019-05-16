@@ -1,6 +1,8 @@
 class Test
   include Mongoid::Document
 
+  include NoteEntryHelper
+
   field :owner,        type: User
   field :notebook,     type: Notebook
   field :session,      type: TestSession

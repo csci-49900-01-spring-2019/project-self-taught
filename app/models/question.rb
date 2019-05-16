@@ -1,6 +1,8 @@
 class Question
   include Mongoid::Document
   
+  include NoteEntryHelper
+
   field :owner,        type: User
   field :notebook,     type: Notebook
   field :private,      type: Boolean,  default: true

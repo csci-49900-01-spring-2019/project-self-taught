@@ -51,9 +51,8 @@ class Api::V1::NotebooksController < Api::ApiBaseController
 				# 401 Error if user is not allowed to access the notebook
 				render json: "not allowed to access this notebook", :status => :unauthorized
 			end
-			notebook_model.delete_notebook()
 
-			render json: notebook_model
+			render json: notebook_model.delete_notebook()
 		rescue => ex
 			# 404 Error if notebook_id is not a registered notebook
 			render json: "notebook does not exists", :status => :not_found
