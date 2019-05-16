@@ -102,6 +102,20 @@ class Notebook
   def delete_notebook
     delete()
     begin
+      note_models = Note.where(:id.in => notes)
+      if note_models
+        note_models.each do |note|
+          note.delete_note()
+        end
+      end
+
+      question_models = Question.where(:id.in => questions)
+      if question_models
+        question_models.each do |question|
+          question.delete_question()
+        end
+      end
+
       notebook_owner = User.find(owner)
       notebook_owner.notebook_ids().delete(id)
       notebook_owner.update(notebooks: notebook_owner.notebook_ids())
