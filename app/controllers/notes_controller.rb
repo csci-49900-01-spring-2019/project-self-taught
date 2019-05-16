@@ -5,7 +5,7 @@ class NotesController < MainSiteBaseController
 		
 		if @notebooks
 			@notebooks.each do |notebook|
-				notes2 = Note.any_of({ notebook: notebook.id.to_s, private: false })
+				notes2 = Note.any_of({ notebook: notebook.id, private: false })
 				if @notes
 					@notes.merge(notes2)
 				else
@@ -24,7 +24,7 @@ class NotesController < MainSiteBaseController
 			@notebook = Notebook.find(params[:notebook_id])
 			@note = Note.find(params[:note_id])
 			@owner = current_user
-			if !((@owner.id == @notebook.owner  or (!@notebook.private and !@note.private)) and @note.notebook == @notebook.id.to_s)
+			if !(@note.can_view?(@owner.id, @notebook.id))
 				# 401 Error if user is not allowed to view the notebook or if the note does not belong to the notebook
 				render :file => "#{Rails.root}/public/401", :status => :unauthorized
 			end
@@ -70,35 +70,7 @@ class NotesController < MainSiteBaseController
 		
 		begin
 			@notebook = Notebook.find(params[:notebook_id])
-
-			@entry_owner = current_user[:id]
-			@entry_notebook = @notebook.id
-			
-			@entry_name = params[:note_name]
-			
-			@entry_description = params[:note_description]
-
-			if params[:note_tags]
-				@entry_tags = params[:note_tags].split(",")
-				@entry_tags.map! { |tag| tag = tag.strip }
-			end
-			if !@entry_tags
-				@entry_tags = []
-			end
-
-			if params[:note_private]
-				@entry_private = true
-			else
-				@entry_private = false
-			end
-
-			@note = Note.create(owner: @entry_owner, notebook: @entry_notebook, name: @entry_name, description: @entry_description, tags: @entry_tags, private: @entry_private)
-			if !@notebook.notes
-				@notebook.notes = []
-			end
-			@notebook.notes.push(@note.id)
-			@notebook.update(notes: @notebook.notes)
-
+			@notebook.create_note(params[:note_name], params[:note_description], params[:note_tags], params[:note_private] ? "true" : "false")
 			redirect_to(notebook_path(params[:notebook_id]))
 		rescue => ex
 			# 404 Error if notebook_id is not a registered notebook
@@ -117,7 +89,7 @@ class NotesController < MainSiteBaseController
 			@notebook = Notebook.find(params[:notebook_id])
 			@note = Note.find(params[:note_id])
 			@owner = current_user
-			if !(@owner.id == @notebook.owner and @note.notebook == @notebook.id.to_s)
+			if !(@note.user_auth?(@owner.id, @notebook.id))
 				# 401 Error if user is not allowed to view the notebook or if the note does not belong to the notebook
 				render :file => "#{Rails.root}/public/401", :status => :unauthorized
 			end
@@ -138,32 +110,12 @@ class NotesController < MainSiteBaseController
 			@notebook = Notebook.find(params[:notebook_id])
 			@note = Note.find(params[:note_id])
 			@owner = current_user
-			if !(@owner.id == @notebook.owner and @note.notebook == @notebook.id.to_s)
+			if !(@note.user_auth?(@owner.id, @notebook.id))
 				# 401 Error if user is not allowed to view the notebook or if the note does not belong to the notebook
 				render :file => "#{Rails.root}/public/401", :status => :unauthorized
 			end
-		
-			@entry_owner = current_user[:id]
-			
-			@entry_name = params[:note_name]
-			
-			@entry_description = params[:note_description]
 
-			if params[:note_tags]
-				@entry_tags = params[:note_tags].split(",")
-				@entry_tags.map! { |tag| tag = tag.strip }
-			end
-			if !@entry_tags
-				@entry_tags = []
-			end
-
-			if params[:note_private]
-				@entry_private = true
-			else
-				@entry_private = false
-			end
-
-			@note.update(owner: @entry_owner, name: @entry_name, description: @entry_description, tags: @entry_tags, private: @entry_private)
+			@note.update_note(current_user.id, @notebook.id, params[:note_name], params[:note_description], params[:note_tags], params[:note_private] ? "true" : "false")
 			redirect_to(notebook_path(params[:notebook_id]))
 		rescue => ex
 			# 404 Error if notebook_id is not a registered notebook
@@ -182,11 +134,8 @@ class NotesController < MainSiteBaseController
 			@notebook = Notebook.find(params[:notebook_id])
 			@note = Note.find(params[:note_id])
 			@owner = current_user
-			if @owner.id == @notebook.owner and @note.notebook == @notebook.id.to_s
-				@note.delete
-				@notebook.notes.delete(@note.id)
-				@notebook.update(notes: @notebook.notes)
-				
+			if @note.user_auth?(@owner.id, @notebook.id)
+				@note.delete_note()
 				redirect_to(notebook_path(params[:notebook_id]))
 			else
 				# 401 Error if user is not allowed to view the notebook or if the note does not belong to the notebook

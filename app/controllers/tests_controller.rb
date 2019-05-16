@@ -5,7 +5,7 @@ class TestsController < MainSiteBaseController
 		
 		if @notebooks
 			@notebooks.each do |notebook|
-				tests2 = Test.any_of({ notebook: notebook.id.to_s, private: false })
+				tests2 = Test.any_of({ notebook: notebook.id, private: false })
 				if @tests
 					@tests.merge(tests2)
 				else
@@ -25,7 +25,7 @@ class TestsController < MainSiteBaseController
 			@test = Test.find(params[:test_id])
 			@questions = Question.where(:_id.in => @notebook.questions)
 			@owner = current_user
-			if !((@owner.id == @notebook.owner  or (!@notebook.private and !@test.private)) and @test.notebook == @notebook.id.to_s)
+			if !(@test.can_view?(@owner.id, @notebook.id))
 				# 401 Error if user is not allowed to view the notebook or if the test does not belong to the notebook
 				render :file => "#{Rails.root}/public/401", :status => :unauthorized
 			end
@@ -74,7 +74,7 @@ class TestsController < MainSiteBaseController
 			@notebook = Notebook.find(params[:notebook_id])
 
 			@entry_owner = current_user[:id]
-			@entry_notebook = params[:notebook_id]
+			@entry_notebook = @notebook.id
 			
 			@entry_name = params[:test_name]
 			@entry_description = params[:test_description]
@@ -127,7 +127,7 @@ class TestsController < MainSiteBaseController
 			@notebook = Notebook.find(params[:notebook_id])
 			@test = Test.find(params[:test_id])
 			@owner = current_user
-			if !(@owner.id == @notebook.owner and @test.notebook == @notebook.id.to_s)
+			if !(@test.user_auth?(@owner.id, @notebook.id))
 				# 401 Error if user is not allowed to view the notebook or if the test does not belong to the notebook
 				render :file => "#{Rails.root}/public/401", :status => :unauthorized
 			end
@@ -149,13 +149,13 @@ class TestsController < MainSiteBaseController
 			@notebook = Notebook.find(params[:notebook_id])
 			@test = Test.find(params[:test_id])
 			@owner = current_user
-			if !(@owner.id == @notebook.owner and @test.notebook == @notebook.id.to_s)
+			if !(@test.user_auth?(@owner.id, @notebook.id))
 				# 401 Error if user is not allowed to view the notebook or if the test does not belong to the notebook
 				render :file => "#{Rails.root}/public/401", :status => :unauthorized
 			end
 		
 			@entry_owner = current_user[:id]
-			@entry_notebook = params[:notebook_id]
+			@entry_notebook = @notebook.id
 			
 			@entry_name = params[:test_name]
 			@entry_description = params[:test_description]
@@ -202,7 +202,7 @@ class TestsController < MainSiteBaseController
 			@notebook = Notebook.find(params[:notebook_id])
 			@test = Test.find(params[:test_id])
 			@owner = current_user
-			if @owner.id == @notebook.owner and @test.notebook == @notebook.id.to_s
+			if @test.user_auth?(@owner.id, @notebook.id)
 				@test.delete
 				@notebook.tests.delete(@test.id)
 				@notebook.update(tests: @notebook.tests)
@@ -247,7 +247,7 @@ class TestsController < MainSiteBaseController
 			@test = Test.find(params[:test_id])
 			if @test.user_auth?(current_user.id, @notebook.id)
 				@test.new_session(current_user.id)
-				redirect_to(notebook_test_session_path(params[:notebook_id], params[:test_id], @test.session))
+				redirect_to(notebook_test_session_path(@notebook.id, @test.id, @test.session))
 			else
 				# 401 Error if user is not allowed to view the notebook or if the test does not belong to the notebook
 				render :file => "#{Rails.root}/public/401", :status => :unauthorized

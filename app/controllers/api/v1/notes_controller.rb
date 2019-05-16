@@ -94,7 +94,7 @@ class Api::V1::NotesController < Api::ApiBaseController
 	end
 
 	def destroy
-		# Notebook Deletion from the Database
+		# Note Deletion from the Database
 		begin
 			notebook_model = Notebook.find(params[:notebook_id])
 			note_model = Note.find(params[:note_id])

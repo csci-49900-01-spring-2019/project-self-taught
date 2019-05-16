@@ -29,4 +29,26 @@ class Question
   def search_match? search_input
     content.match?(/#{search_input}/i) or answer.match?(/#{search_input}/i) or tags.any?{ |tag| tag.match?(/#{search_input}/i) }
   end
+
+  def update_question(user_id, notebook_id, question_content, question_answer, question_tags, question_private)
+    entry_owner = user_id
+    entry_notebook = notebook_id
+    entry_content = question_content
+    entry_answer = question_answer
+    entry_tags = text2tags(question_tags)
+    entry_private = (!question_private or question_private != "false" ? true : false)
+    update(owner: entry_owner, notebook: entry_notebook, content: entry_content, answer: entry_answer, tags: entry_tags, private: entry_private)
+    self
+  end
+
+  def delete_question
+    delete()
+    begin
+      question_notebook = Notebook.find(notebook)
+      question_notebook.question_ids().delete(id)
+      question_notebook.update(questions: question_notebook.question_ids())
+    rescue => ex
+    end
+    self
+  end
 end
